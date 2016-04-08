@@ -274,7 +274,7 @@ public class CustomCameraActivity extends Activity {
         cancelButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                takePictureWithAutoFocus();
+                cancelOperation();
             }
         });
         layout.addView(cancelButton);
@@ -321,7 +321,10 @@ public class CustomCameraActivity extends Activity {
             finishWithError("Failed to take image");
         }
     }
-
+	private void cancelOperation(){
+		setResult(RESULT_OK, "cancel");
+		finish();
+	}
     private class OutputCapturedImageTask extends AsyncTask<byte[], Void, Void> {
 
         @Override
