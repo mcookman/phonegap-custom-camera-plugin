@@ -59,6 +59,7 @@ public class CustomCameraActivity extends Activity {
     private ImageView borderBottomLeft;
     private ImageView borderBottomRight;
     private ImageButton captureButton;
+	private ImageButton cancelButton;
 
     @Override
     protected void onResume() {
@@ -118,6 +119,7 @@ public class CustomCameraActivity extends Activity {
         createBottomRightBorder();
         layoutBottomBorderImagesRespectingAspectRatio();
         createCaptureButton();
+		createCancelButton();
         setContentView(layout);
     }
 
@@ -252,11 +254,45 @@ public class CustomCameraActivity extends Activity {
         layout.addView(captureButton);
     }
 
+	private void createCancelButton() {
+        cancelButton = new ImageButton(getApplicationContext());
+        setBitmap(cancelButton, "cancel_button.png");
+        cancelButton.setBackgroundColor(Color.TRANSPARENT);
+        cancelButton.setScaleType(ScaleType.FIT_CENTER);
+        RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(dpToPixels(75), dpToPixels(75));
+        layoutParams.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
+        layoutParams.addRule(RelativeLayout.ALIGN_PARENT_LEFT);
+        layoutParams.bottomMargin = dpToPixels(10);
+        cancelButton.setLayoutParams(layoutParams);
+        cancelButton.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                setCancelButtonImageForEvent(event);
+                return false;
+            }
+        });
+        cancelButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                takePictureWithAutoFocus();
+            }
+        });
+        layout.addView(cancelButton);
+    }
+
     private void setCaptureButtonImageForEvent(MotionEvent event) {
         if (event.getAction() == MotionEvent.ACTION_DOWN) {
             setBitmap(captureButton, "capture_button_pressed.png");
         } else if (event.getAction() == MotionEvent.ACTION_UP) {
             setBitmap(captureButton, "capture_button.png");
+        }
+    }
+
+	private void setCancelButtonImageForEvent(MotionEvent event) {
+        if (event.getAction() == MotionEvent.ACTION_DOWN) {
+            setBitmap(cancelButton, "cancel_button_pressed.png");
+        } else if (event.getAction() == MotionEvent.ACTION_UP) {
+            setBitmap(cancelButton, "cancel_button.png");
         }
     }
 
