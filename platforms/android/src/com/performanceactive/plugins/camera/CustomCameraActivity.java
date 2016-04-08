@@ -313,8 +313,14 @@ public class CustomCameraActivity extends Activity {
 
     private void takePicture() {
         try {
-			
-            camera.takePicture(new ShutterCallback() { /* empty */ }, null, new PictureCallback() {
+			ShutterCallback shutterCallback = new ShutterCallback() {
+			    @Override
+				public void onShutter() { 
+					/* Empty Callbacks play a sound! */
+				}
+			};
+
+            camera.takePicture(shutterCallback, null, new PictureCallback() {
                 @Override
                 public void onPictureTaken(byte[] jpegData, Camera camera) {
                     new OutputCapturedImageTask().execute(jpegData);
