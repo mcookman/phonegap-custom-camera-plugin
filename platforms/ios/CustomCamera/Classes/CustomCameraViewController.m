@@ -28,8 +28,8 @@
 
 static const CGFloat kCaptureButtonWidthPhone = 64;
 static const CGFloat kCaptureButtonHeightPhone = 64;
-static const CGFloat kBackButtonWidthPhone = 100;
-static const CGFloat kBackButtonHeightPhone = 40;
+static const CGFloat kBackButtonWidthPhone = 64;
+static const CGFloat kBackButtonHeightPhone = 64;
 static const CGFloat kBorderImageWidthPhone = 50;
 static const CGFloat kBorderImageHeightPhone = 50;
 static const CGFloat kHorizontalInsetPhone = 15;
@@ -38,8 +38,8 @@ static const CGFloat kCaptureButtonVerticalInsetPhone = 10;
 
 static const CGFloat kCaptureButtonWidthTablet = 75;
 static const CGFloat kCaptureButtonHeightTablet = 75;
-static const CGFloat kBackButtonWidthTablet = 150;
-static const CGFloat kBackButtonHeightTablet = 50;
+static const CGFloat kBackButtonWidthTablet = 75;
+static const CGFloat kBackButtonHeightTablet = 75;
 static const CGFloat kBorderImageWidthTablet = 50;
 static const CGFloat kBorderImageHeightTablet = 50;
 static const CGFloat kHorizontalInsetTablet = 100;
