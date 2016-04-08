@@ -258,7 +258,7 @@ public class CustomCameraActivity extends Activity {
 
 	private void createCancelButton() {
         cancelButton = new ImageButton(getApplicationContext());
-        setBitmap(cancelButton, "cancel_button.png");
+        setBitmap(cancelButton, "back_button.png");
         cancelButton.setBackgroundColor(Color.TRANSPARENT);
         cancelButton.setScaleType(ScaleType.FIT_CENTER);
         RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(dpToPixels(75), dpToPixels(75));
@@ -292,9 +292,9 @@ public class CustomCameraActivity extends Activity {
 
 	private void setCancelButtonImageForEvent(MotionEvent event) {
         if (event.getAction() == MotionEvent.ACTION_DOWN) {
-            setBitmap(cancelButton, "cancel_button_pressed.png");
+            setBitmap(cancelButton, "back_button_pressed.png");
         } else if (event.getAction() == MotionEvent.ACTION_UP) {
-            setBitmap(cancelButton, "cancel_button.png");
+            setBitmap(cancelButton, "back_button.png");
         }
     }
 
