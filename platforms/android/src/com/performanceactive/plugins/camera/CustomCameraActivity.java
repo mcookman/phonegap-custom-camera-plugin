@@ -321,8 +321,10 @@ public class CustomCameraActivity extends Activity {
             finishWithError("Failed to take image");
         }
     }
-	private void cancelOperation(){
-		setResult(RESULT_OK, "cancel");
+
+	private void cancelOperation() {
+		Intent data = new Intent().putExtra(ERROR_MESSAGE, "cancel");
+		setResult(RESULT_OK, data);
 		finish();
 	}
     private class OutputCapturedImageTask extends AsyncTask<byte[], Void, Void> {
