@@ -82,7 +82,7 @@ public class CustomCameraActivity extends Activity {
         } else if (supportedFocusModes.contains(FOCUS_MODE_AUTO)) {
             cameraSettings.setFocusMode(FOCUS_MODE_AUTO);
         }
-        cameraSettings.setFlashMode(FLASH_MODE_OFF);
+        cameraSettings.setFlashMode(FLASH_MODE_AUTO);
         camera.setParameters(cameraSettings);
     }
 
@@ -311,7 +311,8 @@ public class CustomCameraActivity extends Activity {
 
     private void takePicture() {
         try {
-            camera.takePicture(null, null, new PictureCallback() {
+			
+            camera.takePicture(new ShutterCallback() { /* empty */ }, null, new PictureCallback() {
                 @Override
                 public void onPictureTaken(byte[] jpegData, Camera camera) {
                     new OutputCapturedImageTask().execute(jpegData);
