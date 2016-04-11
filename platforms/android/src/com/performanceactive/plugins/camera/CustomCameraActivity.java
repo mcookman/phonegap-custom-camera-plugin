@@ -21,6 +21,8 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.TextView;
+import android.view.Gravity;
 import android.view.ViewGroup.LayoutParams;
 import android.view.Window;
 import android.view.WindowManager;
@@ -29,6 +31,7 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ImageView.ScaleType;
 import android.widget.RelativeLayout;
+
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -124,7 +127,7 @@ public class CustomCameraActivity extends Activity {
         createCaptureButton();
 		createCancelButton();
         setContentView(layout);
-		drawText(getIntent().getStringExtra(TOP_MESSAGE, ""));
+		drawText(getIntent().getStringExtra(TOP_MESSAGE));
     }
 
     private void createCameraPreview() {
