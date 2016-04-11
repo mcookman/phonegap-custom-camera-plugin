@@ -51,6 +51,7 @@ public class CustomCameraActivity extends Activity {
     public static String TARGET_HEIGHT = "TargetHeight";
     public static String IMAGE_URI = "ImageUri";
     public static String ERROR_MESSAGE = "ErrorMessage";
+	public static String TOP_MESSAGE = "Top Message";
     public static int RESULT_ERROR = 2;
 
     private Camera camera;
@@ -123,6 +124,7 @@ public class CustomCameraActivity extends Activity {
         createCaptureButton();
 		createCancelButton();
         setContentView(layout);
+		drawText(getIntent().getStringExtra(TOP_MESSAGE, ""));
     }
 
     private void createCameraPreview() {
@@ -281,7 +283,20 @@ public class CustomCameraActivity extends Activity {
         });
         layout.addView(cancelButton);
     }
-
+	public void drawText(String txt){
+		TextView msg = new TextView(ButtonsActivity.this);
+		msg.setBackgroundResource(R.drawable.rectangle);
+		msg.setBackgroundColor(getResources().getColor(R.color.black));
+		msg.setText(txt);
+		msg.setPadding(10, 10, 10, 10);
+		msg.setTextColor(getResources().getColor(R.color.white));
+		LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LayoutParams.WRAP_CONTENT,LayoutParams.WRAP_CONTENT);
+		params.setMargins(5, 15, 0, 0);
+		params.gravity = Gravity.LEFT;
+		msg.setLayoutParams(params);
+		msg.setGravity(Gravity.CENTER);
+		layout.addView(msg);
+	}
     private void setCaptureButtonImageForEvent(MotionEvent event) {
         if (event.getAction() == MotionEvent.ACTION_DOWN) {
             setBitmap(captureButton, "capture_button_pressed.png");
