@@ -32,7 +32,7 @@ import android.widget.ImageView;
 import android.widget.ImageView.ScaleType;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.LinerLayout;
+import android.widget.LinearLayout;
 
 import java.io.File;
 import java.io.FileOutputStream;
