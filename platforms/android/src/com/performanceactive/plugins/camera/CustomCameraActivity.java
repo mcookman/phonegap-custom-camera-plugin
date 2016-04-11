@@ -121,6 +121,7 @@ public class CustomCameraActivity extends Activity {
         RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
         layout.setLayoutParams(layoutParams);
         createCameraPreview();
+		createTopMessage();
         createTopLeftBorder();
         createTopRightBorder();
         createBottomLeftBorder();
@@ -128,7 +129,7 @@ public class CustomCameraActivity extends Activity {
         layoutBottomBorderImagesRespectingAspectRatio();
         createCaptureButton();
 		createCancelButton();
-		createTopMessage();
+		
         setContentView(layout);
 		
     }
