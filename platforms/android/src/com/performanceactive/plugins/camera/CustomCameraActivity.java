@@ -128,7 +128,7 @@ public class CustomCameraActivity extends Activity {
         createCaptureButton();
 		createCancelButton();
 		String mm = "INTERNAL";
-		drawText(mm);
+		//drawText(mm);
         setContentView(layout);
 		
     }
