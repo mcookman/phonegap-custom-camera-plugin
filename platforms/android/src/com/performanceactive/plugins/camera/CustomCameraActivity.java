@@ -65,6 +65,7 @@ public class CustomCameraActivity extends Activity {
     private ImageView borderTopRight;
     private ImageView borderBottomLeft;
     private ImageView borderBottomRight;
+	private TextView topMessage;
     private ImageButton captureButton;
 	private ImageButton cancelButton;
 
@@ -127,8 +128,7 @@ public class CustomCameraActivity extends Activity {
         layoutBottomBorderImagesRespectingAspectRatio();
         createCaptureButton();
 		createCancelButton();
-		String mm = "INTERNAL";
-		drawText(mm);
+		createTopMessage();
         setContentView(layout);
 		
     }
@@ -289,19 +289,18 @@ public class CustomCameraActivity extends Activity {
         });
         layout.addView(cancelButton);
     }
-	public void drawText(String txt){
-		TextView msg = new TextView(getApplicationContext());
-		
-		msg.setBackgroundColor(0);
-		msg.setText(txt);
-		msg.setPadding(10, 10, 10, 10);
-		msg.setTextColor(255);
-		LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LayoutParams.WRAP_CONTENT,LayoutParams.WRAP_CONTENT);
-		params.setMargins(5, 15, 0, 0);
-		params.gravity = Gravity.LEFT;
-		msg.setLayoutParams(params);
-		msg.setGravity(Gravity.CENTER);
-		layout.addView(msg);
+	private void createTopMessage(){
+		topMessage = new TextView(getApplicationContext());
+		topMessage.setBackgroundColor(Color.TRANSPARENT);
+		topMessage.setText("DEFAULT TEXT");
+		topMessage.setPadding(10, 10, 10, 10);
+		topMessage.setTextColor(Color.WHITE);
+		RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(dpToPixels(5), dpToPixels(5));
+        layoutParams.addRule(RelativeLayout.ALIGN_PARENT_TOP);
+		layoutParams.setMargins(5, 15, 0, 0);
+		topMessage.setLayoutParams(layoutParams);
+		topMessage.setGravity(Gravity.CENTER);
+		layout.addView(topMessage);
 	}
     private void setCaptureButtonImageForEvent(MotionEvent event) {
         if (event.getAction() == MotionEvent.ACTION_DOWN) {
