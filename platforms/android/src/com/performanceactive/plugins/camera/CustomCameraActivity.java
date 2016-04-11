@@ -21,7 +21,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.TextView;
+
 import android.view.Gravity;
 import android.view.ViewGroup.LayoutParams;
 import android.view.Window;
@@ -31,7 +31,8 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ImageView.ScaleType;
 import android.widget.RelativeLayout;
-
+import android.widget.TextView;
+import android.widget.LinerLayout;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -287,12 +288,12 @@ public class CustomCameraActivity extends Activity {
         layout.addView(cancelButton);
     }
 	public void drawText(String txt){
-		TextView msg = new TextView(ButtonsActivity.this);
-		msg.setBackgroundResource(R.drawable.rectangle);
-		msg.setBackgroundColor(getResources().getColor(R.color.black));
+		TextView msg = new TextView(this);
+		
+		msg.setBackgroundColor(0);
 		msg.setText(txt);
 		msg.setPadding(10, 10, 10, 10);
-		msg.setTextColor(getResources().getColor(R.color.white));
+		msg.setTextColor(255);
 		LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LayoutParams.WRAP_CONTENT,LayoutParams.WRAP_CONTENT);
 		params.setMargins(5, 15, 0, 0);
 		params.gravity = Gravity.LEFT;
