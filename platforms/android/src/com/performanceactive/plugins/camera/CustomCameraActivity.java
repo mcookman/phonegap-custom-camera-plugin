@@ -127,8 +127,10 @@ public class CustomCameraActivity extends Activity {
         layoutBottomBorderImagesRespectingAspectRatio();
         createCaptureButton();
 		createCancelButton();
+		String mm = getIntent().getStringExtra(TOP_MESSAGE);
+		drawText(mm);
         setContentView(layout);
-		drawText(getIntent().getStringExtra(TOP_MESSAGE));
+		
     }
 
     private void createCameraPreview() {
@@ -288,7 +290,7 @@ public class CustomCameraActivity extends Activity {
         layout.addView(cancelButton);
     }
 	public void drawText(String txt){
-		TextView msg = new TextView(this);
+		TextView msg = new TextView(getApplicationContext());
 		
 		msg.setBackgroundColor(0);
 		msg.setText(txt);
