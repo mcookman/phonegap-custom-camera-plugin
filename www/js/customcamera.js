@@ -4,7 +4,8 @@ var customCamera = {
         var quality = options.quality || 100;
         var targetWidth = options.targetWidth || -1;
         var targetHeight = options.targetHeight || -1;
-        cordova.exec(success, failure, "CustomCamera", "takePicture", [filename, quality, targetWidth, targetHeight]);
+        var topMessage = options.topMessage || "";
+        cordova.exec(success, failure, "CustomCamera", "takePicture", [filename, quality, targetWidth, targetHeight, topMessage]);
     }
 };
 
