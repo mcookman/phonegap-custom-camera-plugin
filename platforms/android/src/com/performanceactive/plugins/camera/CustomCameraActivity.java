@@ -300,7 +300,7 @@ public class CustomCameraActivity extends Activity {
 		RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.FILL_PARENT, 
                                                 RelativeLayout.LayoutParams.WRAP_CONTENT);
         layoutParams.addRule(RelativeLayout.ALIGN_PARENT_TOP);
-		layoutParams.addRule(RelativeLayout.ALIGN_PARENT_CENTER);
+		layoutParams.addRule(RelativeLayout.ALIGN_PARENT_LEFT);
 		layoutParams.setMargins(5, 15, 0, 0);
 		topMessage.setLayoutParams(layoutParams);
 		topMessage.setGravity(Gravity.CENTER);
