@@ -113,14 +113,14 @@ static const CGFloat kAspectRatio = 125.0f / 86;
     _bottomRightGuide = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"www/img/cameraoverlay/border_bottom_right.png"]];
     [overlay addSubview:_bottomRightGuide];
 
-	_topTextLabel = [UILabel alloc];
+	_topTextLabel = [[UILabel alloc] init];
 	[overlay addSubview:_topTextLabel];
 
     return overlay;
 }
 
 - (void)setTopText:(NSString *)s {
-   _topTextString = [[NSString alloc] initWithFormat:@"%@", s];
+  // _topTextString = [[NSString alloc] initWithFormat:@"%@", s];
 }
 
 - (void)viewWillLayoutSubviews {
