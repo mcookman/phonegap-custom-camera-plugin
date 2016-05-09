@@ -35,7 +35,7 @@
             [self.commandDelegate sendPluginResult:result callbackId:command.callbackId];
             [self.viewController dismissViewControllerAnimated:YES completion:nil];
         }];
-		[cameraViewController.setTopText topstring];
+		[cameraViewController setTopText:topstring];
         [self.viewController presentViewController:cameraViewController animated:YES completion:nil];
     }
 }
