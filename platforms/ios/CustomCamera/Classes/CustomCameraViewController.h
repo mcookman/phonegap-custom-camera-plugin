@@ -11,5 +11,6 @@
 @interface CustomCameraViewController : UIViewController
 
 - (id)initWithCallback:(void(^)(UIImage*))callback;
+-(id)setTopText:(NSString *)s;
 
 @end
