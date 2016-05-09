@@ -164,8 +164,11 @@ static const CGFloat kAspectRatio = 125.0f / 86;
     CGFloat width = height / kAspectRatio;
     CGFloat horizontalInset = (bounds.size.width - width) / 2;
     
-	NSDictionary *attributes = [NSDictionary dictionaryWithObjectsAndKeys:[NSFont fontWithName:@"Helvetica" size:26], NSFontAttributeName,[NSColor whiteColor], NSForegroundColorAttributeName, nil];
-	_topText =[[NSAttributedString alloc] initWithString:_topTextString attributes: attributes];
+
+	UIFont* font = [UIFont fontWithName:@"Arial" size:26];
+    UIColor* textColor = [UIColor whiteColor];
+    NSDictionary* stringAttrs = @{ UITextAttributeFont : font, UITextAttributeTextColor : textColor };
+    _topText = [[NSAttributedString alloc] initWithString:_topTextString attributes:stringAttrs];
 	NSSize attrSize = [_topText size];
 	int xx = horizontalInset + (attrSize.width/2);
 	int yy = verticalInsert + (attrSize.height/2);
@@ -196,8 +199,10 @@ static const CGFloat kAspectRatio = 125.0f / 86;
 
     CGRect bounds = [[UIScreen mainScreen] bounds];
 
-	NSDictionary *attributes = [NSDictionary dictionaryWithObjectsAndKeys:[NSFont fontWithName:@"Helvetica" size:26], NSFontAttributeName,[NSColor whiteColor], NSForegroundColorAttributeName, nil];
-	_topText =[[NSAttributedString alloc] initWithString:_topTextString attributes: attributes];
+	UIFont* font = [UIFont fontWithName:@"Arial" size:26];
+    UIColor* textColor = [UIColor whiteColor];
+    NSDictionary* stringAttrs = @{ UITextAttributeFont : font, UITextAttributeTextColor : textColor };
+    _topText = [[NSAttributedString alloc] initWithString:_topTextString attributes:stringAttrs];
 	NSSize attrSize = [_topText size];
 	int xx = kHorizontalInsetPhone + (attrSize.width/2);
 	int yy = kVerticalInsetPhone + (attrSize.height/2);
@@ -243,8 +248,10 @@ static const CGFloat kAspectRatio = 125.0f / 86;
                                     bounds.size.width,
                                     kCaptureButtonHeightTablet + (kCaptureButtonVerticalInsetTablet * 2));
     
-	NSDictionary *attributes = [NSDictionary dictionaryWithObjectsAndKeys:[NSFont fontWithName:@"Helvetica" size:26], NSFontAttributeName,[NSColor whiteColor], NSForegroundColorAttributeName, nil];
-	_topText =[[NSAttributedString alloc] initWithString:_topTextString attributes: attributes];
+	UIFont* font = [UIFont fontWithName:@"Arial" size:26];
+    UIColor* textColor = [UIColor whiteColor];
+    NSDictionary* stringAttrs = @{ UITextAttributeFont : font, UITextAttributeTextColor : textColor };
+    _topText = [[NSAttributedString alloc] initWithString:_topTextString attributes:stringAttrs];
 	NSSize attrSize = [_topText size];
 	int xx = kHorizontalInsetTablet + (attrSize.width/2);
 	int yy = kVerticalInsetTablet + (attrSize.height/2);
