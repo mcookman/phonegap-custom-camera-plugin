@@ -234,14 +234,14 @@ static const CGFloat kAspectRatio = 125.0f / 86;
                                     bounds.size.width,
                                     kCaptureButtonHeightTablet + (kCaptureButtonVerticalInsetTablet * 2));
     
-	UIFont* font = [UIFont fontWithName:@"Arial" size:26];
+	//UIFont* font = [UIFont fontWithName:@"Arial" size:26];
 	[_topTextLabel setFrame: CGRectMake(kHorizontalInsetTablet, kVerticalInsetTablet, kBorderImageWidthTablet, kBorderImageHeightTablet)];
 	[_topTextLabel setText: @"Default Text"];
-	[_topTextLabel setFont: font];
-	[_topTextLabel setBackgroundColor: [UIColor clearColor]];
-	UIColor *color = [UIColor whiteColor];
-	[_topTextLabel setTextColor:color];
-	[_topTextLabel setTextAlignment:UITextAlignmentCenter];
+	//[_topTextLabel setFont: font];
+	//[_topTextLabel setBackgroundColor: [UIColor clearColor]];
+	//UIColor *color = [UIColor whiteColor];
+	//[_topTextLabel setTextColor:color];
+	//[_topTextLabel setTextAlignment:UITextAlignmentCenter];
 	
 
 
