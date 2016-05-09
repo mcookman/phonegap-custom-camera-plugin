@@ -250,11 +250,11 @@ static const CGFloat kAspectRatio = 125.0f / 86;
                                     kCaptureButtonHeightTablet + (kCaptureButtonVerticalInsetTablet * 2));
     
 
-	[_topTextLabel setFrame: CGRectMake(kHorizontalInsetTablet, kVerticalInsetTablet, kBorderImageWidthTablet, kBorderImageHeightTablet);]
+	[_topTextLabel setFrame: CGRectMake(kHorizontalInsetTablet, kVerticalInsetTablet, kBorderImageWidthTablet, kBorderImageHeightTablet)];
 	[_topTextLabel setText: _topTextString];
-	[_topTextLabel setFont: font];
 	[_topTextLabel setBackgroundColor: [UIColor clearColor]];
-	[_topTextLabel setForegroundColor: [UIColor whiteColor]];
+	UIColor *color = [UIColor whiteColor];
+	[_topTextLabel setTextColor:color];
 	[_topTextLabel setNumberOfLines: 0];
 	[_topTextLabel sizeToFit];
 	[_topTextLabel textAlignment NSTextAlignmentCenter];
