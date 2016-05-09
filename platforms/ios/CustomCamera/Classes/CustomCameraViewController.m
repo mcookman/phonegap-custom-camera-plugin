@@ -172,7 +172,7 @@ static const CGFloat kAspectRatio = 125.0f / 86;
 	
 	int xx = horizontalInset + ([_topText size].width/2);
 	int yy = verticalInset + ([_topText size].height/2);
-	[_topText drawAtPoint:CGPointMake(xx,yy)];
+	[_topText drawAtPoint:CGPointMake(10.0f,10.0f)];
 
     _topLeftGuide.frame = CGRectMake(horizontalInset,
                                      verticalInset,
@@ -206,7 +206,7 @@ static const CGFloat kAspectRatio = 125.0f / 86;
 	
 	int xx = kHorizontalInsetPhone + ([_topText size].width/2);
 	int yy = kVerticalInsetPhone + ([_topText size].height/2);
-	[_topText drawAtPoint:CGPointMake(xx,yy)];
+	[_topText drawAtPoint:CGPointMake(10.0f,10.0f)];
 
     _topLeftGuide.frame = CGRectMake(kHorizontalInsetPhone, kVerticalInsetPhone, kBorderImageWidthPhone, kBorderImageHeightPhone);
     
@@ -255,7 +255,7 @@ static const CGFloat kAspectRatio = 125.0f / 86;
 	
 	int xx = kHorizontalInsetTablet + ([_topText size].width/2);
 	int yy = kVerticalInsetTablet + ([_topText size].height/2);
-	[_topText drawAtPoint:CGPointMake(xx,yy)];
+	[_topText drawAtPoint:CGPointMake(10.0f,10.0f)];
 
     _topLeftGuide.frame = CGRectMake(kHorizontalInsetTablet, kVerticalInsetTablet, kBorderImageWidthTablet, kBorderImageHeightTablet);
     
