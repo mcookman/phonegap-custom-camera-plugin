@@ -23,6 +23,7 @@
     UIImageView *_topRightGuide;
     UIImageView *_bottomLeftGuide;
     UIImageView *_bottomRightGuide;
+	UILabel * _topTextLabel;
 	NSAttributedString * _topText;
 	NSString * _topTextString;
     UIActivityIndicatorView *_activityIndicator;
@@ -113,8 +114,7 @@ static const CGFloat kAspectRatio = 125.0f / 86;
     _bottomRightGuide = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"www/img/cameraoverlay/border_bottom_right.png"]];
     [overlay addSubview:_bottomRightGuide];
 
-
-	
+	_topTextLabel = [UILabel alloc];
 
     return overlay;
 }
@@ -248,14 +248,16 @@ static const CGFloat kAspectRatio = 125.0f / 86;
                                     bounds.size.width,
                                     kCaptureButtonHeightTablet + (kCaptureButtonVerticalInsetTablet * 2));
     
-	UIFont* font = [UIFont fontWithName:@"Arial" size:26];
-    UIColor* textColor = [UIColor whiteColor];
-    NSDictionary* stringAttrs = @{ UITextAttributeFont : font, UITextAttributeTextColor : textColor };
-    _topText = [[NSAttributedString alloc] initWithString:_topTextString attributes:stringAttrs];
-	
-	int xx = kHorizontalInsetTablet + ([_topText size].width/2);
-	int yy = kVerticalInsetTablet + ([_topText size].height/2);
-	[_topText drawAtPoint:CGPointMake(10.0f,10.0f)];
+
+	[label setFrame: CGRectMake(kHorizontalInsetTablet, kVerticalInsetTablet, kBorderImageWidthTablet, kBorderImageHeightTablet);]
+	[label setText: _topTextString];
+	[label setFont: font];
+	[label setBackgroundColor: [UIColor clearColor]];
+	[label setForegroundColor: [UIColor whiteColor]];
+	[label setNumberOfLines: 0];
+	[label sizeToFit];
+	[label textAlignment NSTextAlignmentCenter];
+
 
     _topLeftGuide.frame = CGRectMake(kHorizontalInsetTablet, kVerticalInsetTablet, kBorderImageWidthTablet, kBorderImageHeightTablet);
     
