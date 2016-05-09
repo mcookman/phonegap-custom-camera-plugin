@@ -297,7 +297,7 @@ public class CustomCameraActivity extends Activity {
 		topMessage.setPadding(10, 10, 10, 10);
 		topMessage.setTextColor(Color.WHITE);
 		topMessage.setWidth(screenWidthInPixels());
-		topMessage.setHeight(50);
+		topMessage.setHeight(100);
 		RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.FILL_PARENT, 
                                                 RelativeLayout.LayoutParams.WRAP_CONTENT);
         layoutParams.addRule(RelativeLayout.ALIGN_PARENT_TOP);
