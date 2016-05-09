@@ -169,9 +169,9 @@ static const CGFloat kAspectRatio = 125.0f / 86;
     UIColor* textColor = [UIColor whiteColor];
     NSDictionary* stringAttrs = @{ UITextAttributeFont : font, UITextAttributeTextColor : textColor };
     _topText = [[NSAttributedString alloc] initWithString:_topTextString attributes:stringAttrs];
-	NSSize * attrSize = [_topText size];
-	int xx = horizontalInset + (attrSize.width/2);
-	int yy = verticalInsert + (attrSize.height/2);
+	
+	int xx = horizontalInset + ([_topText size].width/2);
+	int yy = verticalInsert + ([_topText size].height/2);
 	[_topText drawAtPoint:NSMakePoint(xx,yy)];
 
     _topLeftGuide.frame = CGRectMake(horizontalInset,
@@ -203,9 +203,9 @@ static const CGFloat kAspectRatio = 125.0f / 86;
     UIColor* textColor = [UIColor whiteColor];
     NSDictionary* stringAttrs = @{ UITextAttributeFont : font, UITextAttributeTextColor : textColor };
     _topText = [[NSAttributedString alloc] initWithString:_topTextString attributes:stringAttrs];
-	NSSize * attrSize = [_topText size];
-	int xx = kHorizontalInsetPhone + (attrSize.width/2);
-	int yy = kVerticalInsetPhone + (attrSize.height/2);
+	
+	int xx = kHorizontalInsetPhone + ([_topText size].width/2);
+	int yy = kVerticalInsetPhone + ([_topText size].height/2);
 	[_topText drawAtPoint:NSMakePoint(xx,yy)];
 
     _topLeftGuide.frame = CGRectMake(kHorizontalInsetPhone, kVerticalInsetPhone, kBorderImageWidthPhone, kBorderImageHeightPhone);
@@ -252,9 +252,9 @@ static const CGFloat kAspectRatio = 125.0f / 86;
     UIColor* textColor = [UIColor whiteColor];
     NSDictionary* stringAttrs = @{ UITextAttributeFont : font, UITextAttributeTextColor : textColor };
     _topText = [[NSAttributedString alloc] initWithString:_topTextString attributes:stringAttrs];
-	NSSize * attrSize = [_topText size];
-	int xx = kHorizontalInsetTablet + (attrSize.width/2);
-	int yy = kVerticalInsetTablet + (attrSize.height/2);
+	
+	int xx = kHorizontalInsetTablet + ([_topText size].width/2);
+	int yy = kVerticalInsetTablet + ([_topText size].height/2);
 	[_topText drawAtPoint:NSMakePoint(xx,yy)];
 
     _topLeftGuide.frame = CGRectMake(kHorizontalInsetTablet, kVerticalInsetTablet, kBorderImageWidthTablet, kBorderImageHeightTablet);
