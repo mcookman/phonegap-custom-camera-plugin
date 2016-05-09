@@ -120,7 +120,7 @@ static const CGFloat kAspectRatio = 125.0f / 86;
 }
 
 - (void)setTopText:(NSString *)s {
-   _topTextString = [[NSString alloc] initWithFormat:"%@", s];
+   _topTextString = [[NSString alloc] initWithFormat:@"%@", s];
 }
 
 - (void)viewWillLayoutSubviews {
