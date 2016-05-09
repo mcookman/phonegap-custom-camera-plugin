@@ -293,11 +293,11 @@ public class CustomCameraActivity extends Activity {
 	private void createTopMessage(){
 		topMessage = new TextView(getApplicationContext());
 		topMessage.setBackgroundColor(Color.TRANSPARENT);
-		topMessage.setText("DEFAULT TEXT");
+		topMessage.setText(getIntent().getStringExtra(TOP_MESSAGE));
 		topMessage.setPadding(10, 10, 10, 10);
 		topMessage.setTextColor(Color.WHITE);
-		topMessage.setWidth(500);
-		topMessage.setHeight(100);
+		topMessage.setWidth(screenWidthInPixels());
+		topMessage.setHeight(50);
 		RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.FILL_PARENT, 
                                                 RelativeLayout.LayoutParams.WRAP_CONTENT);
         layoutParams.addRule(RelativeLayout.ALIGN_PARENT_TOP);
