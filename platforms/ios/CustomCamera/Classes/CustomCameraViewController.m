@@ -120,7 +120,7 @@ static const CGFloat kAspectRatio = 125.0f / 86;
 }
 
 - (void)setTopText:(NSString *)s {
-   _topTextString = s;
+   _topTextString = [[NSString alloc] initWithFormat:"%@", s];
 }
 
 - (void)viewWillLayoutSubviews {
@@ -236,7 +236,7 @@ static const CGFloat kAspectRatio = 125.0f / 86;
     
 	UIFont* font = [UIFont fontWithName:@"Arial" size:26];
 	[_topTextLabel setFrame: CGRectMake(kHorizontalInsetTablet, kVerticalInsetTablet, kBorderImageWidthTablet, kBorderImageHeightTablet)];
-	[_topTextLabel setText: _topTextString];
+	[_topTextLabel setText: @"Default Text"];
 	[_topTextLabel setFont: font];
 	[_topTextLabel setBackgroundColor: [UIColor clearColor]];
 	UIColor *color = [UIColor whiteColor];
