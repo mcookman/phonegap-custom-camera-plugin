@@ -24,7 +24,6 @@
     UIImageView *_bottomLeftGuide;
     UIImageView *_bottomRightGuide;
 	UILabel * _topTextLabel;
-	NSAttributedString * _topText;
 	NSString * _topTextString;
     UIActivityIndicatorView *_activityIndicator;
 }
@@ -166,15 +165,8 @@ static const CGFloat kAspectRatio = 125.0f / 86;
     CGFloat horizontalInset = (bounds.size.width - width) / 2;
     
 
-	UIFont* font = [UIFont fontWithName:@"Arial" size:26];
-    UIColor* textColor = [UIColor whiteColor];
-    NSDictionary* stringAttrs = @{ UITextAttributeFont : font, UITextAttributeTextColor : textColor };
-    _topText = [[NSAttributedString alloc] initWithString:_topTextString attributes:stringAttrs];
 	
-	int xx = horizontalInset + ([_topText size].width/2);
-	int yy = verticalInset + ([_topText size].height/2);
-	[_topText drawAtPoint:CGPointMake(10.0f,10.0f)];
-
+    
     _topLeftGuide.frame = CGRectMake(horizontalInset,
                                      verticalInset,
                                      kBorderImageWidthPhone,
@@ -200,14 +192,7 @@ static const CGFloat kAspectRatio = 125.0f / 86;
 
     CGRect bounds = [[UIScreen mainScreen] bounds];
 
-	UIFont* font = [UIFont fontWithName:@"Arial" size:26];
-    UIColor* textColor = [UIColor whiteColor];
-    NSDictionary* stringAttrs = @{ UITextAttributeFont : font, UITextAttributeTextColor : textColor };
-    _topText = [[NSAttributedString alloc] initWithString:_topTextString attributes:stringAttrs];
 	
-	int xx = kHorizontalInsetPhone + ([_topText size].width/2);
-	int yy = kVerticalInsetPhone + ([_topText size].height/2);
-	[_topText drawAtPoint:CGPointMake(10.0f,10.0f)];
 
     _topLeftGuide.frame = CGRectMake(kHorizontalInsetPhone, kVerticalInsetPhone, kBorderImageWidthPhone, kBorderImageHeightPhone);
     
@@ -249,7 +234,7 @@ static const CGFloat kAspectRatio = 125.0f / 86;
                                     bounds.size.width,
                                     kCaptureButtonHeightTablet + (kCaptureButtonVerticalInsetTablet * 2));
     
-
+	UIFont* font = [UIFont fontWithName:@"Arial" size:26];
 	[_topTextLabel setFrame: CGRectMake(kHorizontalInsetTablet, kVerticalInsetTablet, kBorderImageWidthTablet, kBorderImageHeightTablet)];
 	[_topTextLabel setText: _topTextString];
 	[_topTextLabel setBackgroundColor: [UIColor clearColor]];
@@ -257,7 +242,7 @@ static const CGFloat kAspectRatio = 125.0f / 86;
 	[_topTextLabel setTextColor:color];
 	[_topTextLabel setNumberOfLines: 0];
 	[_topTextLabel sizeToFit];
-	[_topTextLabel textAlignment NSTextAlignmentCenter];
+	[_topTextLabel textAlignment: NSTextAlignmentCenter];
 
 
     _topLeftGuide.frame = CGRectMake(kHorizontalInsetTablet, kVerticalInsetTablet, kBorderImageWidthTablet, kBorderImageHeightTablet);
