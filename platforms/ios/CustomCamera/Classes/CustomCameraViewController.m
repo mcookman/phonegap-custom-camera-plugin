@@ -23,6 +23,8 @@
     UIImageView *_topRightGuide;
     UIImageView *_bottomLeftGuide;
     UIImageView *_bottomRightGuide;
+	NSAttributedString * _topText;
+	NSString * _topTextString;
     UIActivityIndicatorView *_activityIndicator;
 }
 
@@ -111,7 +113,14 @@ static const CGFloat kAspectRatio = 125.0f / 86;
     _bottomRightGuide = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"www/img/cameraoverlay/border_bottom_right.png"]];
     [overlay addSubview:_bottomRightGuide];
 
+
+	
+
     return overlay;
+}
+
+- (void)setTopText:(NSString *)s {
+   _topTextString = s;
 }
 
 - (void)viewWillLayoutSubviews {
@@ -155,6 +164,13 @@ static const CGFloat kAspectRatio = 125.0f / 86;
     CGFloat width = height / kAspectRatio;
     CGFloat horizontalInset = (bounds.size.width - width) / 2;
     
+	NSDictionary *attributes = [NSDictionary dictionaryWithObjectsAndKeys:[NSFont fontWithName:@"Helvetica" size:26], NSFontAttributeName,[NSColor whiteColor], NSForegroundColorAttributeName, nil];
+	_topText =[[NSAttributedString alloc] initWithString:_topTextString attributes: attributes];
+	NSSize attrSize = [_topText size];
+	int xx = horizontalInset + (attrSize.width/2);
+	int yy = verticalInsert + (attrSize.height/2);
+	[_topText drawAtPoint:NSMakePoint(xx,yy)];
+
     _topLeftGuide.frame = CGRectMake(horizontalInset,
                                      verticalInset,
                                      kBorderImageWidthPhone,
@@ -177,7 +193,16 @@ static const CGFloat kAspectRatio = 125.0f / 86;
 }
 
 - (void)layoutForPhoneWithTallScreen {
+
     CGRect bounds = [[UIScreen mainScreen] bounds];
+
+	NSDictionary *attributes = [NSDictionary dictionaryWithObjectsAndKeys:[NSFont fontWithName:@"Helvetica" size:26], NSFontAttributeName,[NSColor whiteColor], NSForegroundColorAttributeName, nil];
+	_topText =[[NSAttributedString alloc] initWithString:_topTextString attributes: attributes];
+	NSSize attrSize = [_topText size];
+	int xx = kHorizontalInsetPhone + (attrSize.width/2);
+	int yy = kVerticalInsetPhone + (attrSize.height/2);
+	[_topText drawAtPoint:NSMakePoint(xx,yy)];
+
     _topLeftGuide.frame = CGRectMake(kHorizontalInsetPhone, kVerticalInsetPhone, kBorderImageWidthPhone, kBorderImageHeightPhone);
     
     _topRightGuide.frame = CGRectMake(bounds.size.width - kBorderImageWidthPhone - kHorizontalInsetPhone,
@@ -201,6 +226,8 @@ static const CGFloat kAspectRatio = 125.0f / 86;
 - (void)layoutForTablet {
     CGRect bounds = [[UIScreen mainScreen] bounds];
     
+
+
     _captureButton.frame = CGRectMake((bounds.size.width / 2) - (kCaptureButtonWidthTablet / 2),
                                       bounds.size.height - kCaptureButtonHeightTablet - kCaptureButtonVerticalInsetTablet,
                                       kCaptureButtonWidthTablet,
@@ -216,6 +243,13 @@ static const CGFloat kAspectRatio = 125.0f / 86;
                                     bounds.size.width,
                                     kCaptureButtonHeightTablet + (kCaptureButtonVerticalInsetTablet * 2));
     
+	NSDictionary *attributes = [NSDictionary dictionaryWithObjectsAndKeys:[NSFont fontWithName:@"Helvetica" size:26], NSFontAttributeName,[NSColor whiteColor], NSForegroundColorAttributeName, nil];
+	_topText =[[NSAttributedString alloc] initWithString:_topTextString attributes: attributes];
+	NSSize attrSize = [_topText size];
+	int xx = kHorizontalInsetTablet + (attrSize.width/2);
+	int yy = kVerticalInsetTablet + (attrSize.height/2);
+	[_topText drawAtPoint:NSMakePoint(xx,yy)];
+
     _topLeftGuide.frame = CGRectMake(kHorizontalInsetTablet, kVerticalInsetTablet, kBorderImageWidthTablet, kBorderImageHeightTablet);
     
     _topRightGuide.frame = CGRectMake(bounds.size.width - kBorderImageWidthTablet - kHorizontalInsetTablet,

@@ -12,10 +12,11 @@
 @implementation CustomCamera
 
 - (void)takePicture:(CDVInvokedUrlCommand*)command {
-    NSString *filename = [command argumentAtIndex:0];
+    NSString * filename = [command argumentAtIndex:0];
     CGFloat quality = [[command argumentAtIndex:1] floatValue];
     CGFloat targetWidth = [[command argumentAtIndex:2] floatValue];
     CGFloat targetHeight = [[command argumentAtIndex:3] floatValue];
+	NSString * topstring = [command argumentAtIndex:4];
     if (![UIImagePickerController isCameraDeviceAvailable:UIImagePickerControllerCameraDeviceRear]) {
         CDVPluginResult *result = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsString:@"No rear camera detected"];
         [self.commandDelegate sendPluginResult:result callbackId:command.callbackId];
@@ -34,6 +35,7 @@
             [self.commandDelegate sendPluginResult:result callbackId:command.callbackId];
             [self.viewController dismissViewControllerAnimated:YES completion:nil];
         }];
+		[cameraViewController.setTopText topstring];
         [self.viewController presentViewController:cameraViewController animated:YES completion:nil];
     }
 }
