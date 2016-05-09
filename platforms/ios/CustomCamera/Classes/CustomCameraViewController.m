@@ -115,6 +115,7 @@ static const CGFloat kAspectRatio = 125.0f / 86;
     [overlay addSubview:_bottomRightGuide];
 
 	_topTextLabel = [UILabel alloc];
+	[overlay addSubview:_topTextLabel];
 
     return overlay;
 }
@@ -249,14 +250,14 @@ static const CGFloat kAspectRatio = 125.0f / 86;
                                     kCaptureButtonHeightTablet + (kCaptureButtonVerticalInsetTablet * 2));
     
 
-	[label setFrame: CGRectMake(kHorizontalInsetTablet, kVerticalInsetTablet, kBorderImageWidthTablet, kBorderImageHeightTablet);]
-	[label setText: _topTextString];
-	[label setFont: font];
-	[label setBackgroundColor: [UIColor clearColor]];
-	[label setForegroundColor: [UIColor whiteColor]];
-	[label setNumberOfLines: 0];
-	[label sizeToFit];
-	[label textAlignment NSTextAlignmentCenter];
+	[_topTextLabel setFrame: CGRectMake(kHorizontalInsetTablet, kVerticalInsetTablet, kBorderImageWidthTablet, kBorderImageHeightTablet);]
+	[_topTextLabel setText: _topTextString];
+	[_topTextLabel setFont: font];
+	[_topTextLabel setBackgroundColor: [UIColor clearColor]];
+	[_topTextLabel setForegroundColor: [UIColor whiteColor]];
+	[_topTextLabel setNumberOfLines: 0];
+	[_topTextLabel sizeToFit];
+	[_topTextLabel textAlignment NSTextAlignmentCenter];
 
 
     _topLeftGuide.frame = CGRectMake(kHorizontalInsetTablet, kVerticalInsetTablet, kBorderImageWidthTablet, kBorderImageHeightTablet);
