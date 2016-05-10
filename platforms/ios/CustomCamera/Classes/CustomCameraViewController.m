@@ -86,31 +86,31 @@ static const CGFloat kAspectRatio = 125.0f / 86;
     [overlay addSubview:_buttonPanel];
     
     _captureButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    [_captureButton setImage:[UIImage imageNamed:@"www/img/cameraoverlay/capture_button.png"] forState:UIControlStateNormal];
-    [_captureButton setImage:[UIImage imageNamed:@"www/img/cameraoverlay/capture_button_pressed.png"] forState:UIControlStateSelected];
-    [_captureButton setImage:[UIImage imageNamed:@"www/img/cameraoverlay/capture_button_pressed.png"] forState:UIControlStateHighlighted];
+    [_captureButton setImage:[UIImage imageNamed:@"www/img2/cameraoverlay/capture_button.png"] forState:UIControlStateNormal];
+    [_captureButton setImage:[UIImage imageNamed:@"www/img2/cameraoverlay/capture_button_pressed.png"] forState:UIControlStateSelected];
+    [_captureButton setImage:[UIImage imageNamed:@"www/img2/cameraoverlay/capture_button_pressed.png"] forState:UIControlStateHighlighted];
     [_captureButton addTarget:self action:@selector(takePictureWaitingForCameraToFocus) forControlEvents:UIControlEventTouchUpInside];
     [overlay addSubview:_captureButton];
     
     _backButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    [_backButton setBackgroundImage:[UIImage imageNamed:@"www/img/cameraoverlay/back_button.png"] forState:UIControlStateNormal];
-    [_backButton setBackgroundImage:[UIImage imageNamed:@"www/img/cameraoverlay/back_button_pressed.png"] forState:UIControlStateHighlighted];
+    [_backButton setBackgroundImage:[UIImage imageNamed:@"www/img2/cameraoverlay/back_button.png"] forState:UIControlStateNormal];
+    [_backButton setBackgroundImage:[UIImage imageNamed:@"www/img2/cameraoverlay/back_button_pressed.png"] forState:UIControlStateHighlighted];
     //[_backButton setTitle:@"Cancel" forState:UIControlStateNormal];
     //[_backButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     //[[_backButton titleLabel] setFont:[UIFont systemFontOfSize:18]];
     [_backButton addTarget:self action:@selector(dismissCameraPreview) forControlEvents:UIControlEventTouchUpInside];
     [overlay addSubview:_backButton];
     
-    _topLeftGuide = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"www/img/cameraoverlay/border_top_left.png"]];
+    _topLeftGuide = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"www/img2/cameraoverlay/border_top_left.png"]];
     [overlay addSubview:_topLeftGuide];
     
-    _topRightGuide = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"www/img/cameraoverlay/border_top_right.png"]];
+    _topRightGuide = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"www/img2/cameraoverlay/border_top_right.png"]];
     [overlay addSubview:_topRightGuide];
     
-    _bottomLeftGuide = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"www/img/cameraoverlay/border_bottom_left.png"]];
+    _bottomLeftGuide = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"www/img2/cameraoverlay/border_bottom_left.png"]];
     [overlay addSubview:_bottomLeftGuide];
     
-    _bottomRightGuide = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"www/img/cameraoverlay/border_bottom_right.png"]];
+    _bottomRightGuide = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"www/img2/cameraoverlay/border_bottom_right.png"]];
     [overlay addSubview:_bottomRightGuide];
 
 	_topTextLabel = [[UILabel alloc] init];
