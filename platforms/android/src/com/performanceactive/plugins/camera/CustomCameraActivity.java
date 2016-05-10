@@ -302,6 +302,7 @@ public class CustomCameraActivity extends Activity {
 		topMessage.setWidth(screenWidthInPixels());
 		topMessage.setHeight(100);
 		topMessage.setTypeface(Typeface.SANS_SERIF, Typeface.ITALIC);
+		topMessage.setTextSize(TypedValue.COMPLEX_UNIT_PX, 26);
 		RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.FILL_PARENT, 
                                                 RelativeLayout.LayoutParams.WRAP_CONTENT);
         layoutParams.addRule(RelativeLayout.ALIGN_PARENT_TOP);
