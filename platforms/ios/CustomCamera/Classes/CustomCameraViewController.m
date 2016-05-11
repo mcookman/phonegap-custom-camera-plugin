@@ -35,7 +35,7 @@ static const CGFloat kBackButtonHeightPhone = 64;
 static const CGFloat kBorderImageWidthPhone = 50;
 static const CGFloat kBorderImageHeightPhone = 50;
 static const CGFloat kHorizontalInsetPhone = 15;
-static const CGFloat kVerticalInsetPhone = 25;
+static const CGFloat kVerticalInsetPhone = 40;
 static const CGFloat kCaptureButtonVerticalInsetPhone = 10;
 
 static const CGFloat kCaptureButtonWidthTablet = 75;
@@ -134,6 +134,15 @@ static const CGFloat kAspectRatio = 125.0f / 86;
 - (void)layoutForPhone {
     CGRect bounds = [[UIScreen mainScreen] bounds];
     
+	UIFont* font = [UIFont fontWithName:@"Arial" size:18];
+	[_topTextLabel setFrame: CGRectMake(0, 10, bounds.size.width, 50)];
+	[_topTextLabel setText: _topTextString];
+	[_topTextLabel setFont: font];
+	[_topTextLabel setBackgroundColor: [UIColor clearColor]];
+	UIColor *color = [UIColor whiteColor];
+	[_topTextLabel setTextColor:color];
+	[_topTextLabel setTextAlignment:UITextAlignmentCenter];
+
     _captureButton.frame = CGRectMake((bounds.size.width / 2) - (kCaptureButtonWidthPhone / 2),
                                       bounds.size.height - kCaptureButtonHeightPhone - kCaptureButtonVerticalInsetPhone,
                                       kCaptureButtonWidthPhone,
@@ -165,7 +174,14 @@ static const CGFloat kAspectRatio = 125.0f / 86;
     CGFloat horizontalInset = (bounds.size.width - width) / 2;
     
 
-	
+	UIFont* font = [UIFont fontWithName:@"Arial" size:18];
+	[_topTextLabel setFrame: CGRectMake(0, 10, bounds.size.width, 50)];
+	[_topTextLabel setText: _topTextString];
+	[_topTextLabel setFont: font];
+	[_topTextLabel setBackgroundColor: [UIColor clearColor]];
+	UIColor *color = [UIColor whiteColor];
+	[_topTextLabel setTextColor:color];
+	[_topTextLabel setTextAlignment:UITextAlignmentCenter];
     
     _topLeftGuide.frame = CGRectMake(horizontalInset,
                                      verticalInset,
@@ -192,7 +208,14 @@ static const CGFloat kAspectRatio = 125.0f / 86;
 
     CGRect bounds = [[UIScreen mainScreen] bounds];
 
-	
+	UIFont* font = [UIFont fontWithName:@"Arial" size:18];
+	[_topTextLabel setFrame: CGRectMake(0, 10, bounds.size.width, 50)];
+	[_topTextLabel setText: _topTextString];
+	[_topTextLabel setFont: font];
+	[_topTextLabel setBackgroundColor: [UIColor clearColor]];
+	UIColor *color = [UIColor whiteColor];
+	[_topTextLabel setTextColor:color];
+	[_topTextLabel setTextAlignment:UITextAlignmentCenter];
 
     _topLeftGuide.frame = CGRectMake(kHorizontalInsetPhone, kVerticalInsetPhone, kBorderImageWidthPhone, kBorderImageHeightPhone);
     
