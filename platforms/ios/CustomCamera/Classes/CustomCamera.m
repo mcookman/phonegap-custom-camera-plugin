@@ -26,7 +26,7 @@
     } else {
         CustomCameraViewController *cameraViewController = [[CustomCameraViewController alloc] initWithCallback:^(UIImage *image) {
             //NSString *documentsDirectory = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
-			NSString* documentsDirectory = [NSTemporaryDirectory()stringByStandardizingPath];
+			NSString* documentsDirectory = [NSDocumentsDirectory()stringByStandardizingPath];
             NSString *imagePath = [documentsDirectory stringByAppendingPathComponent:filename];
             UIImage *scaledImage = [self scaleImage:image toSize:CGSizeMake(targetWidth, targetHeight)];
             NSData *scaledImageData = UIImageJPEGRepresentation(scaledImage, quality / 100);
