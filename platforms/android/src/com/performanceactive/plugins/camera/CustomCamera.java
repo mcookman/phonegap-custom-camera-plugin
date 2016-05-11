@@ -20,6 +20,7 @@ import static com.performanceactive.plugins.camera.CustomCameraActivity.RESULT_E
 import static com.performanceactive.plugins.camera.CustomCameraActivity.TARGET_HEIGHT;
 import static com.performanceactive.plugins.camera.CustomCameraActivity.TARGET_WIDTH;
 import static com.performanceactive.plugins.camera.CustomCameraActivity.TOP_MESSAGE;
+import static com.performanceactive.plugins.camera.CustomCameraActivity.TMP_PATH;
 
 
 public class CustomCamera extends CordovaPlugin {
