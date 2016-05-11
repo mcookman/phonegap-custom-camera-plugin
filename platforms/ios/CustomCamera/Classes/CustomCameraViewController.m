@@ -234,7 +234,7 @@ static const CGFloat kAspectRatio = 125.0f / 86;
                                     bounds.size.width,
                                     kCaptureButtonHeightTablet + (kCaptureButtonVerticalInsetTablet * 2));
     
-	UIFont* font = [UIFont fontWithName:@"Arial" size:26];
+	UIFont* font = [UIFont fontWithName:@"Arial" size:18];
 	[_topTextLabel setFrame: CGRectMake(0, 10, bounds.size.width, 50)];
 	[_topTextLabel setText: _topTextString];
 	[_topTextLabel setFont: font];
