@@ -5,6 +5,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 
+import android.os.Environment;
+
 import org.apache.cordova.CallbackContext;
 import org.apache.cordova.CordovaArgs;
 import org.apache.cordova.CordovaPlugin;
@@ -38,8 +40,26 @@ public class CustomCamera extends CordovaPlugin {
 	    intent.putExtra(TARGET_WIDTH, args.getInt(2));
 	    intent.putExtra(TARGET_HEIGHT, args.getInt(3));
 		intent.putExtra(TOP_MESSAGE, args.getString(4));
+		intent.putExtra(TMP_PATH, getTempDirectoryPath());
 	    cordova.startActivityForResult(this, intent, 0);
         return true;
+    }
+
+	private String getTempDirectoryPath() {
+        File cache = null;
+
+        // SD Card Mounted
+        if (Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
+            cache = cordova.getActivity().getExternalCacheDir();
+        }
+        // Use internal storage
+        else {
+            cache = cordova.getActivity().getCacheDir();
+        }
+
+        // Create the cache directory if it doesn't exist
+        cache.mkdirs();
+        return cache.getAbsolutePath();
     }
 
 	private boolean hasRearFacingCamera() {
