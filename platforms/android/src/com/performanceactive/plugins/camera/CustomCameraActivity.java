@@ -162,7 +162,7 @@ public class CustomCameraActivity extends Activity {
             layoutParams.leftMargin = dpToPixels(50);
         } else {
             layoutParams.topMargin = dpToPixels(20);
-            layoutParams.leftMargin = dpToPixels(20);
+            layoutParams.leftMargin = dpToPixels(10);
         }
         borderTopLeft.setLayoutParams(layoutParams);
         layout.addView(borderTopLeft);
@@ -182,7 +182,7 @@ public class CustomCameraActivity extends Activity {
             layoutParams.rightMargin = dpToPixels(50);
         } else {
             layoutParams.topMargin = dpToPixels(20);
-            layoutParams.rightMargin = dpToPixels(20);
+            layoutParams.rightMargin = dpToPixels(10);
         }
         borderTopRight.setLayoutParams(layoutParams);
         layout.addView(borderTopRight);
