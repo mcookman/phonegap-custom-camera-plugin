@@ -373,7 +373,8 @@ public class CustomCameraActivity extends Activity {
             try {
                 String filename = getIntent().getStringExtra(FILENAME);
                 int quality = getIntent().getIntExtra(QUALITY, 80);
-                File capturedImageFile = new File(getCacheDir(), filename);
+                //File capturedImageFile = new File(getCacheDir(), filename);
+				File capturedImageFile = new File(getTempDirectoryPath(), filename);
                 Bitmap capturedImage = getScaledBitmap(jpegData[0]);
                 capturedImage = correctCaptureImageOrientation(capturedImage);
                 capturedImage.compress(CompressFormat.JPEG, quality, new FileOutputStream(capturedImageFile));
@@ -388,6 +389,24 @@ public class CustomCameraActivity extends Activity {
         }
 
     }
+
+	private String getTempDirectoryPath() {
+        File cache = null;
+
+        // SD Card Mounted
+        if (Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
+            cache = cordova.getActivity().getExternalCacheDir();
+        }
+        // Use internal storage
+        else {
+            cache = cordova.getActivity().getCacheDir();
+        }
+
+        // Create the cache directory if it doesn't exist
+        cache.mkdirs();
+        return cache.getAbsolutePath();
+    }
+
 
     private Bitmap getScaledBitmap(byte[] jpegData) {
         int targetWidth = getIntent().getIntExtra(TARGET_WIDTH, -1);
