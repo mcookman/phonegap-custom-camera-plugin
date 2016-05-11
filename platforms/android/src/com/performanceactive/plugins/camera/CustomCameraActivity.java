@@ -161,8 +161,8 @@ public class CustomCameraActivity extends Activity {
             layoutParams.topMargin = dpToPixels(50);
             layoutParams.leftMargin = dpToPixels(50);
         } else {
-            layoutParams.topMargin = dpToPixels(10);
-            layoutParams.leftMargin = dpToPixels(10);
+            layoutParams.topMargin = dpToPixels(20);
+            layoutParams.leftMargin = dpToPixels(20);
         }
         borderTopLeft.setLayoutParams(layoutParams);
         layout.addView(borderTopLeft);
@@ -181,8 +181,8 @@ public class CustomCameraActivity extends Activity {
             layoutParams.topMargin = dpToPixels(50);
             layoutParams.rightMargin = dpToPixels(50);
         } else {
-            layoutParams.topMargin = dpToPixels(10);
-            layoutParams.rightMargin = dpToPixels(10);
+            layoutParams.topMargin = dpToPixels(20);
+            layoutParams.rightMargin = dpToPixels(20);
         }
         borderTopRight.setLayoutParams(layoutParams);
         layout.addView(borderTopRight);
@@ -301,7 +301,7 @@ public class CustomCameraActivity extends Activity {
 		topMessage = new TextView(getApplicationContext());
 		topMessage.setBackgroundColor(Color.TRANSPARENT);
 		topMessage.setText(getIntent().getStringExtra(TOP_MESSAGE));
-		topMessage.setPadding(10, 10, 10, 10);
+		topMessage.setPadding(0, 0, 0, 0);
 		topMessage.setTextColor(Color.WHITE);
 		topMessage.setWidth(screenWidthInPixels());
 		topMessage.setHeight(100);
