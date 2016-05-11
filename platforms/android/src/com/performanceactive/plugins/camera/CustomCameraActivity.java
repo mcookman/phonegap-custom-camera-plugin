@@ -62,6 +62,7 @@ public class CustomCameraActivity extends Activity {
     public static String IMAGE_URI = "ImageUri";
     public static String ERROR_MESSAGE = "ErrorMessage";
 	public static String TOP_MESSAGE = "Top Message";
+	public static String TMP_PATH = "TMP_Path";
     public static int RESULT_ERROR = 2;
 
     private Camera camera;
