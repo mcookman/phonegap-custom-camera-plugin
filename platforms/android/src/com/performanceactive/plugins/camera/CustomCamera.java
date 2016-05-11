@@ -12,6 +12,8 @@ import org.apache.cordova.CordovaArgs;
 import org.apache.cordova.CordovaPlugin;
 import org.json.JSONException;
 
+import java.io.File;
+
 import static com.performanceactive.plugins.camera.CustomCameraActivity.ERROR_MESSAGE;
 import static com.performanceactive.plugins.camera.CustomCameraActivity.FILENAME;
 import static com.performanceactive.plugins.camera.CustomCameraActivity.IMAGE_URI;
