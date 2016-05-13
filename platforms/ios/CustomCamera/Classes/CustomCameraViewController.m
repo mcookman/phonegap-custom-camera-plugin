@@ -34,9 +34,9 @@ static const CGFloat kBackButtonWidthPhone = 64;
 static const CGFloat kBackButtonHeightPhone = 64;
 static const CGFloat kBorderImageWidthPhone = 50;
 static const CGFloat kBorderImageHeightPhone = 50;
-static const CGFloat kHorizontalInsetPhone = 15;
-static const CGFloat kVerticalInsetPhone = 40;
-static const CGFloat kCaptureButtonVerticalInsetPhone = 10;
+static const CGFloat kHorizontalInsetPhone = 5;
+static const CGFloat kVerticalInsetPhone = 50;
+static const CGFloat kCaptureButtonVerticalInsetPhone = 5;
 
 static const CGFloat kCaptureButtonWidthTablet = 75;
 static const CGFloat kCaptureButtonHeightTablet = 75;
@@ -46,7 +46,7 @@ static const CGFloat kBorderImageWidthTablet = 50;
 static const CGFloat kBorderImageHeightTablet = 50;
 static const CGFloat kHorizontalInsetTablet = 100;
 static const CGFloat kVerticalInsetTablet = 50;
-static const CGFloat kCaptureButtonVerticalInsetTablet = 20;
+static const CGFloat kCaptureButtonVerticalInsetTablet = 10;
 
 static const CGFloat kAspectRatio = 125.0f / 86;
 
@@ -107,11 +107,13 @@ static const CGFloat kAspectRatio = 125.0f / 86;
     _topRightGuide = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"www/img2/cameraoverlay/border_top_right.png"]];
     [overlay addSubview:_topRightGuide];
     
-    _bottomLeftGuide = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"www/img2/cameraoverlay/border_bottom_left.png"]];
+    /*
+	_bottomLeftGuide = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"www/img2/cameraoverlay/border_bottom_left.png"]];
     [overlay addSubview:_bottomLeftGuide];
     
     _bottomRightGuide = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"www/img2/cameraoverlay/border_bottom_right.png"]];
     [overlay addSubview:_bottomRightGuide];
+	*/
 
 	_topTextLabel = [[UILabel alloc] init];
 	[overlay addSubview:_topTextLabel];
@@ -193,6 +195,7 @@ static const CGFloat kAspectRatio = 125.0f / 86;
                                       kBorderImageWidthPhone,
                                       kBorderImageHeightPhone);
     
+	/*
     _bottomLeftGuide.frame = CGRectMake(CGRectGetMinX(_topLeftGuide.frame),
                                         CGRectGetMinY(_topLeftGuide.frame) + height - kBorderImageHeightPhone,
                                         kBorderImageWidthPhone,
@@ -202,6 +205,7 @@ static const CGFloat kAspectRatio = 125.0f / 86;
                                          CGRectGetMinY(_topRightGuide.frame) + height - kBorderImageHeightPhone,
                                          kBorderImageWidthPhone,
                                          kBorderImageHeightPhone);
+										 */
 }
 
 - (void)layoutForPhoneWithTallScreen {
@@ -226,6 +230,7 @@ static const CGFloat kAspectRatio = 125.0f / 86;
     
     CGFloat height = (CGRectGetMaxX(_topRightGuide.frame) - CGRectGetMinX(_topLeftGuide.frame)) * kAspectRatio;
     
+	/*
     _bottomLeftGuide.frame = CGRectMake(CGRectGetMinX(_topLeftGuide.frame),
                                         CGRectGetMinY(_topLeftGuide.frame) + height - kBorderImageHeightPhone,
                                         kBorderImageWidthPhone,
@@ -235,6 +240,7 @@ static const CGFloat kAspectRatio = 125.0f / 86;
                                          CGRectGetMinY(_topRightGuide.frame) + height - kBorderImageHeightPhone,
                                          kBorderImageWidthPhone,
                                          kBorderImageHeightPhone);
+										 */
 }
 
 - (void)layoutForTablet {
@@ -276,7 +282,7 @@ static const CGFloat kAspectRatio = 125.0f / 86;
                                       kBorderImageHeightTablet);
     
     CGFloat height = (CGRectGetMaxX(_topRightGuide.frame) - CGRectGetMinX(_topLeftGuide.frame)) * kAspectRatio;
-    
+    /*
     _bottomLeftGuide.frame = CGRectMake(CGRectGetMinX(_topLeftGuide.frame),
                                         CGRectGetMinY(_topLeftGuide.frame) + height - kBorderImageHeightTablet,
                                         kBorderImageWidthTablet,
@@ -286,6 +292,7 @@ static const CGFloat kAspectRatio = 125.0f / 86;
                                          CGRectGetMinY(_topRightGuide.frame) + height - kBorderImageHeightTablet,
                                          kBorderImageWidthTablet,
                                          kBorderImageHeightTablet);
+										 */
 }
 
 - (void)viewDidLoad {
