@@ -254,7 +254,7 @@ public class CustomCameraActivity extends Activity {
         RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(dpToPixels(75), dpToPixels(75));
         layoutParams.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
         layoutParams.addRule(RelativeLayout.CENTER_HORIZONTAL);
-        layoutParams.bottomMargin = dpToPixels(10);
+        layoutParams.bottomMargin = dpToPixels(5);
         captureButton.setLayoutParams(layoutParams);
         captureButton.setOnTouchListener(new View.OnTouchListener() {
             @Override
@@ -280,7 +280,7 @@ public class CustomCameraActivity extends Activity {
         RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(dpToPixels(75), dpToPixels(75));
         layoutParams.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
         layoutParams.addRule(RelativeLayout.ALIGN_PARENT_LEFT);
-        layoutParams.bottomMargin = dpToPixels(10);
+        layoutParams.bottomMargin = dpToPixels(5);
         cancelButton.setLayoutParams(layoutParams);
         cancelButton.setOnTouchListener(new View.OnTouchListener() {
             @Override
