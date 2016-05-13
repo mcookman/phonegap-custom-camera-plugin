@@ -131,9 +131,9 @@ public class CustomCameraActivity extends Activity {
 		createTopMessage();
         createTopLeftBorder();
         createTopRightBorder();
-        createBottomLeftBorder();
-        createBottomRightBorder();
-        layoutBottomBorderImagesRespectingAspectRatio();
+        //createBottomLeftBorder();
+        //createBottomRightBorder();
+        //layoutBottomBorderImagesRespectingAspectRatio();
         createCaptureButton();
 		createCancelButton();
 		
