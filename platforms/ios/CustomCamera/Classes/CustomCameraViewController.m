@@ -30,8 +30,8 @@
 
 static const CGFloat kCaptureButtonWidthPhone = 64;
 static const CGFloat kCaptureButtonHeightPhone = 64;
-static const CGFloat kBackButtonWidthPhone = 64;
-static const CGFloat kBackButtonHeightPhone = 64;
+static const CGFloat kBackButtonWidthPhone = 50;
+static const CGFloat kBackButtonHeightPhone = 50;
 static const CGFloat kBorderImageWidthPhone = 50;
 static const CGFloat kBorderImageHeightPhone = 50;
 static const CGFloat kHorizontalInsetPhone = 5;
@@ -40,8 +40,8 @@ static const CGFloat kCaptureButtonVerticalInsetPhone = 5;
 
 static const CGFloat kCaptureButtonWidthTablet = 75;
 static const CGFloat kCaptureButtonHeightTablet = 75;
-static const CGFloat kBackButtonWidthTablet = 75;
-static const CGFloat kBackButtonHeightTablet = 75;
+static const CGFloat kBackButtonWidthTablet = 50;
+static const CGFloat kBackButtonHeightTablet = 50;
 static const CGFloat kBorderImageWidthTablet = 50;
 static const CGFloat kBorderImageHeightTablet = 50;
 static const CGFloat kHorizontalInsetTablet = 100;
@@ -150,7 +150,8 @@ static const CGFloat kAspectRatio = 125.0f / 86;
                                       kCaptureButtonWidthPhone,
                                       kCaptureButtonHeightPhone);
     
-    _backButton.frame = CGRectMake((CGRectGetMinX(_captureButton.frame) - kBackButtonWidthPhone) / 2,
+    //_backButton.frame = CGRectMake((CGRectGetMinX(_captureButton.frame) - kBackButtonWidthPhone) / 2,
+	_backButton.frame = CGRectMake(5,
                                    CGRectGetMinY(_captureButton.frame) + ((kCaptureButtonHeightPhone - kBackButtonHeightPhone) / 2),
                                    kBackButtonWidthPhone,
                                    kBackButtonHeightPhone);
@@ -253,7 +254,8 @@ static const CGFloat kAspectRatio = 125.0f / 86;
                                       kCaptureButtonWidthTablet,
                                       kCaptureButtonHeightTablet);
     
-    _backButton.frame = CGRectMake((CGRectGetMinX(_captureButton.frame) - kBackButtonWidthTablet) / 2,
+    //_backButton.frame = CGRectMake((CGRectGetMinX(_captureButton.frame) - kBackButtonWidthTablet) / 2,
+	_backButton.frame = CGRectMake(5,
                                    CGRectGetMinY(_captureButton.frame) + ((kCaptureButtonHeightTablet - kBackButtonHeightTablet) / 2),
                                    kBackButtonWidthTablet,
                                    kBackButtonHeightTablet);
