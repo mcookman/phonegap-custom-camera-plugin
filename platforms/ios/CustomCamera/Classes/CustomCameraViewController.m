@@ -141,20 +141,19 @@ static const CGFloat kAspectRatio = 125.0f / 86;
     CGRect bounds = [[UIScreen mainScreen] bounds];
     
 	UIFont* font = [UIFont fontWithName:@"Arial" size:18];
+	UIColor *color = [UIColor whiteColor];
 	[_topTextLabel setFrame: CGRectMake(0, 0, bounds.size.width, kVerticalInsetPhone - 10)];
 	[_topTextLabel setText: _topTextString];
 	[_topTextLabel setFont: font];
 	[_topTextLabel setBackgroundColor: [UIColor clearColor]];
-	UIColor *color = [UIColor whiteColor];
 	[_topTextLabel setTextColor:color];
 	[_topTextLabel setTextAlignment:UITextAlignmentCenter];
 
-	UIFont* font = [UIFont fontWithName:@"Arial" size:18];
+	
 	[_statusLabel setFrame: CGRectMake((bounds.size.width / 2) + kCaptureButtonWidthPhone, bounds.size.height - kCaptureButtonHeightPhone - kCaptureButtonVerticalInsetPhone, bounds.size.width/4, kVerticalInsetPhone - 10)];
-	[_statusLabel setText: @"Ready..."];
 	[_statusLabel setFont: font];
+	[_statusLabel setText: @"Ready..."];
 	[_statusLabel setBackgroundColor: [UIColor clearColor]];
-	UIColor *color = [UIColor whiteColor];
 	[_statusLabel setTextColor:color];
 	[_statusLabel setTextAlignment:UITextAlignmentCenter];
 
@@ -199,12 +198,11 @@ static const CGFloat kAspectRatio = 125.0f / 86;
 	[_topTextLabel setTextColor:color];
 	[_topTextLabel setTextAlignment:UITextAlignmentCenter];
 
-	UIFont* font = [UIFont fontWithName:@"Arial" size:18];
+	
 	[_statusLabel setFrame: CGRectMake((bounds.size.width / 2) + kCaptureButtonWidthPhone, bounds.size.height - kCaptureButtonHeightPhone - kCaptureButtonVerticalInsetPhone, bounds.size.width/4, kVerticalInsetPhone - 10)];
 	[_statusLabel setText: @"Ready..."];
 	[_statusLabel setFont: font];
 	[_statusLabel setBackgroundColor: [UIColor clearColor]];
-	UIColor *color = [UIColor whiteColor];
 	[_statusLabel setTextColor:color];
 	[_statusLabel setTextAlignment:UITextAlignmentCenter];
     
@@ -244,12 +242,11 @@ static const CGFloat kAspectRatio = 125.0f / 86;
 	[_topTextLabel setTextColor:color];
 	[_topTextLabel setTextAlignment:UITextAlignmentCenter];
 
-	UIFont* font = [UIFont fontWithName:@"Arial" size:18];
+	
 	[_statusLabel setFrame: CGRectMake((bounds.size.width / 2) + kCaptureButtonWidthPhone, bounds.size.height - kCaptureButtonHeightPhone - kCaptureButtonVerticalInsetPhone, bounds.size.width/4, kVerticalInsetPhone - 10)];
 	[_statusLabel setText: @"Ready..."];
 	[_statusLabel setFont: font];
 	[_statusLabel setBackgroundColor: [UIColor clearColor]];
-	UIColor *color = [UIColor whiteColor];
 	[_statusLabel setTextColor:color];
 	[_statusLabel setTextAlignment:UITextAlignmentCenter];
 
@@ -279,11 +276,11 @@ static const CGFloat kAspectRatio = 125.0f / 86;
     CGRect bounds = [[UIScreen mainScreen] bounds];
     
 	UIFont* font = [UIFont fontWithName:@"Arial" size:18];
+	UIColor *color = [UIColor whiteColor];
 	[_statusLabel setFrame: CGRectMake((bounds.size.width / 2) + kCaptureButtonWidthPhone, bounds.size.height - kCaptureButtonHeightPhone - kCaptureButtonVerticalInsetPhone, bounds.size.width/4, kVerticalInsetPhone - 10)];
 	[_statusLabel setText: @"Ready..."];
 	[_statusLabel setFont: font];
 	[_statusLabel setBackgroundColor: [UIColor clearColor]];
-	UIColor *color = [UIColor whiteColor];
 	[_statusLabel setTextColor:color];
 	[_statusLabel setTextAlignment:UITextAlignmentCenter];
 
@@ -303,12 +300,11 @@ static const CGFloat kAspectRatio = 125.0f / 86;
                                     bounds.size.width,
                                     kCaptureButtonHeightTablet + (kCaptureButtonVerticalInsetTablet * 2));
     
-	UIFont* font = [UIFont fontWithName:@"Arial" size:18];
+	
 	[_topTextLabel setFrame: CGRectMake(0, 0, bounds.size.width, kVerticalInsetTablet - 10)];
 	[_topTextLabel setText: _topTextString];
 	[_topTextLabel setFont: font];
 	[_topTextLabel setBackgroundColor: [UIColor clearColor]];
-	UIColor *color = [UIColor whiteColor];
 	[_topTextLabel setTextColor:color];
 	[_topTextLabel setTextAlignment:UITextAlignmentCenter];
 	
