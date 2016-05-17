@@ -336,7 +336,7 @@ public class CustomCameraActivity extends Activity {
 		layoutParams.setMargins(0, 0, 0, 0);
 		layoutParams.rightMargin = dpToPixels(100);
 		statusMessage.setLayoutParams(layoutParams);
-		statusMessage.setGravity(Gravity.CENTER);
+		//statusMessage.setGravity(Gravity.CENTER);
 		statusMessage.setText("Ready");
 		layout.addView(statusMessage);
 
