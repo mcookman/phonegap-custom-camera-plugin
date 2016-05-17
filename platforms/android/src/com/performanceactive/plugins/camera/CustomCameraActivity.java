@@ -329,8 +329,7 @@ public class CustomCameraActivity extends Activity {
 		statusMessage.setHeight(100);
 		statusMessage.setTypeface(Typeface.SANS_SERIF, Typeface.BOLD);
 		statusMessage.setTextSize(14);
-		RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.FILL_PARENT, 
-                                                RelativeLayout.LayoutParams.WRAP_CONTENT);
+		RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(dpToPixels(200), dpToPixels(50));
         layoutParams.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
 		layoutParams.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
 		layoutParams.bottomMargin = dpToPixels(2);
@@ -385,6 +384,7 @@ public class CustomCameraActivity extends Activity {
                 public void onPictureTaken(byte[] jpegData, Camera camera) {
                     new OutputCapturedImageTask().execute(jpegData);
                 }
+				statusMessage.setText("Ready");
             });
         } catch (Exception e) {
             finishWithError("Failed to take image");
@@ -408,7 +408,7 @@ public class CustomCameraActivity extends Activity {
                 Bitmap capturedImage = getScaledBitmap(jpegData[0]);
                 capturedImage = correctCaptureImageOrientation(capturedImage);
                 capturedImage.compress(CompressFormat.JPEG, quality, new FileOutputStream(capturedImageFile));
-				statusMessage.setText("Ready");
+				
                 Intent data = new Intent();
                 data.putExtra(IMAGE_URI, Uri.fromFile(capturedImageFile).toString());
                 setResult(RESULT_OK, data);
