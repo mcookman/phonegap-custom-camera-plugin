@@ -258,6 +258,7 @@ public class CustomCameraActivity extends Activity {
         layoutParams.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
         layoutParams.addRule(RelativeLayout.CENTER_HORIZONTAL);
         layoutParams.bottomMargin = dpToPixels(2);
+		captureButton.setId(1);
         captureButton.setLayoutParams(layoutParams);
         captureButton.setOnTouchListener(new View.OnTouchListener() {
             @Override
@@ -323,7 +324,7 @@ public class CustomCameraActivity extends Activity {
 	private void createStatusMessage(){
 		statusMessage = new TextView(getApplicationContext());
 		statusMessage.setBackgroundColor(Color.TRANSPARENT);
-		statusMessage.setText(getIntent().getStringExtra(TOP_MESSAGE));
+		statusMessage.setText(getIntent().g	etStringExtra(TOP_MESSAGE));
 		statusMessage.setPadding(0, 0, 0, 0);
 		statusMessage.setTextColor(Color.WHITE);
 		statusMessage.setWidth(100);
@@ -334,9 +335,9 @@ public class CustomCameraActivity extends Activity {
 		RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, 
                                                 RelativeLayout.LayoutParams.WRAP_CONTENT);
         layoutParams.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
-		layoutParams.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
+		layoutParams.addRule(RelativeLayout.RIGHT_OF, captureButton.getId());
 		layoutParams.bottomMargin = dpToPixels(2);
-		layoutParams.rightMargin = dpToPixels(10);
+		layoutParams.leftMargin = dpToPixels(20);
 		//layoutParams.leftMargin = dpToPixels(screenWidthInPixels() - 250);
 		statusMessage.setLayoutParams(layoutParams);
 		//statusMessage.setGravity(Gravity.CENTER);
