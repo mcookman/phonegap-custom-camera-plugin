@@ -25,6 +25,7 @@
     UIImageView *_bottomRightGuide;
 	UILabel * _topTextLabel;
 	NSString * _topTextString;
+	UILabel * _statusLabel;
     UIActivityIndicatorView *_activityIndicator;
 }
 
@@ -118,6 +119,9 @@ static const CGFloat kAspectRatio = 125.0f / 86;
 	_topTextLabel = [[UILabel alloc] init];
 	[overlay addSubview:_topTextLabel];
 
+	_statusLabel = [[UILabel alloc] init];
+	[overlay addSubview:_statusLabel];
+
     return overlay;
 }
 
@@ -144,6 +148,15 @@ static const CGFloat kAspectRatio = 125.0f / 86;
 	UIColor *color = [UIColor whiteColor];
 	[_topTextLabel setTextColor:color];
 	[_topTextLabel setTextAlignment:UITextAlignmentCenter];
+
+	UIFont* font = [UIFont fontWithName:@"Arial" size:18];
+	[_statusLabel setFrame: CGRectMake((bounds.size.width / 2) + kCaptureButtonWidthPhone, bounds.size.height - kCaptureButtonHeightPhone - kCaptureButtonVerticalInsetPhone, bounds.size.width/4, kVerticalInsetPhone - 10)];
+	[_statusLabel setText: @"Ready..."];
+	[_statusLabel setFont: font];
+	[_statusLabel setBackgroundColor: [UIColor clearColor]];
+	UIColor *color = [UIColor whiteColor];
+	[_statusLabel setTextColor:color];
+	[_statusLabel setTextAlignment:UITextAlignmentCenter];
 
     _captureButton.frame = CGRectMake((bounds.size.width / 2) - (kCaptureButtonWidthPhone / 2),
                                       bounds.size.height - kCaptureButtonHeightPhone - kCaptureButtonVerticalInsetPhone,
@@ -185,6 +198,15 @@ static const CGFloat kAspectRatio = 125.0f / 86;
 	UIColor *color = [UIColor whiteColor];
 	[_topTextLabel setTextColor:color];
 	[_topTextLabel setTextAlignment:UITextAlignmentCenter];
+
+	UIFont* font = [UIFont fontWithName:@"Arial" size:18];
+	[_statusLabel setFrame: CGRectMake((bounds.size.width / 2) + kCaptureButtonWidthPhone, bounds.size.height - kCaptureButtonHeightPhone - kCaptureButtonVerticalInsetPhone, bounds.size.width/4, kVerticalInsetPhone - 10)];
+	[_statusLabel setText: @"Ready..."];
+	[_statusLabel setFont: font];
+	[_statusLabel setBackgroundColor: [UIColor clearColor]];
+	UIColor *color = [UIColor whiteColor];
+	[_statusLabel setTextColor:color];
+	[_statusLabel setTextAlignment:UITextAlignmentCenter];
     
     _topLeftGuide.frame = CGRectMake(horizontalInset,
                                      verticalInset,
@@ -222,6 +244,15 @@ static const CGFloat kAspectRatio = 125.0f / 86;
 	[_topTextLabel setTextColor:color];
 	[_topTextLabel setTextAlignment:UITextAlignmentCenter];
 
+	UIFont* font = [UIFont fontWithName:@"Arial" size:18];
+	[_statusLabel setFrame: CGRectMake((bounds.size.width / 2) + kCaptureButtonWidthPhone, bounds.size.height - kCaptureButtonHeightPhone - kCaptureButtonVerticalInsetPhone, bounds.size.width/4, kVerticalInsetPhone - 10)];
+	[_statusLabel setText: @"Ready..."];
+	[_statusLabel setFont: font];
+	[_statusLabel setBackgroundColor: [UIColor clearColor]];
+	UIColor *color = [UIColor whiteColor];
+	[_statusLabel setTextColor:color];
+	[_statusLabel setTextAlignment:UITextAlignmentCenter];
+
     _topLeftGuide.frame = CGRectMake(kHorizontalInsetPhone, kVerticalInsetPhone, kBorderImageWidthPhone, kBorderImageHeightPhone);
     
     _topRightGuide.frame = CGRectMake(bounds.size.width - kBorderImageWidthPhone - kHorizontalInsetPhone,
@@ -247,7 +278,14 @@ static const CGFloat kAspectRatio = 125.0f / 86;
 - (void)layoutForTablet {
     CGRect bounds = [[UIScreen mainScreen] bounds];
     
-
+	UIFont* font = [UIFont fontWithName:@"Arial" size:18];
+	[_statusLabel setFrame: CGRectMake((bounds.size.width / 2) + kCaptureButtonWidthPhone, bounds.size.height - kCaptureButtonHeightPhone - kCaptureButtonVerticalInsetPhone, bounds.size.width/4, kVerticalInsetPhone - 10)];
+	[_statusLabel setText: @"Ready..."];
+	[_statusLabel setFont: font];
+	[_statusLabel setBackgroundColor: [UIColor clearColor]];
+	UIColor *color = [UIColor whiteColor];
+	[_statusLabel setTextColor:color];
+	[_statusLabel setTextAlignment:UITextAlignmentCenter];
 
     _captureButton.frame = CGRectMake((bounds.size.width / 2) - (kCaptureButtonWidthTablet / 2),
                                       bounds.size.height - kCaptureButtonHeightTablet - kCaptureButtonVerticalInsetTablet,
@@ -348,11 +386,14 @@ static const CGFloat kAspectRatio = 125.0f / 86;
 - (void)takePictureWaitingForCameraToFocus {
     _captureButton.userInteractionEnabled = NO;
     _captureButton.selected = YES;
+	
     if (_rearCamera.focusPointOfInterestSupported && [_rearCamera isFocusModeSupported:AVCaptureFocusModeAutoFocus]) {
         [_rearCamera addObserver:self forKeyPath:@"adjustingFocus" options:(NSKeyValueObservingOptionOld|NSKeyValueObservingOptionNew) context:nil];
+		[_statusLabel setText: @"Focusing..."];
         [self autoFocus];
         [self autoExpose];
     } else {
+		[_statusLabel setText: @"Taking Picture..."];
         [self takePicture];
     }
 }
@@ -367,6 +408,7 @@ static const CGFloat kAspectRatio = 125.0f / 86;
 - (void)autoExpose {
     [_rearCamera lockForConfiguration:nil];
     if (_rearCamera.exposurePointOfInterestSupported && [_rearCamera isExposureModeSupported:AVCaptureExposureModeAutoExpose]) {
+		[_statusLabel setText: @"Exposing..."];
         _rearCamera.exposureMode = AVCaptureExposureModeAutoExpose;
         _rearCamera.exposurePointOfInterest = CGPointMake(0.5, 0.5);
     }
@@ -378,6 +420,7 @@ static const CGFloat kAspectRatio = 125.0f / 86;
     BOOL isNowFocused = ![[change valueForKey:NSKeyValueChangeNewKey] boolValue];
     if (wasAdjustingFocus && isNowFocused) {
         [_rearCamera removeObserver:self forKeyPath:@"adjustingFocus"];
+		[_statusLabel setText: @"Taking Picture..."];
         [self takePicture];
     }
 }
@@ -386,7 +429,9 @@ static const CGFloat kAspectRatio = 125.0f / 86;
     AVCaptureConnection *videoConnection = [self videoConnectionToOutput:_stillImageOutput];
     [_stillImageOutput captureStillImageAsynchronouslyFromConnection:videoConnection completionHandler:^(CMSampleBufferRef imageSampleBuffer, NSError *error) {
         NSData *imageData = [AVCaptureStillImageOutput jpegStillImageNSDataRepresentation:imageSampleBuffer];
+		[_statusLabel setText: @"Processing..."];
         _callback([UIImage imageWithData:imageData]);
+		[_statusLabel setText: @"Ready"];
     }];
 }
 
