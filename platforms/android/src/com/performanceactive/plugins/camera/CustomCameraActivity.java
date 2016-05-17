@@ -330,11 +330,11 @@ public class CustomCameraActivity extends Activity {
 		statusMessage.setHeight(100);
 		statusMessage.setTypeface(Typeface.SANS_SERIF, Typeface.BOLD);
 		statusMessage.setTextSize(14);
-		RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(dpToPixels(200), dpToPixels(50));
+		
+		RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(screenWidthInPixels() - 250, dpToPixels(50));
         layoutParams.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
 		layoutParams.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
 		layoutParams.bottomMargin = dpToPixels(2);
-		layoutParams.setMargins(0, 0, 0, 0);
 		layoutParams.rightMargin = dpToPixels(100);
 		statusMessage.setLayoutParams(layoutParams);
 		//statusMessage.setGravity(Gravity.CENTER);
