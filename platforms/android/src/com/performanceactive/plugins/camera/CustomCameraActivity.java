@@ -326,12 +326,13 @@ public class CustomCameraActivity extends Activity {
 		statusMessage.setText(getIntent().getStringExtra(TOP_MESSAGE));
 		statusMessage.setPadding(0, 0, 0, 0);
 		statusMessage.setTextColor(Color.WHITE);
-		statusMessage.setWidth(200);
+		statusMessage.setWidth(100);
 		statusMessage.setHeight(50);
 		statusMessage.setTypeface(Typeface.SANS_SERIF, Typeface.BOLD);
 		statusMessage.setTextSize(14);
 		
-		RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(dpToPixels(200), dpToPixels(50));
+		RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.FILL_PARENT, 
+                                                RelativeLayout.LayoutParams.WRAP_CONTENT);
         layoutParams.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
 		layoutParams.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
 		layoutParams.bottomMargin = dpToPixels(2);
