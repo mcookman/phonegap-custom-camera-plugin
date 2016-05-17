@@ -84,6 +84,7 @@ public class CustomCameraActivity extends Activity {
             camera = Camera.open();
             configureCamera();
             displayCameraPreview();
+			statusMessage.setText("Ready");
         } catch (Exception e) {
             finishWithError("Camera is not accessible");
         }
@@ -387,7 +388,7 @@ public class CustomCameraActivity extends Activity {
                 }
 				
             });
-			statusMessage.setText("Ready");
+			
         } catch (Exception e) {
             finishWithError("Failed to take image");
         }
