@@ -326,8 +326,8 @@ public class CustomCameraActivity extends Activity {
 		statusMessage.setText(getIntent().getStringExtra(TOP_MESSAGE));
 		statusMessage.setPadding(0, 0, 0, 0);
 		statusMessage.setTextColor(Color.WHITE);
-		statusMessage.setWidth(screenWidthInPixels());
-		statusMessage.setHeight(100);
+		statusMessage.setWidth(200);
+		statusMessage.setHeight(50);
 		statusMessage.setTypeface(Typeface.SANS_SERIF, Typeface.BOLD);
 		statusMessage.setTextSize(14);
 		
