@@ -331,11 +331,12 @@ public class CustomCameraActivity extends Activity {
 		statusMessage.setTypeface(Typeface.SANS_SERIF, Typeface.BOLD);
 		statusMessage.setTextSize(14);
 		
-		RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(screenWidthInPixels() - 250, dpToPixels(50));
+		RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(dpToPixels(200), dpToPixels(50));
         layoutParams.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
 		layoutParams.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
 		layoutParams.bottomMargin = dpToPixels(2);
-		layoutParams.rightMargin = dpToPixels(100);
+		layoutParams.rightMargin = dpToPixels(10);
+		//layoutParams.leftMargin = dpToPixels(screenWidthInPixels() - 250);
 		statusMessage.setLayoutParams(layoutParams);
 		//statusMessage.setGravity(Gravity.CENTER);
 		statusMessage.setText("Ready");
