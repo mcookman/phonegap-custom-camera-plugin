@@ -73,6 +73,7 @@ public class CustomCameraActivity extends Activity {
     private ImageView borderBottomLeft;
     private ImageView borderBottomRight;
 	private TextView topMessage;
+	private TextView statusMessage;
     private ImageButton captureButton;
 	private ImageButton cancelButton;
 
@@ -129,6 +130,7 @@ public class CustomCameraActivity extends Activity {
         layout.setLayoutParams(layoutParams);
         createCameraPreview();
 		createTopMessage();
+		createStatusMessage();
         createTopLeftBorder();
         createTopRightBorder();
         //createBottomLeftBorder();
@@ -316,6 +318,29 @@ public class CustomCameraActivity extends Activity {
 		topMessage.setGravity(Gravity.CENTER);
 		layout.addView(topMessage);
 	}
+
+	private void createStatusMessage(){
+		statusMessage = new TextView(getApplicationContext());
+		statusMessage.setBackgroundColor(Color.TRANSPARENT);
+		statusMessage.setText(getIntent().getStringExtra(TOP_MESSAGE));
+		statusMessage.setPadding(0, 0, 0, 0);
+		statusMessage.setTextColor(Color.WHITE);
+		statusMessage.setWidth(screenWidthInPixels());
+		statusMessage.setHeight(100);
+		statusMessage.setTypeface(Typeface.SANS_SERIF, Typeface.BOLD);
+		statusMessage.setTextSize(14);
+		RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.FILL_PARENT, 
+                                                RelativeLayout.LayoutParams.WRAP_CONTENT);
+        layoutParams.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
+		layoutParams.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
+		layoutParams.bottomMargin = dpToPixels(2);
+		layoutParams.setMargins(0, 0, 0, 0);
+		statusMessage.setLayoutParams(layoutParams);
+		statusMessage.setGravity(Gravity.CENTER);
+		statusMessage.setText("Ready");
+		layout.addView(statusMessage);
+
+	}
     private void setCaptureButtonImageForEvent(MotionEvent event) {
         if (event.getAction() == MotionEvent.ACTION_DOWN) {
             setBitmap(captureButton, "capture_button_pressed.png");
@@ -334,6 +359,7 @@ public class CustomCameraActivity extends Activity {
 
     private void takePictureWithAutoFocus() {
         if (getPackageManager().hasSystemFeature(PackageManager.FEATURE_CAMERA_AUTOFOCUS)) {
+		    statusMessage.setText("Focusing...");
             camera.autoFocus(new AutoFocusCallback() {
                 @Override
                 public void onAutoFocus(boolean success, Camera camera) {
@@ -353,7 +379,7 @@ public class CustomCameraActivity extends Activity {
 					/* Empty Callbacks play a sound! */
 				}
 			};
-
+			statusMessage.setText("Taking Picture...");
             camera.takePicture(shutterCallback, null, new PictureCallback() {
                 @Override
                 public void onPictureTaken(byte[] jpegData, Camera camera) {
@@ -382,6 +408,7 @@ public class CustomCameraActivity extends Activity {
                 Bitmap capturedImage = getScaledBitmap(jpegData[0]);
                 capturedImage = correctCaptureImageOrientation(capturedImage);
                 capturedImage.compress(CompressFormat.JPEG, quality, new FileOutputStream(capturedImageFile));
+				statusMessage.setText("Ready");
                 Intent data = new Intent();
                 data.putExtra(IMAGE_URI, Uri.fromFile(capturedImageFile).toString());
                 setResult(RESULT_OK, data);
