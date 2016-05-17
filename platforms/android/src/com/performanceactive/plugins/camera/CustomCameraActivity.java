@@ -323,7 +323,6 @@ public class CustomCameraActivity extends Activity {
 	private void createStatusMessage(){
 		statusMessage = new TextView(getApplicationContext());
 		statusMessage.setBackgroundColor(Color.TRANSPARENT);
-		statusMessage.setBackgroundColor(Color.BLACK);
 		statusMessage.setText(getIntent().getStringExtra(TOP_MESSAGE));
 		statusMessage.setPadding(0, 0, 0, 0);
 		statusMessage.setTextColor(Color.WHITE);
