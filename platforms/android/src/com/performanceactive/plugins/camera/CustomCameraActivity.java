@@ -334,6 +334,7 @@ public class CustomCameraActivity extends Activity {
 		layoutParams.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
 		layoutParams.bottomMargin = dpToPixels(2);
 		layoutParams.setMargins(0, 0, 0, 0);
+		layoutParams.rightMargin = dpToPixels(100);
 		statusMessage.setLayoutParams(layoutParams);
 		statusMessage.setGravity(Gravity.CENTER);
 		statusMessage.setText("Ready");
@@ -384,8 +385,9 @@ public class CustomCameraActivity extends Activity {
                 public void onPictureTaken(byte[] jpegData, Camera camera) {
                     new OutputCapturedImageTask().execute(jpegData);
                 }
-				statusMessage.setText("Ready");
+				
             });
+			statusMessage.setText("Ready");
         } catch (Exception e) {
             finishWithError("Failed to take image");
         }
