@@ -146,7 +146,14 @@ public class CustomCameraActivity extends Activity {
 
     private void createCameraPreview() {
         cameraPreviewView = new FrameLayout(this);
-        FrameLayout.LayoutParams layoutParams = new FrameLayout.LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
+        //FrameLayout.LayoutParams layoutParams = new FrameLayout.LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
+		int width = screenWidthInPixels();
+		int height = screenHeightInPixels();
+		int nh = height * .9;
+		int nw = (width*nh)/height;
+		int left = (width - nw)/2;
+		int top = (height-nh)/2;
+		FrameLayout.LayoutParams layoutParams = new FrameLayout.LayoutParams(nw, nh, Gravity.CENTER_HORIZONTAL | Gravity.CENTER_VERTICAL);
         cameraPreviewView.setLayoutParams(layoutParams);
         layout.addView(cameraPreviewView);
     }
