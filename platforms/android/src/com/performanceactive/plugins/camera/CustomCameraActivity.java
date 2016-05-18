@@ -77,6 +77,11 @@ public class CustomCameraActivity extends Activity {
     private ImageButton captureButton;
 	private ImageButton cancelButton;
 
+	private int camLeft;
+	private int camTop;
+	private int camWidth;
+	private int camHeight;
+
     @Override
     protected void onResume() {
         super.onResume();
@@ -129,6 +134,18 @@ public class CustomCameraActivity extends Activity {
         layout = new RelativeLayout(this);
         RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
         layout.setLayoutParams(layoutParams);
+
+		double width = screenWidthInPixels();
+		double height = screenHeightInPixels();
+		double nh = height * .9;
+		double nw = (width*nh)/height;
+		double left = (width - nw)/2.0;
+		double top = (height-nh)/2.0;
+		camWidth = (int)Math.round(nh);
+		camHeight = (int)Math.round(nw);
+		camLeft = (int)Math.round(left);
+		camTop = (int)Math.round(top);
+
         createCameraPreview();
 		createTopMessage();
 		createStatusMessage();
@@ -140,8 +157,7 @@ public class CustomCameraActivity extends Activity {
         createCaptureButton();
 		createCancelButton();
 		
-		this.setBackgroundColor(Color.BLACK);
-		this.invalidate();
+		setBackgroundColor(Color.Black);
         setContentView(layout);
 		
     }
@@ -149,18 +165,11 @@ public class CustomCameraActivity extends Activity {
     private void createCameraPreview() {
         cameraPreviewView = new FrameLayout(this);
         //FrameLayout.LayoutParams layoutParams = new FrameLayout.LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
-		double width = screenWidthInPixels();
-		double height = screenHeightInPixels();
-		double nh = height * .9;
-		double nw = (width*nh)/height;
-		double left = (width - nw)/2.0;
-		double top = (height-nh)/2.0;
-		int nnh = (int)Math.round(nh);
-		int nnw = (int)Math.round(nw);
+		
 		//FrameLayout.LayoutParams layoutParams = new FrameLayout.LayoutParams(nnw, nnh, Gravity.CENTER_HORIZONTAL | Gravity.CENTER_VERTICAL);
-		RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(nnw,nnh);
+		RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(camWidth,camHeight);
 		//layoutParams.addRule(RelativeLayout.CENTER_IN_PARENT)
-		layoutParams.setMargins((int)Math.round(left), (int)Math.round(top), (int)Math.round(left), (int)Math.round(top));
+		layoutParams.setMargins(camLeft, camTop, camLeft, camTop);
 		
         cameraPreviewView.setLayoutParams(layoutParams);
         layout.addView(cameraPreviewView);
@@ -172,7 +181,9 @@ public class CustomCameraActivity extends Activity {
         RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(dpToPixels(50), dpToPixels(50));
         layoutParams.addRule(RelativeLayout.ALIGN_PARENT_TOP);
         layoutParams.addRule(RelativeLayout.ALIGN_PARENT_LEFT);
-        if (isXLargeScreen()) {
+		layoutParmas.topMargin = camTop;
+		layoutParams.leftMargin = camLeft;
+        /*if (isXLargeScreen()) {
             layoutParams.topMargin = dpToPixels(100);
             layoutParams.leftMargin = dpToPixels(100);
         } else if (isLargeScreen()) {
@@ -181,7 +192,7 @@ public class CustomCameraActivity extends Activity {
         } else {
             layoutParams.topMargin = dpToPixels(40);
             layoutParams.leftMargin = dpToPixels(10);
-        }
+        }*/
         borderTopLeft.setLayoutParams(layoutParams);
         layout.addView(borderTopLeft);
     }
@@ -192,7 +203,9 @@ public class CustomCameraActivity extends Activity {
         RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(dpToPixels(50), dpToPixels(50));
         layoutParams.addRule(RelativeLayout.ALIGN_PARENT_TOP);
         layoutParams.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
-        if (isXLargeScreen()) {
+		layoutParmas.topMargin = camTop;
+		layoutParams.rightMargin = camLeft;
+        /*if (isXLargeScreen()) {
             layoutParams.topMargin = dpToPixels(100);
             layoutParams.rightMargin = dpToPixels(100);
         } else if (isLargeScreen()) {
@@ -201,7 +214,7 @@ public class CustomCameraActivity extends Activity {
         } else {
             layoutParams.topMargin = dpToPixels(40);
             layoutParams.rightMargin = dpToPixels(10);
-        }
+        }*/
         borderTopRight.setLayoutParams(layoutParams);
         layout.addView(borderTopRight);
     }
