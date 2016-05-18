@@ -157,8 +157,9 @@ public class CustomCameraActivity extends Activity {
 		int nnw = (int)Math.round(nw);
 		//FrameLayout.LayoutParams layoutParams = new FrameLayout.LayoutParams(nnw, nnh, Gravity.CENTER_HORIZONTAL | Gravity.CENTER_VERTICAL);
 		RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(nnw,nnh);
-		layoutParams.setLeft(left);
-		layoutParams.setTop(top);
+		//layoutParams.addRule(RelativeLayout.CENTER_IN_PARENT)
+		layoutParams.setMargins(left, top, left, top);
+		
         cameraPreviewView.setLayoutParams(layoutParams);
         layout.addView(cameraPreviewView);
     }
