@@ -153,7 +153,9 @@ public class CustomCameraActivity extends Activity {
 		double nw = (width*nh)/height;
 		double left = (width - nw)/2.0;
 		double top = (height-nh)/2.0;
-		FrameLayout.LayoutParams layoutParams = new FrameLayout.LayoutParams(nw, nh, Gravity.CENTER_HORIZONTAL | Gravity.CENTER_VERTICAL);
+		int nnh = nh;
+		int nnw = nw;
+		FrameLayout.LayoutParams layoutParams = new FrameLayout.LayoutParams(nnw, nnh, Gravity.CENTER_HORIZONTAL | Gravity.CENTER_VERTICAL);
         cameraPreviewView.setLayoutParams(layoutParams);
         layout.addView(cameraPreviewView);
     }
