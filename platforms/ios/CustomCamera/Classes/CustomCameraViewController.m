@@ -97,9 +97,10 @@ static const CGFloat kAspectRatio = 125.0f / 86;
 - (UIView*)createOverlay {
     UIView *overlay = [[UIView alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
-    _buttonPanel = [[UIView alloc] initWithFrame:CGRectZero];
+	_buttonPanel = [[UIView alloc] initWithFrame:CGRectZero];
     [_buttonPanel setBackgroundColor:[UIColor colorWithWhite:0 alpha:0.75f]];
-    [overlay addSubview:_buttonPanel];
+    //[overlay addSubview:_buttonPanel];
+
     
     _captureButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [_captureButton setImage:[UIImage imageNamed:@"www/img2/cameraoverlay/capture_button.png"] forState:UIControlStateNormal];
@@ -145,11 +146,12 @@ static const CGFloat kAspectRatio = 125.0f / 86;
 }
 
 - (void)viewWillLayoutSubviews {
-    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+	[self layoutForPhone];
+    /*if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
         [self layoutForTablet];
     } else {
         [self layoutForPhone];
-    }
+    }*/
 }
 
 - (void)layoutForPhone {
@@ -157,7 +159,7 @@ static const CGFloat kAspectRatio = 125.0f / 86;
     
 	UIFont* font = [UIFont fontWithName:@"Arial" size:18];
 	UIColor *color = [UIColor whiteColor];
-	[_topTextLabel setFrame: CGRectMake(0, 0, bounds.size.width, kVerticalInsetPhone - 10)];
+	[_topTextLabel setFrame: CGRectMake(0, 0, bounds.size.width, camTop - 2)];
 	[_topTextLabel setText: _topTextString];
 	[_topTextLabel setFont: font];
 	[_topTextLabel setBackgroundColor: [UIColor clearColor]];
@@ -165,35 +167,70 @@ static const CGFloat kAspectRatio = 125.0f / 86;
 	[_topTextLabel setTextAlignment:UITextAlignmentCenter];
 
 	
-	[_statusLabel setFrame: CGRectMake((bounds.size.width / 2) + kCaptureButtonWidthPhone, bounds.size.height - kCaptureButtonHeightPhone - kCaptureButtonVerticalInsetPhone, bounds.size.width/4, kVerticalInsetPhone - 10)];
+	//[_statusLabel setFrame: CGRectMake((bounds.size.width / 2) + kCaptureButtonWidthPhone, bounds.size.height - kCaptureButtonHeightPhone - kCaptureButtonVerticalInsetPhone, bounds.size.width/4, kVerticalInsetPhone - 10)];
+	[_statusLabel setFrame: CGRectMake(camWidth/2 + camLeft + 50, camTop + camHeight + 5, camWidth/3, 50)];
 	[_statusLabel setFont: font];
 	[_statusLabel setText: @"Ready"];
 	[_statusLabel setBackgroundColor: [UIColor clearColor]];
 	[_statusLabel setTextColor:color];
 	[_statusLabel setTextAlignment:UITextAlignmentCenter];
 
+	_captureButton.frame = CGRectMake((bounds.size.width / 2) - (kCaptureButtonWidthPhone / 2),
+										camTop + camHeight + camTop - kCaptureButtonHeightPhone,
+										kCaptureButtonWidthPhone,
+                                      kCaptureButtonHeightPhone);
+
+	_backButton.frame = CGRectMake(camLeft,
+										camTop + camHeight + camTop - kCaptureButtonHeightPhone,
+										kCaptureButtonWidthPhone,
+                                      kCaptureButtonHeightPhone);
+
+	_topLeftGuide.frame = CGRectMake(camLeft,
+                                     camTop,
+                                     kBorderImageWidthPhone,
+                                     kBorderImageHeightPhone);
+    
+    _topRightGuide.frame = CGRectMake(camLeft + camWidth,
+                                      camTop,
+                                      kBorderImageWidthPhone,
+                                      kBorderImageHeightPhone);
+	_bottomLeftGuide.frame = CGRectMake(camLeft,
+                                        camTop + camHeight - kBorderImageHeightPhone,
+                                        kBorderImageWidthPhone,
+                                        kBorderImageHeightPhone);
+    
+    _bottomRightGuide.frame = CGRectMake(camLeft + camWidth
+                                         camTop + camHeight - kBorderImageHeightPhone,
+                                         kBorderImageWidthPhone,
+                                         kBorderImageHeightPhone);
+
+	/*
     _captureButton.frame = CGRectMake((bounds.size.width / 2) - (kCaptureButtonWidthPhone / 2),
                                       bounds.size.height - kCaptureButtonHeightPhone - kCaptureButtonVerticalInsetPhone,
                                       kCaptureButtonWidthPhone,
                                       kCaptureButtonHeightPhone);
+	*/
     
     //_backButton.frame = CGRectMake((CGRectGetMinX(_captureButton.frame) - kBackButtonWidthPhone) / 2,
+	/*
 	_backButton.frame = CGRectMake(5,
                                    CGRectGetMinY(_captureButton.frame) + ((kCaptureButtonHeightPhone - kBackButtonHeightPhone) / 2),
                                    kBackButtonWidthPhone,
                                    kBackButtonHeightPhone);
+	*/
     
     _buttonPanel.frame = CGRectMake(0,
                                     CGRectGetMinY(_captureButton.frame) - kCaptureButtonVerticalInsetPhone,
                                     bounds.size.width,
                                     kCaptureButtonHeightPhone + (kCaptureButtonVerticalInsetPhone * 2));
     
+	/*
     CGFloat screenAspectRatio = bounds.size.height / bounds.size.width;
     if (screenAspectRatio <= 1.5f) {
         [self layoutForPhoneWithShortScreen];
     } else {
         [self layoutForPhoneWithTallScreen];
-    }
+    }*/
 }
 
 - (void)layoutForPhoneWithShortScreen {
