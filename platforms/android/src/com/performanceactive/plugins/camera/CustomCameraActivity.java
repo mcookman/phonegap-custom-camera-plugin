@@ -141,8 +141,8 @@ public class CustomCameraActivity extends Activity {
 		double nw = (width*nh)/height;
 		double left = (width - nw)/2.0;
 		double top = (height-nh)/2.0;
-		camWidth = (int)Math.round(nh);
-		camHeight = (int)Math.round(nw);
+		camWidth = (int)Math.round(nw);
+		camHeight = (int)Math.round(nh);
 		camLeft = (int)Math.round(left);
 		camTop = (int)Math.round(top);
 
