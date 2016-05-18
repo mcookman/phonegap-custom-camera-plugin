@@ -140,6 +140,8 @@ public class CustomCameraActivity extends Activity {
         createCaptureButton();
 		createCancelButton();
 		
+		this.setBackgroundColor(Color.BLACK);
+		this.invalidate();
         setContentView(layout);
 		
     }
