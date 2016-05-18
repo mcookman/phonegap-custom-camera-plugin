@@ -124,13 +124,13 @@ static const CGFloat kAspectRatio = 125.0f / 86;
     _topRightGuide = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"www/img2/cameraoverlay/border_top_right.png"]];
     [overlay addSubview:_topRightGuide];
     
-    /*
+    
 	_bottomLeftGuide = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"www/img2/cameraoverlay/border_bottom_left.png"]];
     [overlay addSubview:_bottomLeftGuide];
     
     _bottomRightGuide = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"www/img2/cameraoverlay/border_bottom_right.png"]];
     [overlay addSubview:_bottomRightGuide];
-	*/
+	
 
 	_topTextLabel = [[UILabel alloc] init];
 	[overlay addSubview:_topTextLabel];
@@ -190,7 +190,7 @@ static const CGFloat kAspectRatio = 125.0f / 86;
                                      kBorderImageWidthPhone,
                                      kBorderImageHeightPhone);
     
-    _topRightGuide.frame = CGRectMake(camLeft + camWidth,
+    _topRightGuide.frame = CGRectMake(camLeft + camWidth - kBorderImageWidthPhone,
                                       camTop,
                                       kBorderImageWidthPhone,
                                       kBorderImageHeightPhone);
@@ -217,14 +217,14 @@ static const CGFloat kAspectRatio = 125.0f / 86;
                                    CGRectGetMinY(_captureButton.frame) + ((kCaptureButtonHeightPhone - kBackButtonHeightPhone) / 2),
                                    kBackButtonWidthPhone,
                                    kBackButtonHeightPhone);
-	*/
+	
     
     _buttonPanel.frame = CGRectMake(0,
                                     CGRectGetMinY(_captureButton.frame) - kCaptureButtonVerticalInsetPhone,
                                     bounds.size.width,
                                     kCaptureButtonHeightPhone + (kCaptureButtonVerticalInsetPhone * 2));
     
-	/*
+	
     CGFloat screenAspectRatio = bounds.size.height / bounds.size.width;
     if (screenAspectRatio <= 1.5f) {
         [self layoutForPhoneWithShortScreen];
