@@ -157,7 +157,7 @@ public class CustomCameraActivity extends Activity {
         createCaptureButton();
 		createCancelButton();
 		
-		setBackgroundColor(Color.Black);
+		getWindow().getDecorView().setBackgroundColor(Color.BLACK);
         setContentView(layout);
 		
     }
@@ -181,7 +181,7 @@ public class CustomCameraActivity extends Activity {
         RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(dpToPixels(50), dpToPixels(50));
         layoutParams.addRule(RelativeLayout.ALIGN_PARENT_TOP);
         layoutParams.addRule(RelativeLayout.ALIGN_PARENT_LEFT);
-		layoutParmas.topMargin = camTop;
+		layoutParams.topMargin = camTop;
 		layoutParams.leftMargin = camLeft;
         /*if (isXLargeScreen()) {
             layoutParams.topMargin = dpToPixels(100);
@@ -203,7 +203,7 @@ public class CustomCameraActivity extends Activity {
         RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(dpToPixels(50), dpToPixels(50));
         layoutParams.addRule(RelativeLayout.ALIGN_PARENT_TOP);
         layoutParams.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
-		layoutParmas.topMargin = camTop;
+		layoutParams.topMargin = camTop;
 		layoutParams.rightMargin = camLeft;
         /*if (isXLargeScreen()) {
             layoutParams.topMargin = dpToPixels(100);
