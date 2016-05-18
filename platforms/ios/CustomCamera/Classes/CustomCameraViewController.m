@@ -29,6 +29,11 @@
     UIActivityIndicatorView *_activityIndicator;
 }
 
+int camTop;
+int camLeft;
+int camWidth;
+int camHeight;
+
 static const CGFloat kCaptureButtonWidthPhone = 64;
 static const CGFloat kCaptureButtonHeightPhone = 64;
 static const CGFloat kBackButtonWidthPhone = 50;
@@ -68,9 +73,19 @@ static const CGFloat kAspectRatio = 125.0f / 86;
 - (void)loadView {
     self.view = [[UIView alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     self.view.backgroundColor = [UIColor blackColor];
+
+	int width = self.view.bounds.size.width;
+	int height =  self.view.bounds.size.height;
+	camHeight = height * .9;
+	camWidth = (width * camHeight)/height;
+	camLeft = (width - camWidth) / 2;
+	camTop = (height - camHeight) / 2;
+	
     AVCaptureVideoPreviewLayer *previewLayer = [AVCaptureVideoPreviewLayer layerWithSession:_captureSession];
     previewLayer.videoGravity = AVLayerVideoGravityResizeAspectFill;
-    previewLayer.frame = self.view.bounds;
+    //previewLayer.frame = self.view.bounds;
+	previewLayer.frame = CGRectMake(camLeft, camTop, camWidth, camHeight);
+
     [[self.view layer] addSublayer:previewLayer];
     [self.view addSubview:[self createOverlay]];
     _activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
