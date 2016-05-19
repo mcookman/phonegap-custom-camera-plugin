@@ -312,7 +312,7 @@ public class CustomCameraActivity extends Activity {
         setBitmap(cancelButton, "back_button.png");
         cancelButton.setBackgroundColor(Color.TRANSPARENT);
         cancelButton.setScaleType(ScaleType.FIT_CENTER);
-        RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(dpToPixels(50), dpToPixels(50));
+        RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(dpToPixels(75), dpToPixels(75));
         layoutParams.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
         layoutParams.addRule(RelativeLayout.ALIGN_PARENT_LEFT);
         layoutParams.bottomMargin = 0;
