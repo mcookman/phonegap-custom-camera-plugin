@@ -315,8 +315,8 @@ public class CustomCameraActivity extends Activity {
         RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(dpToPixels(60), dpToPixels(60));
         layoutParams.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
         layoutParams.addRule(RelativeLayout.ALIGN_PARENT_LEFT);
-        layoutParams.bottomMargin = dpToPixels(0);
-		//layoutParams.leftMargin = camLeft;
+        layoutParams.bottomMargin = 0;
+		layoutParams.leftMargin = camLeft;
         cancelButton.setLayoutParams(layoutParams);
         cancelButton.setOnTouchListener(new View.OnTouchListener() {
             @Override
