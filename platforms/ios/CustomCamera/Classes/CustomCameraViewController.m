@@ -168,12 +168,12 @@ static const CGFloat kAspectRatio = 125.0f / 86;
 
 	
 	//[_statusLabel setFrame: CGRectMake((bounds.size.width / 2) + kCaptureButtonWidthPhone, bounds.size.height - kCaptureButtonHeightPhone - kCaptureButtonVerticalInsetPhone, bounds.size.width/4, kVerticalInsetPhone - 10)];
-	[_statusLabel setFrame: CGRectMake(camWidth/2 + camLeft + 50, camTop + camHeight + 5, camWidth/3, 50)];
+	[_statusLabel setFrame: CGRectMake(camWidth + camLeft - 100, camTop + camHeight + 5, 100, 50)];
 	[_statusLabel setFont: font];
 	[_statusLabel setText: @"Ready"];
 	[_statusLabel setBackgroundColor: [UIColor clearColor]];
 	[_statusLabel setTextColor:color];
-	[_statusLabel setTextAlignment:UITextAlignmentCenter];
+	[_statusLabel setTextAlignment:NSTextAlignmentRight];
 
 	_captureButton.frame = CGRectMake((bounds.size.width / 2) - (kCaptureButtonWidthPhone / 2),
 										camTop + camHeight + camTop - kCaptureButtonHeightPhone,
