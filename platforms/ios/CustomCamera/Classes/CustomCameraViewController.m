@@ -194,7 +194,8 @@ static const CGFloat kAspectRatio = 125.0f / 86;
     _topRightGuide.frame = CGRectMake(camLeft + camWidth - kBorderImageWidthPhone,
                                       camTop,
                                       kBorderImageWidthPhone,
-    /*                                  kBorderImageHeightPhone);
+                                      kBorderImageHeightPhone);
+	/*
 	_bottomLeftGuide.frame = CGRectMake(camLeft,
                                         camTop + camHeight - kBorderImageHeightPhone,
                                         kBorderImageWidthPhone,
