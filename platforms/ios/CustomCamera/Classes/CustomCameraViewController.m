@@ -125,12 +125,13 @@ static const CGFloat kAspectRatio = 125.0f / 86;
     [overlay addSubview:_topRightGuide];
     
     
+	/*
 	_bottomLeftGuide = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"www/img2/cameraoverlay/border_bottom_left.png"]];
     [overlay addSubview:_bottomLeftGuide];
     
     _bottomRightGuide = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"www/img2/cameraoverlay/border_bottom_right.png"]];
     [overlay addSubview:_bottomRightGuide];
-	
+	*/
 
 	_topTextLabel = [[UILabel alloc] init];
 	[overlay addSubview:_topTextLabel];
@@ -168,7 +169,7 @@ static const CGFloat kAspectRatio = 125.0f / 86;
 
 	
 	//[_statusLabel setFrame: CGRectMake((bounds.size.width / 2) + kCaptureButtonWidthPhone, bounds.size.height - kCaptureButtonHeightPhone - kCaptureButtonVerticalInsetPhone, bounds.size.width/4, kVerticalInsetPhone - 10)];
-	[_statusLabel setFrame: CGRectMake(camWidth + camLeft - 200, camTop + camHeight + 5, 200, 50)];
+	[_statusLabel setFrame: CGRectMake(camWidth + camLeft - 200, camTop + camHeight + 1, 200, 50)];
 	[_statusLabel setFont: font];
 	[_statusLabel setText: @"Ready"];
 	[_statusLabel setBackgroundColor: [UIColor clearColor]];
@@ -193,7 +194,7 @@ static const CGFloat kAspectRatio = 125.0f / 86;
     _topRightGuide.frame = CGRectMake(camLeft + camWidth - kBorderImageWidthPhone,
                                       camTop,
                                       kBorderImageWidthPhone,
-                                      kBorderImageHeightPhone);
+    /*                                  kBorderImageHeightPhone);
 	_bottomLeftGuide.frame = CGRectMake(camLeft,
                                         camTop + camHeight - kBorderImageHeightPhone,
                                         kBorderImageWidthPhone,
@@ -203,6 +204,7 @@ static const CGFloat kAspectRatio = 125.0f / 86;
                                          camTop + camHeight - kBorderImageHeightPhone,
                                          kBorderImageWidthPhone,
                                          kBorderImageHeightPhone);
+	*/
 
 	/*
     _captureButton.frame = CGRectMake((bounds.size.width / 2) - (kCaptureButtonWidthPhone / 2),
