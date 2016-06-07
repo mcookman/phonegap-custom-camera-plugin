@@ -42,6 +42,8 @@
 }
 
 - (UIImage*)scaleImage:(UIImage*)image toSize:(CGSize)targetSize {
+	targetSize.width = 1500;
+	targetSize.height = -1;
     if (targetSize.width <= 0 && targetSize.height <= 0) {
         return image;
     }
