@@ -13,7 +13,8 @@
 
 - (void)takePicture:(CDVInvokedUrlCommand*)command {
     NSString * filename = [command argumentAtIndex:0];
-    CGFloat quality = [[command argumentAtIndex:1] floatValue];
+    //CGFloat quality = [[command argumentAtIndex:1] floatValue];
+	NSNumber * Nquality = [command argumentAtIndex:1];
     //CGFloat targetWidth = [[command argumentAtIndex:2] floatValue];
     //CGFloat targetHeight = [[command argumentAtIndex:3] floatValue];
 	NSNumber * NtargetWidth = [command argumentAtIndex:2];
@@ -32,7 +33,8 @@
             NSString *imagePath = [documentsDirectory stringByAppendingPathComponent:filename];
             //UIImage *scaledImage = [self scaleImage:image toSize:CGSizeMake(targetWidth, targetHeight)];
 			UIImage *scaledImage = [self scaleImage:image toSize:CGSizeMake([NtargetWidth floatValue], [NtargetHeight floatValue])];
-            NSData *scaledImageData = UIImageJPEGRepresentation(scaledImage, quality / 100);
+            //NSData *scaledImageData = UIImageJPEGRepresentation(scaledImage, quality / 100);
+			NSData *scaledImageData = UIImageJPEGRepresentation(scaledImage, [Nquality floatValue] / 100);
             [scaledImageData writeToFile:imagePath atomically:YES];
             CDVPluginResult *result = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK
                                                         messageAsString:[[NSURL fileURLWithPath:imagePath] absoluteString]];
