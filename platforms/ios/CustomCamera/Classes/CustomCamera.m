@@ -14,8 +14,10 @@
 - (void)takePicture:(CDVInvokedUrlCommand*)command {
     NSString * filename = [command argumentAtIndex:0];
     CGFloat quality = [[command argumentAtIndex:1] floatValue];
-    CGFloat targetWidth = [[command argumentAtIndex:2] floatValue];
-    CGFloat targetHeight = [[command argumentAtIndex:3] floatValue];
+    //CGFloat targetWidth = [[command argumentAtIndex:2] floatValue];
+    //CGFloat targetHeight = [[command argumentAtIndex:3] floatValue];
+	NSNumber * NtargetWidth = [[command argumentAtIndex:2] floatValue];
+    NSNumber * NtargetHeight = [[command argumentAtIndex:3] floatValue];
 	NSString * topstring = [command argumentAtIndex:4];
     if (![UIImagePickerController isCameraDeviceAvailable:UIImagePickerControllerCameraDeviceRear]) {
         CDVPluginResult *result = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsString:@"No rear camera detected"];
@@ -28,7 +30,8 @@
             //NSString *documentsDirectory = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
 			NSString* documentsDirectory = [NSTemporaryDirectory()stringByStandardizingPath];
             NSString *imagePath = [documentsDirectory stringByAppendingPathComponent:filename];
-            UIImage *scaledImage = [self scaleImage:image toSize:CGSizeMake(targetWidth, targetHeight)];
+            //UIImage *scaledImage = [self scaleImage:image toSize:CGSizeMake(targetWidth, targetHeight)];
+			UIImage *scaledImage = [self scaleImage:image toSize:CGSizeMake([NtargetWidth floatValue], [NtargetHeight floatValue])];
             NSData *scaledImageData = UIImageJPEGRepresentation(scaledImage, quality / 100);
             [scaledImageData writeToFile:imagePath atomically:YES];
             CDVPluginResult *result = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK
@@ -42,7 +45,7 @@
 }
 
 - (UIImage*)scaleImage:(UIImage*)image toSize:(CGSize)targetSize {
-	targetSize.width = 1500;
+	//targetSize.width = 1500;
 	targetSize.height = -1;
     if (targetSize.width <= 0 && targetSize.height <= 0) {
         return image;
