@@ -394,6 +394,8 @@ public class CustomCameraActivity extends Activity {
     }
 
     private void takePictureWithAutoFocus() {
+		takePicture();
+		return;
         if (getPackageManager().hasSystemFeature(PackageManager.FEATURE_CAMERA_AUTOFOCUS)) {
 		    statusMessage.setText("Focusing...");
             camera.autoFocus(new AutoFocusCallback() {
