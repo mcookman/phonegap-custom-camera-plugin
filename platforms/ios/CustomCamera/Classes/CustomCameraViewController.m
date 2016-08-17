@@ -438,6 +438,8 @@ static const CGFloat kAspectRatio = 125.0f / 86;
     _captureButton.userInteractionEnabled = NO;
     _captureButton.selected = YES;
 	[_statusLabel setText: @"Taking Picture..."];
+	[self takePicture];
+	return;
     if (_rearCamera.focusPointOfInterestSupported && [_rearCamera isFocusModeSupported:AVCaptureFocusModeAutoFocus]) {
         [_rearCamera addObserver:self forKeyPath:@"adjustingFocus" options:(NSKeyValueObservingOptionOld|NSKeyValueObservingOptionNew) context:nil];
 		[_statusLabel setText: @"Focusing..."];
