@@ -89,7 +89,7 @@ public class CustomCameraActivity extends Activity {
             camera = Camera.open();
             configureCamera();
             displayCameraPreview();
-			//statusMessage.setText("Ready");
+			statusMessage.setText("Ready");
         } catch (Exception e) {
             finishWithError("Camera is not accessible");
         }
@@ -98,7 +98,7 @@ public class CustomCameraActivity extends Activity {
     private void configureCamera() {
         Camera.Parameters cameraSettings = camera.getParameters();
         cameraSettings.setJpegQuality(100);
-        /*List<String> supportedFocusModes = cameraSettings.getSupportedFocusModes();
+        List<String> supportedFocusModes = cameraSettings.getSupportedFocusModes();
         if (supportedFocusModes.contains(Camera.Parameters.FOCUS_MODE_CONTINUOUS_PICTURE)) {
             cameraSettings.setFocusMode(Camera.Parameters.FOCUS_MODE_CONTINUOUS_PICTURE);
         } else if (supportedFocusModes.contains(Camera.Parameters.FOCUS_MODE_AUTO)) {
@@ -106,11 +106,11 @@ public class CustomCameraActivity extends Activity {
         }
 		
         cameraSettings.setFlashMode(Camera.Parameters.FLASH_MODE_AUTO);
-		*/
-		cameraSettings.setFocusMode(Camera.Parameters.FOCUS_MODE_CONTINUOUS_PICTURE);
+		
+		
 
         camera.setParameters(cameraSettings);
-		statusMessage.setText("CAM SET");
+		//statusMessage.setText("CAM SET");
     }
 
     private void displayCameraPreview() {
