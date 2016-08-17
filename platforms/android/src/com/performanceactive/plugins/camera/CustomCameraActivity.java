@@ -99,12 +99,12 @@ public class CustomCameraActivity extends Activity {
         Camera.Parameters cameraSettings = camera.getParameters();
         cameraSettings.setJpegQuality(100);
         List<String> supportedFocusModes = cameraSettings.getSupportedFocusModes();
-        if (supportedFocusModes.contains(FOCUS_MODE_CONTINUOUS_PICTURE)) {
-            cameraSettings.setFocusMode(FOCUS_MODE_CONTINUOUS_PICTURE);
-        } else if (supportedFocusModes.contains(FOCUS_MODE_AUTO)) {
-            cameraSettings.setFocusMode(FOCUS_MODE_AUTO);
+        if (supportedFocusModes.contains(Camera.Parameters.FOCUS_MODE_CONTINUOUS_PICTURE)) {
+            cameraSettings.setFocusMode(Camera.Parameters.FOCUS_MODE_CONTINUOUS_PICTURE);
+        } else if (supportedFocusModes.contains(Camera.Parameters.FOCUS_MODE_AUTO)) {
+            cameraSettings.setFocusMode(Camera.Parameters.FOCUS_MODE_AUTO);
         }
-        cameraSettings.setFlashMode(FLASH_MODE_AUTO);
+        cameraSettings.setFlashMode(Camera.Parameters.FLASH_MODE_AUTO);
         camera.setParameters(cameraSettings);
     }
 
@@ -159,7 +159,7 @@ public class CustomCameraActivity extends Activity {
 		
 		getWindow().getDecorView().setBackgroundColor(Color.BLACK);
         setContentView(layout);
-		configureCamera();
+		
     }
 
     private void createCameraPreview() {
