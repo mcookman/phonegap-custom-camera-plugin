@@ -159,7 +159,7 @@ public class CustomCameraActivity extends Activity {
 		
 		getWindow().getDecorView().setBackgroundColor(Color.BLACK);
         setContentView(layout);
-		
+		configureCamera();
     }
 
     private void createCameraPreview() {
