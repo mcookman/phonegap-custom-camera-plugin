@@ -395,8 +395,8 @@ public class CustomCameraActivity extends Activity {
 
     private void takePictureWithAutoFocus() {
 		takePicture();
-		return;
-        if (getPackageManager().hasSystemFeature(PackageManager.FEATURE_CAMERA_AUTOFOCUS)) {
+		
+        /*if (getPackageManager().hasSystemFeature(PackageManager.FEATURE_CAMERA_AUTOFOCUS)) {
 		    statusMessage.setText("Focusing...");
             camera.autoFocus(new AutoFocusCallback() {
                 @Override
@@ -406,7 +406,7 @@ public class CustomCameraActivity extends Activity {
             });
         } else {
             takePicture();
-        }
+        }*/
     }
 
     private void takePicture() {
