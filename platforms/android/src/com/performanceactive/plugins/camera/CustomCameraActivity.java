@@ -105,7 +105,7 @@ public class CustomCameraActivity extends Activity {
             cameraSettings.setFocusMode(Camera.Parameters.FOCUS_MODE_AUTO);
         }
 		
-        cameraSettings.setFlashMode(Camera.Parameters.FLASH_MODE_AUTO);
+        //cameraSettings.setFlashMode(Camera.Parameters.FLASH_MODE_AUTO);
 		
 		
 
