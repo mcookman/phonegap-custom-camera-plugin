@@ -99,8 +99,8 @@ public class CustomCameraActivity extends Activity {
         Camera.Parameters cameraSettings = camera.getParameters();
         cameraSettings.setJpegQuality(100);
         List<String> supportedFocusModes = cameraSettings.getSupportedFocusModes();
-        if (supportedFocusModes.contains(Camera.Parameters.FOCUS_MODE_CONTINUOUS_PICTURE)) {
-            cameraSettings.setFocusMode(Camera.Parameters.FOCUS_MODE_CONTINUOUS_PICTURE);
+        if (supportedFocusModes.contains(Camera.Parameters.FOCUS_MODE_CONTINUOUS_VIDEO)) {
+            cameraSettings.setFocusMode(Camera.Parameters.FOCUS_MODE_CONTINUOUS_VIDEO);
         } else if (supportedFocusModes.contains(Camera.Parameters.FOCUS_MODE_AUTO)) {
             cameraSettings.setFocusMode(Camera.Parameters.FOCUS_MODE_AUTO);
         }
