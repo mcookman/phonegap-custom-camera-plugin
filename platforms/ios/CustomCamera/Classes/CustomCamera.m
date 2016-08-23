@@ -28,6 +28,7 @@
         [self.commandDelegate sendPluginResult:result callbackId:command.callbackId];
     } else {
         CustomCameraViewController *cameraViewController = [[CustomCameraViewController alloc] initWithCallback:^(UIImage *image) {
+			[self.viewController dismissViewControllerAnimated:YES completion:nil];
             //NSString *documentsDirectory = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
 			NSString* documentsDirectory = [NSTemporaryDirectory()stringByStandardizingPath];
             NSString *imagePath = [documentsDirectory stringByAppendingPathComponent:filename];
@@ -39,7 +40,7 @@
             CDVPluginResult *result = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK
                                                         messageAsString:[[NSURL fileURLWithPath:imagePath] absoluteString]];
             [self.commandDelegate sendPluginResult:result callbackId:command.callbackId];
-            [self.viewController dismissViewControllerAnimated:YES completion:nil];
+            
         }];
 		[cameraViewController setTopText:topstring];
         [self.viewController presentViewController:cameraViewController animated:YES completion:nil];
@@ -48,7 +49,7 @@
 
 - (UIImage*)scaleImage:(UIImage*)image toSize:(CGSize)targetSize {
 	//targetSize.width = 1500;
-	targetSize.height = -1;
+	//targetSize.height = -1;
     if (targetSize.width <= 0 && targetSize.height <= 0) {
         return image;
     }
