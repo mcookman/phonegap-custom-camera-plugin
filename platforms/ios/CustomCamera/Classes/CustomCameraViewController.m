@@ -27,6 +27,7 @@
 	NSString * _topTextString;
 	UILabel * _statusLabel;
     UIActivityIndicatorView *_activityIndicator;
+	AVCaptureVideoPreviewLayer *_previewLayer;
 }
 
 int camTop;
@@ -81,12 +82,13 @@ static const CGFloat kAspectRatio = 125.0f / 86;
 	camLeft = (width - camWidth) / 2;
 	camTop = (height - camHeight) / 2;
 	
-    AVCaptureVideoPreviewLayer *previewLayer = [AVCaptureVideoPreviewLayer layerWithSession:_captureSession];
-    previewLayer.videoGravity = AVLayerVideoGravityResizeAspectFill;
+    //AVCaptureVideoPreviewLayer *previewLayer = [AVCaptureVideoPreviewLayer layerWithSession:_captureSession];
+	_previewLayer = [AVCaptureVideoPreviewLayer layerWithSession:_captureSession];
+    _previewLayer.videoGravity = AVLayerVideoGravityResizeAspectFill;
     //previewLayer.frame = self.view.bounds;
-	previewLayer.frame = CGRectMake(camLeft, camTop, camWidth, camHeight);
+	_previewLayer.frame = CGRectMake(camLeft, camTop, camWidth, camHeight);
 
-    [[self.view layer] addSublayer:previewLayer];
+    [[self.view layer] addSublayer:_previewLayer];
     [self.view addSubview:[self createOverlay]];
     _activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
     _activityIndicator.center = self.view.center;
@@ -482,7 +484,7 @@ static const CGFloat kAspectRatio = 125.0f / 86;
     AVCaptureConnection *videoConnection = [self videoConnectionToOutput:_stillImageOutput];
     [_stillImageOutput captureStillImageAsynchronouslyFromConnection:videoConnection completionHandler:^(CMSampleBufferRef imageSampleBuffer, NSError *error) {
         NSData *imageData = [AVCaptureStillImageOutput jpegStillImageNSDataRepresentation:imageSampleBuffer];
-		[[self.previewLayer connection] setEnabled:NO];
+		[[self._previewLayer connection] setEnabled:NO];
 		[_statusLabel setText: @"Processing..."];
         _callback([UIImage imageWithData:imageData]);
 		
