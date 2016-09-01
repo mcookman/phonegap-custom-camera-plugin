@@ -482,8 +482,10 @@ static const CGFloat kAspectRatio = 125.0f / 86;
     AVCaptureConnection *videoConnection = [self videoConnectionToOutput:_stillImageOutput];
     [_stillImageOutput captureStillImageAsynchronouslyFromConnection:videoConnection completionHandler:^(CMSampleBufferRef imageSampleBuffer, NSError *error) {
         NSData *imageData = [AVCaptureStillImageOutput jpegStillImageNSDataRepresentation:imageSampleBuffer];
+		[[self.previewLayer connection] setEnabled:NO];
 		[_statusLabel setText: @"Processing..."];
         _callback([UIImage imageWithData:imageData]);
+		
     }];
 }
 
