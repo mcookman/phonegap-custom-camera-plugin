@@ -439,8 +439,8 @@ static const CGFloat kAspectRatio = 125.0f / 86;
 - (void)takePictureWaitingForCameraToFocus {
     _captureButton.userInteractionEnabled = NO;
     _captureButton.selected = YES;
-	[_statusLabel setText: @"Taking Picture..."];
 	[self takePicture];
+	[_statusLabel setText: @"Taking Picture..."];
 	return;
     if (_rearCamera.focusPointOfInterestSupported && [_rearCamera isFocusModeSupported:AVCaptureFocusModeAutoFocus]) {
         [_rearCamera addObserver:self forKeyPath:@"adjustingFocus" options:(NSKeyValueObservingOptionOld|NSKeyValueObservingOptionNew) context:nil];
@@ -480,7 +480,7 @@ static const CGFloat kAspectRatio = 125.0f / 86;
 }
 
 - (void)takePicture {
-	[_statusLabel setText: @"Taking Picture..."];
+	//[_statusLabel setText: @"Taking Picture..."];
     AVCaptureConnection *videoConnection = [self videoConnectionToOutput:_stillImageOutput];
     [_stillImageOutput captureStillImageAsynchronouslyFromConnection:videoConnection completionHandler:^(CMSampleBufferRef imageSampleBuffer, NSError *error) {
         NSData *imageData = [AVCaptureStillImageOutput jpegStillImageNSDataRepresentation:imageSampleBuffer];
