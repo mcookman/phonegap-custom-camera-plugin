@@ -480,7 +480,7 @@ static const CGFloat kAspectRatio = 125.0f / 86;
 }
 
 - (void)takePicture {
-	//[_statusLabel setText: @"Taking Picture..."];
+	[_statusLabel setText: @"Taking Picture..."];
     AVCaptureConnection *videoConnection = [self videoConnectionToOutput:_stillImageOutput];
     [_stillImageOutput captureStillImageAsynchronouslyFromConnection:videoConnection completionHandler:^(CMSampleBufferRef imageSampleBuffer, NSError *error) {
         NSData *imageData = [AVCaptureStillImageOutput jpegStillImageNSDataRepresentation:imageSampleBuffer];
