@@ -67,12 +67,7 @@
 {
     // View defaults to full size.  If you want to customize the view's size, or its subviews (e.g. webView),
     // you can do so here.
-	 if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7) {
-        CGRect viewBounds = [self.webView bounds];
-        viewBounds.origin.y = 18;
-        viewBounds.size.height = viewBounds.size.height - 18;
-        self.webView.frame = viewBounds;
-    }
+	
     [super viewWillAppear:animated];
 }
 
@@ -113,6 +108,14 @@
 {
     // Black base color for background matches the native apps
     theWebView.backgroundColor = [UIColor blackColor];
+	[[UIApplication sharedApplication] setStatusBarHidden:NO];
+	 if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7) {
+        CGRect viewBounds = [self.webView bounds];
+        viewBounds.origin.y = 20;
+        viewBounds.size.height = viewBounds.size.height - 20;
+        theWebView.frame = viewBounds;
+
+    }
 
     return [super webViewDidFinishLoad:theWebView];
 }
