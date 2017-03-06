@@ -167,7 +167,7 @@ static const CGFloat kAspectRatio = 125.0f / 86;
 }
 
 - (void)layoutForPhone {
-    CGRect bounds = [[UIScreen mainScreen] bounds];
+    //CGRect bounds = [[UIScreen mainScreen] bounds];
 	CGRect bounds = self.view.frame;
     
 	UIFont* font = [UIFont fontWithName:@"Arial" size:18];
@@ -249,7 +249,8 @@ static const CGFloat kAspectRatio = 125.0f / 86;
 }
 
 - (void)layoutForPhoneWithShortScreen {
-    CGRect bounds = [[UIScreen mainScreen] bounds];
+    //CGRect bounds = [[UIScreen mainScreen] bounds];
+	CGRect bounds = self.view.frame;
     CGFloat verticalInset = 5;
     CGFloat height = CGRectGetMinY(_buttonPanel.frame) - (verticalInset * 2);
     CGFloat width = height / kAspectRatio;
@@ -298,7 +299,7 @@ static const CGFloat kAspectRatio = 125.0f / 86;
 
 - (void)layoutForPhoneWithTallScreen {
 
-    CGRect bounds = [[UIScreen mainScreen] bounds];
+    //CGRect bounds = [[UIScreen mainScreen] bounds];
 	CGRect bounds = self.view.frame;
 	UIFont* font = [UIFont fontWithName:@"Arial" size:18];
 	[_topTextLabel setFrame: CGRectMake(0, 0, bounds.size.width, kVerticalInsetPhone - 10)];
@@ -340,7 +341,7 @@ static const CGFloat kAspectRatio = 125.0f / 86;
 }
 
 - (void)layoutForTablet {
-    CGRect bounds = [[UIScreen mainScreen] bounds];
+    //CGRect bounds = [[UIScreen mainScreen] bounds];
     CGRect bounds = self.view.frame;
 	UIFont* font = [UIFont fontWithName:@"Arial" size:18];
 	UIColor *color = [UIColor whiteColor];
