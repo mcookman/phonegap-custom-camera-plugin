@@ -64,10 +64,6 @@
 - (BOOL)application:(UIApplication*)application didFinishLaunchingWithOptions:(NSDictionary*)launchOptions
 {
     CGRect screenBounds = [[UIScreen mainScreen] bounds];
-	if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7) {
-        screenBounds.origin.y = 20;
-        screenBounds.size.height = viewBounds.size.height - 20;
-    }
 
 #if __has_feature(objc_arc)
         self.window = [[UIWindow alloc] initWithFrame:screenBounds];

@@ -72,13 +72,9 @@ static const CGFloat kAspectRatio = 125.0f / 86;
 }
 
 - (void)loadView {
-	CGRect viewBounds = [[UIScreen mainScreen] bounds];
-	viewBounds.origin.y = 20;
-	viewBounds.size.height = viewBounds.size.height - 20;
-    self.view = [[UIView alloc] initWithFrame:viewBounds];
-    self.view.backgroundColor = [UIColor redColor];
-	[[UIApplication sharedApplication] setStatusBarHidden:NO];
-	 
+    self.view = [[UIView alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    self.view.backgroundColor = [UIColor blackColor];
+
 	int width = self.view.bounds.size.width;
 	int height =  self.view.bounds.size.height;
 	camHeight = height * .9;
@@ -101,8 +97,7 @@ static const CGFloat kAspectRatio = 125.0f / 86;
 }
 
 - (UIView*)createOverlay {
-    //UIView *overlay = [[UIView alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-	UIView *overlay = [[UIView alloc] initWithFrame:self.view.frame];
+    UIView *overlay = [[UIView alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
 	_buttonPanel = [[UIView alloc] initWithFrame:CGRectZero];
     [_buttonPanel setBackgroundColor:[UIColor colorWithWhite:0 alpha:0.75f]];
@@ -163,8 +158,7 @@ static const CGFloat kAspectRatio = 125.0f / 86;
 }
 
 - (void)layoutForPhone {
-    //CGRect bounds = [[UIScreen mainScreen] bounds];
-	CGRect bounds = self.view.frame;
+    CGRect bounds = [[UIScreen mainScreen] bounds];
     
 	UIFont* font = [UIFont fontWithName:@"Arial" size:18];
 	UIColor *color = [UIColor whiteColor];
@@ -245,8 +239,7 @@ static const CGFloat kAspectRatio = 125.0f / 86;
 }
 
 - (void)layoutForPhoneWithShortScreen {
-    //CGRect bounds = [[UIScreen mainScreen] bounds];
-	CGRect bounds = self.view.frame;
+    CGRect bounds = [[UIScreen mainScreen] bounds];
     CGFloat verticalInset = 5;
     CGFloat height = CGRectGetMinY(_buttonPanel.frame) - (verticalInset * 2);
     CGFloat width = height / kAspectRatio;
@@ -295,8 +288,8 @@ static const CGFloat kAspectRatio = 125.0f / 86;
 
 - (void)layoutForPhoneWithTallScreen {
 
-    //CGRect bounds = [[UIScreen mainScreen] bounds];
-	CGRect bounds = self.view.frame;
+    CGRect bounds = [[UIScreen mainScreen] bounds];
+
 	UIFont* font = [UIFont fontWithName:@"Arial" size:18];
 	[_topTextLabel setFrame: CGRectMake(0, 0, bounds.size.width, kVerticalInsetPhone - 10)];
 	[_topTextLabel setText: _topTextString];
@@ -337,8 +330,8 @@ static const CGFloat kAspectRatio = 125.0f / 86;
 }
 
 - (void)layoutForTablet {
-    //CGRect bounds = [[UIScreen mainScreen] bounds];
-    CGRect bounds = self.view.frame;
+    CGRect bounds = [[UIScreen mainScreen] bounds];
+    
 	UIFont* font = [UIFont fontWithName:@"Arial" size:18];
 	UIColor *color = [UIColor whiteColor];
 	[_statusLabel setFrame: CGRectMake((bounds.size.width / 2) + kCaptureButtonWidthPhone, bounds.size.height - kCaptureButtonHeightPhone - kCaptureButtonVerticalInsetPhone, bounds.size.width/4, kVerticalInsetPhone - 10)];
@@ -414,14 +407,8 @@ static const CGFloat kAspectRatio = 125.0f / 86;
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-	if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7) {
-		CGRect viewBounds = [[UIScreen mainScreen] bounds];
-        viewBounds.origin.y = 20;
-        viewBounds.size.height = viewBounds.size.height - 20;
-        self.view.frame = viewBounds;
-    }
     [super viewWillAppear:animated];
-    [[UIApplication sharedApplication] setStatusBarHidden:NO];
+    [[UIApplication sharedApplication] setStatusBarHidden:YES];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -430,7 +417,7 @@ static const CGFloat kAspectRatio = 125.0f / 86;
 }
 
 - (BOOL)prefersStatusBarHidden {
-    return NO;
+    return YES;
 }
 
 - (NSUInteger)supportedInterfaceOrientations {

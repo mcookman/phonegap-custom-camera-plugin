@@ -63,18 +63,11 @@
 
 #pragma mark View lifecycle
 
-bool sizeWasAdjusted = false;
 - (void)viewWillAppear:(BOOL)animated
 {
     // View defaults to full size.  If you want to customize the view's size, or its subviews (e.g. webView),
     // you can do so here.
-	  if (!sizeWasAdjusted && [[[UIDevice currentDevice] systemVersion] floatValue] >= 7) {
-        CGRect viewBounds = [self.webView bounds];
-        viewBounds.origin.y = 20;
-        viewBounds.size.height = viewBounds.size.height - 20;
-        self.webView.frame = viewBounds;
-        sizeWasAdjusted = true;
-    }
+
     [super viewWillAppear:animated];
 }
 
@@ -89,9 +82,6 @@ bool sizeWasAdjusted = false;
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
-}
-- (BOOL)prefersStatusBarHidden {
-    return NO;
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -114,9 +104,7 @@ bool sizeWasAdjusted = false;
 - (void)webViewDidFinishLoad:(UIWebView*)theWebView
 {
     // Black base color for background matches the native apps
-    theWebView.backgroundColor = [UIColor greenColor];
-	[[UIApplication sharedApplication] setStatusBarHidden:NO];
-	
+    theWebView.backgroundColor = [UIColor blackColor];
 
     return [super webViewDidFinishLoad:theWebView];
 }
