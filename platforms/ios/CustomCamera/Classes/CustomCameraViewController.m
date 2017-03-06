@@ -73,12 +73,7 @@ static const CGFloat kAspectRatio = 125.0f / 86;
 
 - (void)loadView {
 	CGRect viewBounds = [[UIScreen mainScreen] bounds];
-	if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7) {
-        viewBounds.origin.y = 20;
-        viewBounds.size.height = viewBounds.size.height - 20;
-        //self.view.frame = viewBounds;
-
-    }
+	
     self.view = [[UIView alloc] initWithFrame:viewBounds];
     self.view.backgroundColor = [UIColor redColor];
 	[[UIApplication sharedApplication] setStatusBarHidden:NO];
@@ -418,6 +413,12 @@ static const CGFloat kAspectRatio = 125.0f / 86;
 }
 
 - (void)viewWillAppear:(BOOL)animated {
+	if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7) {
+		CGRect viewBounds = [[UIScreen mainScreen] bounds];
+        viewBounds.origin.y = 20;
+        viewBounds.size.height = viewBounds.size.height - 20;
+        self.view.frame = viewBounds;
+    }
     [super viewWillAppear:animated];
     [[UIApplication sharedApplication] setStatusBarHidden:NO];
 }
