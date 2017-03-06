@@ -67,7 +67,7 @@
 {
     // View defaults to full size.  If you want to customize the view's size, or its subviews (e.g. webView),
     // you can do so here.
-
+	[[UIApplication sharedApplication] setStatusBarHidden:NO];
     [super viewWillAppear:animated];
 }
 
