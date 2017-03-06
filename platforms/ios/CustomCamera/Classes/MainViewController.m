@@ -83,6 +83,9 @@
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
 }
+- (BOOL)prefersStatusBarHidden {
+    return NO;
+}
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
