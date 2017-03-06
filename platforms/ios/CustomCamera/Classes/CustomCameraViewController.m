@@ -72,16 +72,17 @@ static const CGFloat kAspectRatio = 125.0f / 86;
 }
 
 - (void)loadView {
-    self.view = [[UIView alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    self.view.backgroundColor = [UIColor redColor];
-	[[UIApplication sharedApplication] setStatusBarHidden:NO];
-	 if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7) {
-        CGRect viewBounds = [self.view bounds];
+	CGRect viewBounds = [[UIScreen mainScreen] bounds];
+	if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7) {
         viewBounds.origin.y = 20;
         viewBounds.size.height = viewBounds.size.height - 20;
-        self.view.frame = viewBounds;
+        //self.view.frame = viewBounds;
 
     }
+    self.view = [[UIView alloc] initWithFrame:viewBounds];
+    self.view.backgroundColor = [UIColor redColor];
+	[[UIApplication sharedApplication] setStatusBarHidden:NO];
+	 
 	int width = self.view.bounds.size.width;
 	int height =  self.view.bounds.size.height;
 	camHeight = height * .9;
@@ -104,7 +105,8 @@ static const CGFloat kAspectRatio = 125.0f / 86;
 }
 
 - (UIView*)createOverlay {
-    UIView *overlay = [[UIView alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    //UIView *overlay = [[UIView alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+	UIView *overlay = [[UIView alloc] initWithFrame:self.view.frame];
     
 	_buttonPanel = [[UIView alloc] initWithFrame:CGRectZero];
     [_buttonPanel setBackgroundColor:[UIColor colorWithWhite:0 alpha:0.75f]];
@@ -166,6 +168,7 @@ static const CGFloat kAspectRatio = 125.0f / 86;
 
 - (void)layoutForPhone {
     CGRect bounds = [[UIScreen mainScreen] bounds];
+	CGRect bounds = self.view.frame;
     
 	UIFont* font = [UIFont fontWithName:@"Arial" size:18];
 	UIColor *color = [UIColor whiteColor];
@@ -296,7 +299,7 @@ static const CGFloat kAspectRatio = 125.0f / 86;
 - (void)layoutForPhoneWithTallScreen {
 
     CGRect bounds = [[UIScreen mainScreen] bounds];
-
+	CGRect bounds = self.view.frame;
 	UIFont* font = [UIFont fontWithName:@"Arial" size:18];
 	[_topTextLabel setFrame: CGRectMake(0, 0, bounds.size.width, kVerticalInsetPhone - 10)];
 	[_topTextLabel setText: _topTextString];
@@ -338,7 +341,7 @@ static const CGFloat kAspectRatio = 125.0f / 86;
 
 - (void)layoutForTablet {
     CGRect bounds = [[UIScreen mainScreen] bounds];
-    
+    CGRect bounds = self.view.frame;
 	UIFont* font = [UIFont fontWithName:@"Arial" size:18];
 	UIColor *color = [UIColor whiteColor];
 	[_statusLabel setFrame: CGRectMake((bounds.size.width / 2) + kCaptureButtonWidthPhone, bounds.size.height - kCaptureButtonHeightPhone - kCaptureButtonVerticalInsetPhone, bounds.size.width/4, kVerticalInsetPhone - 10)];
