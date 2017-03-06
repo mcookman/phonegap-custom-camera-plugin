@@ -110,7 +110,7 @@
     theWebView.backgroundColor = [UIColor blackColor];
 	[[UIApplication sharedApplication] setStatusBarHidden:NO];
 	 if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7) {
-        CGRect viewBounds = [self.webView bounds];
+        CGRect viewBounds = [theWebView bounds];
         viewBounds.origin.y = 20;
         viewBounds.size.height = viewBounds.size.height - 20;
         theWebView.frame = viewBounds;
