@@ -76,11 +76,11 @@ static const CGFloat kAspectRatio = 125.0f / 86;
     self.view.backgroundColor = [UIColor blackColor];
 
 	int width = self.view.bounds.size.width;
-	int height =  self.view.bounds.size.height;
+	int height =  self.view.bounds.size.height - 20;
 	camHeight = height * .9;
 	camWidth = (width * camHeight)/height;
 	camLeft = (width - camWidth) / 2;
-	camTop = (height - camHeight) / 2;
+	camTop = (height - camHeight) / 2 + 20;
 	
     //AVCaptureVideoPreviewLayer *previewLayer = [AVCaptureVideoPreviewLayer layerWithSession:_captureSession];
 	_previewLayer = [AVCaptureVideoPreviewLayer layerWithSession:_captureSession];
@@ -408,12 +408,12 @@ static const CGFloat kAspectRatio = 125.0f / 86;
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    [[UIApplication sharedApplication] setStatusBarHidden:NO];
+   // [[UIApplication sharedApplication] setStatusBarHidden:NO];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
-    [[UIApplication sharedApplication] setStatusBarHidden:NO];
+   // [[UIApplication sharedApplication] setStatusBarHidden:NO];
 }
 
 - (BOOL)prefersStatusBarHidden {
