@@ -73,7 +73,8 @@ static const CGFloat kAspectRatio = 125.0f / 86;
 
 - (void)loadView {
 	CGRect viewBounds = [[UIScreen mainScreen] bounds];
-	
+	viewBounds.origin.y = 20;
+	viewBounds.size.height = viewBounds.size.height - 20;
     self.view = [[UIView alloc] initWithFrame:viewBounds];
     self.view.backgroundColor = [UIColor redColor];
 	[[UIApplication sharedApplication] setStatusBarHidden:NO];
