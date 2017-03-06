@@ -73,14 +73,21 @@ static const CGFloat kAspectRatio = 125.0f / 86;
 
 - (void)loadView {
     self.view = [[UIView alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    self.view.backgroundColor = [UIColor blackColor];
+    self.view.backgroundColor = [UIColor redColor];
+	[[UIApplication sharedApplication] setStatusBarHidden:NO];
+	 if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7) {
+        CGRect viewBounds = [self.view bounds];
+        viewBounds.origin.y = 20;
+        viewBounds.size.height = viewBounds.size.height - 20;
+        self.view.frame = viewBounds;
 
+    }
 	int width = self.view.bounds.size.width;
-	int height =  self.view.bounds.size.height - 20;
+	int height =  self.view.bounds.size.height;
 	camHeight = height * .9;
 	camWidth = (width * camHeight)/height;
 	camLeft = (width - camWidth) / 2;
-	camTop = (height - camHeight) / 2 + 20;
+	camTop = (height - camHeight) / 2;
 	
     //AVCaptureVideoPreviewLayer *previewLayer = [AVCaptureVideoPreviewLayer layerWithSession:_captureSession];
 	_previewLayer = [AVCaptureVideoPreviewLayer layerWithSession:_captureSession];
@@ -408,12 +415,12 @@ static const CGFloat kAspectRatio = 125.0f / 86;
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-   // [[UIApplication sharedApplication] setStatusBarHidden:NO];
+    [[UIApplication sharedApplication] setStatusBarHidden:NO];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
-   // [[UIApplication sharedApplication] setStatusBarHidden:NO];
+    [[UIApplication sharedApplication] setStatusBarHidden:NO];
 }
 
 - (BOOL)prefersStatusBarHidden {
