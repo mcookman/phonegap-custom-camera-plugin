@@ -167,7 +167,7 @@ static const CGFloat kAspectRatio = 125.0f / 86;
 	[_topTextLabel setFont: font];
 	[_topTextLabel setBackgroundColor: [UIColor clearColor]];
 	[_topTextLabel setTextColor:color];
-	[_topTextLabel setTextAlignment:UITextAlignmentCenter];
+	[_topTextLabel setTextAlignment:NSTextAlignmentCenter];
 
 	
 	//[_statusLabel setFrame: CGRectMake((bounds.size.width / 2) + kCaptureButtonWidthPhone, bounds.size.height - kCaptureButtonHeightPhone - kCaptureButtonVerticalInsetPhone, bounds.size.width/4, kVerticalInsetPhone - 10)];
@@ -253,7 +253,7 @@ static const CGFloat kAspectRatio = 125.0f / 86;
 	[_topTextLabel setBackgroundColor: [UIColor clearColor]];
 	UIColor *color = [UIColor whiteColor];
 	[_topTextLabel setTextColor:color];
-	[_topTextLabel setTextAlignment:UITextAlignmentCenter];
+	[_topTextLabel setTextAlignment:NSTextAlignmentCenter];
 
 	
 	[_statusLabel setFrame: CGRectMake((bounds.size.width / 2) + kCaptureButtonWidthPhone, bounds.size.height - kCaptureButtonHeightPhone - kCaptureButtonVerticalInsetPhone, bounds.size.width/4, kVerticalInsetPhone - 10)];
@@ -261,7 +261,7 @@ static const CGFloat kAspectRatio = 125.0f / 86;
 	[_statusLabel setFont: font];
 	[_statusLabel setBackgroundColor: [UIColor clearColor]];
 	[_statusLabel setTextColor:color];
-	[_statusLabel setTextAlignment:UITextAlignmentCenter];
+	[_statusLabel setTextAlignment:NSTextAlignmentCenter];
     
     _topLeftGuide.frame = CGRectMake(horizontalInset,
                                      verticalInset,
@@ -297,7 +297,7 @@ static const CGFloat kAspectRatio = 125.0f / 86;
 	[_topTextLabel setBackgroundColor: [UIColor clearColor]];
 	UIColor *color = [UIColor whiteColor];
 	[_topTextLabel setTextColor:color];
-	[_topTextLabel setTextAlignment:UITextAlignmentCenter];
+	[_topTextLabel setTextAlignment:NSTextAlignmentCenter];
 
 	
 	[_statusLabel setFrame: CGRectMake((bounds.size.width / 2) + kCaptureButtonWidthPhone, bounds.size.height - kCaptureButtonHeightPhone - kCaptureButtonVerticalInsetPhone, bounds.size.width/4, kVerticalInsetPhone - 10)];
@@ -305,7 +305,7 @@ static const CGFloat kAspectRatio = 125.0f / 86;
 	[_statusLabel setFont: font];
 	[_statusLabel setBackgroundColor: [UIColor clearColor]];
 	[_statusLabel setTextColor:color];
-	[_statusLabel setTextAlignment:UITextAlignmentCenter];
+	[_statusLabel setTextAlignment:NSTextAlignmentCenter];
 
     _topLeftGuide.frame = CGRectMake(kHorizontalInsetPhone, kVerticalInsetPhone, kBorderImageWidthPhone, kBorderImageHeightPhone);
     
@@ -339,7 +339,7 @@ static const CGFloat kAspectRatio = 125.0f / 86;
 	[_statusLabel setFont: font];
 	[_statusLabel setBackgroundColor: [UIColor clearColor]];
 	[_statusLabel setTextColor:color];
-	[_statusLabel setTextAlignment:UITextAlignmentCenter];
+	[_statusLabel setTextAlignment:NSTextAlignmentCenter];
 
     _captureButton.frame = CGRectMake((bounds.size.width / 2) - (kCaptureButtonWidthTablet / 2),
                                       bounds.size.height - kCaptureButtonHeightTablet - kCaptureButtonVerticalInsetTablet,
@@ -363,7 +363,7 @@ static const CGFloat kAspectRatio = 125.0f / 86;
 	[_topTextLabel setFont: font];
 	[_topTextLabel setBackgroundColor: [UIColor clearColor]];
 	[_topTextLabel setTextColor:color];
-	[_topTextLabel setTextAlignment:UITextAlignmentCenter];
+	[_topTextLabel setTextAlignment:NSTextAlignmentCenter];
 	
 
 
