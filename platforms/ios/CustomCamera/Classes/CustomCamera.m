@@ -45,7 +45,7 @@
         }];
 	
 	[cameraViewController setTopText:topstring];
-	return;
+	
         [self.viewController presentViewController:cameraViewController animated:YES completion:nil];
     }
 }
