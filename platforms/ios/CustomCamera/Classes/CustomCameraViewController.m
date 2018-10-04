@@ -76,7 +76,30 @@ static const CGFloat kAspectRatio = 125.0f / 86;
     self.view = [[UIView alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     self.view.backgroundColor = [UIColor blackColor];
         
-	
+	 if ([AVCaptureDevice respondsToSelector:@selector(authorizationStatusForMediaType:)]) {
+            AVAuthorizationStatus authStatus = [AVCaptureDevice authorizationStatusForMediaType:AVMediaTypeVideo];
+            if (authStatus == AVAuthorizationStatusDenied ||
+                authStatus == AVAuthorizationStatusRestricted) {
+                // If iOS 8+, offer a link to the Settings app
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wtautological-pointer-compare"
+                NSString* settingsButton = (&UIApplicationOpenSettingsURLString != NULL)
+                    ? NSLocalizedString(@"Settings", nil)
+                    : nil;
+#pragma clang diagnostic pop
+
+                // Denied; show an alert
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [[[UIAlertView alloc] initWithTitle:[[NSBundle mainBundle]
+                                                         objectForInfoDictionaryKey:@"CFBundleDisplayName"]
+                                                message:NSLocalizedString(@"Access to the camera has been prohibited; please enable it in the Settings app to continue.", nil)
+                                               delegate:weakSelf
+                                      cancelButtonTitle:NSLocalizedString(@"OK", nil)
+                                      otherButtonTitles:settingsButton, nil] show];
+                });
+            }
+        }
+
 	int width = self.view.bounds.size.width;
 	int height =  self.view.bounds.size.height;
 	camHeight = height * .9;
