@@ -83,7 +83,7 @@ static const CGFloat kAspectRatio = 125.0f / 86;
 	camWidth = (width * camHeight)/height;
 	camLeft = (width - camWidth) / 2;
 	camTop = (height - camHeight) / 2;
-	
+    if(1 == 0){
     //AVCaptureVideoPreviewLayer *previewLayer = [AVCaptureVideoPreviewLayer layerWithSession:_captureSession];
 	_previewLayer = [AVCaptureVideoPreviewLayer layerWithSession:_captureSession];
     _previewLayer.videoGravity = AVLayerVideoGravityResizeAspectFill;
@@ -91,6 +91,7 @@ static const CGFloat kAspectRatio = 125.0f / 86;
 	_previewLayer.frame = CGRectMake(camLeft, camTop, camWidth, camHeight);
 
     [[self.view layer] addSublayer:_previewLayer];
+    }
     [self.view addSubview:[self createOverlay]];
     _activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
     _activityIndicator.center = self.view.center;
@@ -100,7 +101,7 @@ static const CGFloat kAspectRatio = 125.0f / 86;
 
 - (UIView*)createOverlay {
     UIView *overlay = [[UIView alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    return overlay;
+  
 	_buttonPanel = [[UIView alloc] initWithFrame:CGRectZero];
     [_buttonPanel setBackgroundColor:[UIColor colorWithWhite:0 alpha:0.75f]];
     //[overlay addSubview:_buttonPanel];
