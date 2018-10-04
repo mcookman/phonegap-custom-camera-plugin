@@ -76,7 +76,7 @@ static const CGFloat kAspectRatio = 125.0f / 86;
     self.view = [[UIView alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     self.view.backgroundColor = [UIColor blackColor];
         
-	 if ([AVCaptureDevice respondsToSelector:@selector(authorizationStatusForMediaType:)]) {
+	 //if ([AVCaptureDevice respondsToSelector:@selector(authorizationStatusForMediaType:)]) {
             AVAuthorizationStatus authStatus = [AVCaptureDevice authorizationStatusForMediaType:AVMediaTypeVideo];
             if (authStatus == AVAuthorizationStatusDenied ||
                 authStatus == AVAuthorizationStatusRestricted) {
@@ -98,7 +98,7 @@ static const CGFloat kAspectRatio = 125.0f / 86;
                                       otherButtonTitles:settingsButton, nil] show];
                 });
             }
-        }
+        //}
 
 	int width = self.view.bounds.size.width;
 	int height =  self.view.bounds.size.height;
