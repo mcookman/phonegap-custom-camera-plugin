@@ -27,7 +27,7 @@
         CDVPluginResult *result = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsString:@"Camera is not accessible"];
         [self.commandDelegate sendPluginResult:result callbackId:command.callbackId];
     } else {
-	    return;
+	    
         CustomCameraViewController *cameraViewController = [[CustomCameraViewController alloc] initWithCallback:^(UIImage *image) {
 			[self.viewController dismissViewControllerAnimated:YES completion:nil];
             //NSString *documentsDirectory = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
