@@ -428,8 +428,9 @@ static const CGFloat kAspectRatio = 125.0f / 86;
          AVCaptureDeviceInput *cameraInput = [AVCaptureDeviceInput deviceInputWithDevice:_rearCamera error:nil];
          [_captureSession addInput:cameraInput];
          _stillImageOutput = [[AVCaptureStillImageOutput alloc] init];
+	
          [_captureSession addOutput:_stillImageOutput];
-         [_captureSession startRunning];
+         //[_captureSession startRunning];
         }
      }
         dispatch_async(dispatch_get_main_queue(), ^{
