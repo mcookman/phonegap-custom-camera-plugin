@@ -30,6 +30,7 @@
 	AVCaptureVideoPreviewLayer *_previewLayer;
 }
 
+
 int camTop;
 int camLeft;
 int camWidth;
