@@ -408,7 +408,7 @@ static const CGFloat kAspectRatio = 125.0f / 86;
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    [slef setNeedsStatusBarAppearanceUpdate];
+    [self setNeedsStatusBarAppearanceUpdate];
     //[[UIApplication sharedApplication] setStatusBarHidden:YES];
 }
 
