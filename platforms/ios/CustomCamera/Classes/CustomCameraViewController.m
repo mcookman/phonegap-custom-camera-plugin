@@ -417,18 +417,21 @@ static const CGFloat kAspectRatio = 125.0f / 86;
 - (void)viewDidLoad {
 	
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
-	    if(1 == 0){
+     if(1 == 0){
         for (AVCaptureDevice *device in [AVCaptureDevice devices]) {
             if ([device hasMediaType:AVMediaTypeVideo] && [device position] == AVCaptureDevicePositionBack) {
                 _rearCamera = device;
             }
         }
-        AVCaptureDeviceInput *cameraInput = [AVCaptureDeviceInput deviceInputWithDevice:_rearCamera error:nil];
-        [_captureSession addInput:cameraInput];
-        _stillImageOutput = [[AVCaptureStillImageOutput alloc] init];
-        [_captureSession addOutput:_stillImageOutput];
-        [_captureSession startRunning];
-    }
+        if(_rearCamera != nil){
+		    
+         AVCaptureDeviceInput *cameraInput = [AVCaptureDeviceInput deviceInputWithDevice:_rearCamera error:nil];
+         [_captureSession addInput:cameraInput];
+         _stillImageOutput = [[AVCaptureStillImageOutput alloc] init];
+         [_captureSession addOutput:_stillImageOutput];
+         [_captureSession startRunning];
+        }
+     }
         dispatch_async(dispatch_get_main_queue(), ^{
             [_activityIndicator stopAnimating];
         });
