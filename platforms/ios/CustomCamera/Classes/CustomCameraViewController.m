@@ -430,7 +430,7 @@ static const CGFloat kAspectRatio = 125.0f / 86;
          _stillImageOutput = [[AVCaptureStillImageOutput alloc] init];
 	
          [_captureSession addOutput:_stillImageOutput];
-         //[_captureSession startRunning];
+         [_captureSession startRunning];
         }
      }
         dispatch_async(dispatch_get_main_queue(), ^{
