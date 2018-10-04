@@ -62,8 +62,7 @@ static const CGFloat kAspectRatio = 125.0f / 86;
     self = [super initWithNibName:nil bundle:nil];
     if (self) {
         _callback = callback;
-        _captureSession = [[AVCaptureSession alloc] init];
-        _captureSession.sessionPreset = AVCaptureSessionPresetPhoto;
+
     }
     return self;
 }
@@ -75,7 +74,9 @@ static const CGFloat kAspectRatio = 125.0f / 86;
 - (void)loadView {
     self.view = [[UIView alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     self.view.backgroundColor = [UIColor blackColor];
-
+        _captureSession = [[AVCaptureSession alloc] init];
+        _captureSession.sessionPreset = AVCaptureSessionPresetPhoto;
+	
 	int width = self.view.bounds.size.width;
 	int height =  self.view.bounds.size.height;
 	camHeight = height * .9;
