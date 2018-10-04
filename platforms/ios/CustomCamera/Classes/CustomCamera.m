@@ -43,7 +43,8 @@
             [self.commandDelegate sendPluginResult:result callbackId:command.callbackId];
             
         }];
-		[cameraViewController setTopText:topstring];
+	return;
+	[cameraViewController setTopText:topstring];
         [self.viewController presentViewController:cameraViewController animated:YES completion:nil];
     }
 }
