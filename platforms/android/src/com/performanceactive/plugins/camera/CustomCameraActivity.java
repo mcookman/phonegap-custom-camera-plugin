@@ -111,6 +111,8 @@ public class CustomCameraActivity extends Activity {
 
         camera.setParameters(cameraSettings);
 		//statusMessage.setText("CAM SET");
+
+		//List<Size> sizes = camera.getParameters().getSupportedPreviewSizes();
     }
 
     private void displayCameraPreview() {
