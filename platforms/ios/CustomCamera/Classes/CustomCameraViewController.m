@@ -205,16 +205,18 @@ static const CGFloat kAspectRatio = 125.0f / 86;
 	[_statusLabel setTextColor:color];
 	[_statusLabel setTextAlignment:NSTextAlignmentRight];
 
+	int winHeight = self.view.bounds.size.height;
+
 	_captureButton.frame = CGRectMake((bounds.size.width / 2) - (kCaptureButtonWidthPhone / 2),
 										//camTop + camHeight + camTop - kCaptureButtonHeightPhone,
-															bounds.size.height - kCaptureButtonHeightPhone - (bounds.size.height * .025),
+															winHeight - kCaptureButtonHeightPhone - (winHeight * .025),
 
 										kCaptureButtonWidthPhone,
                                       kCaptureButtonHeightPhone);
 
 	_backButton.frame = CGRectMake(camLeft,
 										//camTop + camHeight + camTop - kCaptureButtonHeightPhone,
-										bounds.size.height - kCaptureButtonHeightPhone - (bounds.size.height * .025),
+										winHeight - kCaptureButtonHeightPhone - (winHeight * .025),
 
 										kCaptureButtonWidthPhone,
                                       kCaptureButtonHeightPhone);
