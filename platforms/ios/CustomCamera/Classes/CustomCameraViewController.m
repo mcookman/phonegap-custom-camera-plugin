@@ -206,14 +206,14 @@ static const CGFloat kAspectRatio = 125.0f / 86;
 
 	_captureButton.frame = CGRectMake((bounds.size.width / 2) - (kCaptureButtonWidthPhone / 2),
 										//camTop + camHeight + camTop - kCaptureButtonHeightPhone,
-															bounds.size.height - kCaptureButtonHeightPhone - (bounds.size.height * .15),
+															bounds.size.height - kCaptureButtonHeightPhone - (bounds.size.height * .05),
 
 										kCaptureButtonWidthPhone,
                                       kCaptureButtonHeightPhone);
 
 	_backButton.frame = CGRectMake(camLeft,
 										//camTop + camHeight + camTop - kCaptureButtonHeightPhone,
-										bounds.size.height - kCaptureButtonHeightPhone - (bounds.size.height * .15),
+										bounds.size.height - kCaptureButtonHeightPhone - (bounds.size.height * .05),
 
 										kCaptureButtonWidthPhone,
                                       kCaptureButtonHeightPhone);
