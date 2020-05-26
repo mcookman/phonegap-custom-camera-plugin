@@ -236,7 +236,7 @@ static const CGFloat kAspectRatio = 125.0f / 86;
                                      kBorderImageHeightPhone);
     
 	int tr = camLeft + camWidth;
-	if(camWidth > winWidth) tr = winWidth;
+	if((camLeft + camWidth) > winWidth) tr = winWidth;
     _topRightGuide.frame = CGRectMake(tr - kBorderImageWidthPhone,
                                       camTop,
                                       kBorderImageWidthPhone,
