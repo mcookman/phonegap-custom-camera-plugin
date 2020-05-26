@@ -36,8 +36,8 @@ int camLeft;
 int camWidth;
 int camHeight;
 
-static const CGFloat kCaptureButtonWidthPhone = 64;
-static const CGFloat kCaptureButtonHeightPhone = 64;
+static const CGFloat kCaptureButtonWidthPhone = 96;
+static const CGFloat kCaptureButtonHeightPhone = 96;
 static const CGFloat kBackButtonWidthPhone = 50;
 static const CGFloat kBackButtonHeightPhone = 50;
 static const CGFloat kBorderImageWidthPhone = 50;
@@ -63,7 +63,7 @@ static const CGFloat kAspectRatio = 125.0f / 86;
     if (self) {
         _callback = callback;
 
-		if(1 == 0){
+		if(1 == 1){
 			_captureSession = [[AVCaptureSession alloc] init];
 			_captureSession.sessionPreset = AVCaptureSessionPresetPhoto;
 		}
@@ -79,7 +79,7 @@ static const CGFloat kAspectRatio = 125.0f / 86;
     self.view = [[UIView alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     self.view.backgroundColor = [UIColor blackColor];
     
-	if(1 == 0){    
+	if(1 == 1){    
 		 //if ([AVCaptureDevice respondsToSelector:@selector(authorizationStatusForMediaType:)]) {
 				AVAuthorizationStatus authStatus = [AVCaptureDevice authorizationStatusForMediaType:AVMediaTypeVideo];
 				if (authStatus == AVAuthorizationStatusDenied ||
@@ -110,7 +110,9 @@ static const CGFloat kAspectRatio = 125.0f / 86;
 		camWidth = (width * camHeight)/height;
 		camLeft = (width - camWidth) / 2;
 		camTop = (height - camHeight) / 2;
-    
+		if(camTop < 30)
+			camTop = 30;
+
 		//AVCaptureVideoPreviewLayer *previewLayer = [AVCaptureVideoPreviewLayer layerWithSession:_captureSession];
 		_previewLayer = [AVCaptureVideoPreviewLayer layerWithSession:_captureSession];
 		_previewLayer.videoGravity = AVLayerVideoGravityResizeAspectFill;
@@ -191,7 +193,7 @@ static const CGFloat kAspectRatio = 125.0f / 86;
 - (void)layoutForPhone {
     CGRect bounds = [[UIScreen mainScreen] bounds];
     
-	UIFont* font = [UIFont fontWithName:@"Arial" size:18];
+	UIFont* font = [UIFont fontWithName:@"Arial" size:16];
 	UIColor *color = [UIColor whiteColor];
 	[_topTextLabel setFrame: CGRectMake(0, 0, bounds.size.width, camTop - 2)];
 	[_topTextLabel setText: _topTextString];
@@ -221,22 +223,24 @@ static const CGFloat kAspectRatio = 125.0f / 86;
 										kCaptureButtonWidthPhone,
                                       kCaptureButtonHeightPhone);
 
-	_backButton.frame = CGRectMake(camLeft,
+	int tl = camLeft;
+	if(camLeft < 0) tl = 0;
+
+	_backButton.frame = CGRectMake(tl,
 										//camTop + camHeight + camTop - kCaptureButtonHeightPhone,
 										winHeight - kCaptureButtonHeightPhone - (winHeight * .025),
 
 										kCaptureButtonWidthPhone,
                                       kCaptureButtonHeightPhone);
 
-	int tl = camLeft;
-	if(camLeft < 0) tl = 0;
+	
 	_topLeftGuide.frame = CGRectMake(tl,
                                      camTop,
                                      kBorderImageWidthPhone,
                                      kBorderImageHeightPhone);
     
-	int tr = camLeft + camWidth;
-	if((camLeft + camWidth) > winWidth) tr = winWidth;
+	int tr = tl + camWidth;
+	if(tr > winWidth) tr = winWidth;
     _topRightGuide.frame = CGRectMake(tr - kBorderImageWidthPhone,
                                       camTop,
                                       kBorderImageWidthPhone,
@@ -435,7 +439,7 @@ static const CGFloat kAspectRatio = 125.0f / 86;
 - (void)viewDidLoad {
 	
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
-     if(1 == 0){
+     if(1 == 1){
         for (AVCaptureDevice *device in [AVCaptureDevice devices]) {
             if ([device hasMediaType:AVMediaTypeVideo] && [device position] == AVCaptureDevicePositionBack) {
                 _rearCamera = device;
