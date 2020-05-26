@@ -20,13 +20,13 @@
 	NSNumber * NtargetWidth = [command argumentAtIndex:2];
     NSNumber * NtargetHeight = [command argumentAtIndex:3];
 	NSString * topstring = [command argumentAtIndex:4];
-    if (![UIImagePickerController isCameraDeviceAvailable:UIImagePickerControllerCameraDeviceRear]) {
-        CDVPluginResult *result = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsString:@"No rear camera detected"];
-        [self.commandDelegate sendPluginResult:result callbackId:command.callbackId];
-    } else if (![UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
-        CDVPluginResult *result = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsString:@"Camera is not accessible"];
-        [self.commandDelegate sendPluginResult:result callbackId:command.callbackId];
-    } else {
+    //if (![UIImagePickerController isCameraDeviceAvailable:UIImagePickerControllerCameraDeviceRear]) {
+    //    CDVPluginResult *result = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsString:@"No rear camera detected"];
+    //    [self.commandDelegate sendPluginResult:result callbackId:command.callbackId];
+    //} else if (![UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
+    //    CDVPluginResult *result = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsString:@"Camera is not accessible"];
+    //    [self.commandDelegate sendPluginResult:result callbackId:command.callbackId];
+    //} else {
 	    
         CustomCameraViewController *cameraViewController = [[CustomCameraViewController alloc] initWithCallback:^(UIImage *image) {
 			[self.viewController dismissViewControllerAnimated:YES completion:nil];
@@ -44,10 +44,10 @@
             
         }];
 	
-	[cameraViewController setTopText:topstring];
+		[cameraViewController setTopText:topstring];
 	
         [self.viewController presentViewController:cameraViewController animated:YES completion:nil];
-    }
+    //}
 }
 
 - (UIImage*)scaleImage:(UIImage*)image toSize:(CGSize)targetSize {
