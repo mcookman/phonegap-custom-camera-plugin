@@ -62,8 +62,11 @@ static const CGFloat kAspectRatio = 125.0f / 86;
     self = [super initWithNibName:nil bundle:nil];
     if (self) {
         _callback = callback;
-	_captureSession = [[AVCaptureSession alloc] init];
-        _captureSession.sessionPreset = AVCaptureSessionPresetPhoto;
+
+		if(1 == 0){
+			_captureSession = [[AVCaptureSession alloc] init];
+			_captureSession.sessionPreset = AVCaptureSessionPresetPhoto;
+		}
     }
     return self;
 }
@@ -75,45 +78,47 @@ static const CGFloat kAspectRatio = 125.0f / 86;
 - (void)loadView {
     self.view = [[UIView alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     self.view.backgroundColor = [UIColor blackColor];
-        
-	 //if ([AVCaptureDevice respondsToSelector:@selector(authorizationStatusForMediaType:)]) {
-            AVAuthorizationStatus authStatus = [AVCaptureDevice authorizationStatusForMediaType:AVMediaTypeVideo];
-            if (authStatus == AVAuthorizationStatusDenied ||
-                authStatus == AVAuthorizationStatusRestricted) {
-                // If iOS 8+, offer a link to the Settings app
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wtautological-pointer-compare"
-                NSString* settingsButton = (&UIApplicationOpenSettingsURLString != NULL)
-                    ? NSLocalizedString(@"Settings", nil)
-                    : nil;
-#pragma clang diagnostic pop
-
-                // Denied; show an alert
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    [[[UIAlertView alloc] initWithTitle:[[NSBundle mainBundle]
-                                                         objectForInfoDictionaryKey:@"CFBundleDisplayName"]
-                                                message:NSLocalizedString(@"Access to the camera has been prohibited; please enable it in the Settings app to continue.", nil)
-                                               delegate:nil
-                                      cancelButtonTitle:NSLocalizedString(@"OK", nil)
-                                      otherButtonTitles:settingsButton, nil] show];
-                });
-            }
-        //}
-
-	int width = self.view.bounds.size.width;
-	int height =  self.view.bounds.size.height;
-	camHeight = height * .9;
-	camWidth = (width * camHeight)/height;
-	camLeft = (width - camWidth) / 2;
-	camTop = (height - camHeight) / 2;
     
-    //AVCaptureVideoPreviewLayer *previewLayer = [AVCaptureVideoPreviewLayer layerWithSession:_captureSession];
-	_previewLayer = [AVCaptureVideoPreviewLayer layerWithSession:_captureSession];
-    _previewLayer.videoGravity = AVLayerVideoGravityResizeAspectFill;
-    //previewLayer.frame = self.view.bounds;
-	_previewLayer.frame = CGRectMake(camLeft, camTop, camWidth, camHeight);
+	if(1 == 0){    
+		 //if ([AVCaptureDevice respondsToSelector:@selector(authorizationStatusForMediaType:)]) {
+				AVAuthorizationStatus authStatus = [AVCaptureDevice authorizationStatusForMediaType:AVMediaTypeVideo];
+				if (authStatus == AVAuthorizationStatusDenied ||
+					authStatus == AVAuthorizationStatusRestricted) {
+					// If iOS 8+, offer a link to the Settings app
+	#pragma clang diagnostic push
+	#pragma clang diagnostic ignored "-Wtautological-pointer-compare"
+					NSString* settingsButton = (&UIApplicationOpenSettingsURLString != NULL)
+						? NSLocalizedString(@"Settings", nil)
+						: nil;
+	#pragma clang diagnostic pop
 
-    [[self.view layer] addSublayer:_previewLayer];
+					// Denied; show an alert
+					dispatch_async(dispatch_get_main_queue(), ^{
+						[[[UIAlertView alloc] initWithTitle:[[NSBundle mainBundle]
+															 objectForInfoDictionaryKey:@"CFBundleDisplayName"]
+													message:NSLocalizedString(@"Access to the camera has been prohibited; please enable it in the Settings app to continue.", nil)
+												   delegate:nil
+										  cancelButtonTitle:NSLocalizedString(@"OK", nil)
+										  otherButtonTitles:settingsButton, nil] show];
+					});
+				}
+			//}
+
+		int width = self.view.bounds.size.width;
+		int height =  self.view.bounds.size.height;
+		camHeight = height * .9;
+		camWidth = (width * camHeight)/height;
+		camLeft = (width - camWidth) / 2;
+		camTop = (height - camHeight) / 2;
+    
+		//AVCaptureVideoPreviewLayer *previewLayer = [AVCaptureVideoPreviewLayer layerWithSession:_captureSession];
+		_previewLayer = [AVCaptureVideoPreviewLayer layerWithSession:_captureSession];
+		_previewLayer.videoGravity = AVLayerVideoGravityResizeAspectFill;
+		//previewLayer.frame = self.view.bounds;
+		_previewLayer.frame = CGRectMake(camLeft, camTop, camWidth, camHeight);
+		[[self.view layer] addSublayer:_previewLayer];
+	}
+    
     
     [self.view addSubview:[self createOverlay]];
     _activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
@@ -195,17 +200,18 @@ static const CGFloat kAspectRatio = 125.0f / 86;
 	[_topTextLabel setTextColor:color];
 	[_topTextLabel setTextAlignment:NSTextAlignmentCenter];
 
-	
+	int winHeight = self.view.bounds.size.height;
+
 	//[_statusLabel setFrame: CGRectMake((bounds.size.width / 2) + kCaptureButtonWidthPhone, bounds.size.height - kCaptureButtonHeightPhone - kCaptureButtonVerticalInsetPhone, bounds.size.width/4, kVerticalInsetPhone - 10)];
 	//[_statusLabel setFrame: CGRectMake(camWidth + camLeft - 200, camTop + camHeight + 1, 200, 40)];
-	[_statusLabel setFrame: CGRectMake(camWidth + camLeft - 200, bounds.size.height - 40 - (bounds.size.height * .025), 200, 40)];
+	[_statusLabel setFrame: CGRectMake(camWidth + camLeft - 200, winHeight - 40 - (winHeight * .025), 200, 40)];
 	[_statusLabel setFont: font];
 	[_statusLabel setText: @"Ready"];
 	[_statusLabel setBackgroundColor: [UIColor clearColor]];
 	[_statusLabel setTextColor:color];
 	[_statusLabel setTextAlignment:NSTextAlignmentRight];
 
-	int winHeight = self.view.bounds.size.height;
+	
 
 	_captureButton.frame = CGRectMake((bounds.size.width / 2) - (kCaptureButtonWidthPhone / 2),
 										//camTop + camHeight + camTop - kCaptureButtonHeightPhone,
@@ -424,7 +430,7 @@ static const CGFloat kAspectRatio = 125.0f / 86;
 - (void)viewDidLoad {
 	
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
-     if(1 == 1){
+     if(1 == 0){
         for (AVCaptureDevice *device in [AVCaptureDevice devices]) {
             if ([device hasMediaType:AVMediaTypeVideo] && [device position] == AVCaptureDevicePositionBack) {
                 _rearCamera = device;
