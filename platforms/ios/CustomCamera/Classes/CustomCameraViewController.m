@@ -201,10 +201,11 @@ static const CGFloat kAspectRatio = 125.0f / 86;
 	[_topTextLabel setTextAlignment:NSTextAlignmentCenter];
 
 	int winHeight = self.view.bounds.size.height;
+	int winWidth = self.view.bounds.size.width;
 
 	//[_statusLabel setFrame: CGRectMake((bounds.size.width / 2) + kCaptureButtonWidthPhone, bounds.size.height - kCaptureButtonHeightPhone - kCaptureButtonVerticalInsetPhone, bounds.size.width/4, kVerticalInsetPhone - 10)];
 	//[_statusLabel setFrame: CGRectMake(camWidth + camLeft - 200, camTop + camHeight + 1, 200, 40)];
-	[_statusLabel setFrame: CGRectMake(camWidth + camLeft - 200, winHeight - 40 - (winHeight * .025), 200, 40)];
+	[_statusLabel setFrame: CGRectMake(winWidth - 200, winHeight - 40 - (winHeight * .025), 200, 40)];
 	[_statusLabel setFont: font];
 	[_statusLabel setText: @"Ready"];
 	[_statusLabel setBackgroundColor: [UIColor clearColor]];
@@ -213,7 +214,7 @@ static const CGFloat kAspectRatio = 125.0f / 86;
 
 	
 
-	_captureButton.frame = CGRectMake((bounds.size.width / 2) - (kCaptureButtonWidthPhone / 2),
+	_captureButton.frame = CGRectMake((winWidth / 2) - (kCaptureButtonWidthPhone / 2),
 										//camTop + camHeight + camTop - kCaptureButtonHeightPhone,
 															winHeight - kCaptureButtonHeightPhone - (winHeight * .025),
 
