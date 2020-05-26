@@ -228,12 +228,16 @@ static const CGFloat kAspectRatio = 125.0f / 86;
 										kCaptureButtonWidthPhone,
                                       kCaptureButtonHeightPhone);
 
-	_topLeftGuide.frame = CGRectMake(camLeft,
+	int tl = camLeft;
+	if(camLeft < 0) tl = 0;
+	_topLeftGuide.frame = CGRectMake(tl,
                                      camTop,
                                      kBorderImageWidthPhone,
                                      kBorderImageHeightPhone);
     
-    _topRightGuide.frame = CGRectMake(camLeft + camWidth - kBorderImageWidthPhone,
+	int tr = camLeft + camWidth;
+	if(camWidth > winWidth) tr = winWidth;
+    _topRightGuide.frame = CGRectMake(tr - kBorderImageWidthPhone,
                                       camTop,
                                       kBorderImageWidthPhone,
                                       kBorderImageHeightPhone);
