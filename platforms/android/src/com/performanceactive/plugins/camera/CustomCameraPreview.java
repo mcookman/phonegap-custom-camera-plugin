@@ -73,11 +73,11 @@ public class CustomCameraPreview extends SurfaceView implements SurfaceHolder.Ca
 
     private Size optimimalPreviewSize(int targetWidth, int targetHeight) {
         List<Size> sizes = camera.getParameters().getSupportedPreviewSizes();
-        float targetAspectRatio = (float) targetWidth / targetHeight;
+       /* float targetAspectRatio = (float) targetWidth / targetHeight;
         List<Size> sizesWithMatchingAspectRatios = filterByAspectRatio(targetAspectRatio, sizes);
         if (sizesWithMatchingAspectRatios.size() > 0) {
             return optimalSizeForHeight(sizesWithMatchingAspectRatios, targetHeight);
-        }
+        }*/
         return optimalSizeForHeight(sizes, targetHeight);
     }
 
