@@ -81,7 +81,7 @@ public class CustomCameraActivity extends Activity {
 	private int camTop;
 	private int camWidth;
 	private int camHeight;
-
+    Camera.Size optimalSize = null;
     @Override
     protected void onResume() {
         super.onResume();
@@ -117,7 +117,7 @@ public class CustomCameraActivity extends Activity {
 
     private void displayCameraPreview() {
         cameraPreviewView.removeAllViews();
-        cameraPreviewView.addView(new CustomCameraPreview(this, camera));
+        cameraPreviewView.addView(new CustomCameraPreview(this, camera, camWidth, camHeight));
     }
 
     @Override
@@ -142,16 +142,54 @@ public class CustomCameraActivity extends Activity {
         RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
         layout.setLayoutParams(layoutParams);
 
+        //calculate the desired height of the preview
 		double width = screenWidthInPixels();
 		double height = screenHeightInPixels();
-		double nh = height * .9;
-		double nw = (width*nh)/height;
-		double left = (width - nw)/2.0;
-		double top = (height-nh)/2.0;
-		camWidth = (int)Math.round(nw);
-		camHeight = (int)Math.round(nh);
-		camLeft = (int)Math.round(left);
-		camTop = (int)Math.round(top);
+		if(width > height) {
+            double nh = height * .90;
+            camHeight = (int) Math.round(nh);
+
+            camera = Camera.open();
+            List<Camera.Size> sizes = camera.getParameters().getSupportedPreviewSizes();
+            double screenAspect = height / width;
+
+            float minimumHeightDelta = Float.MAX_VALUE;
+            double minimumAspectDelta = Float.MAX_VALUE;
+
+            for (Camera.Size size : sizes) {
+                double camAspect = (double) size.width / size.height;
+                if (screenAspect - camAspect < minimumAspectDelta) {
+                    optimalSize = size;
+                    minimumAspectDelta = screenAspect - camAspect;
+                }
+            }
+            camWidth = (int)Math.round((optimalSize.height * camHeight)/optimalSize.width);
+        } else {
+		    double nw = width * .90;
+		    camWidth = (int)Math.round(nw);
+            camera = Camera.open();
+            List<Camera.Size> sizes = camera.getParameters().getSupportedPreviewSizes();
+            double screenAspect = height / width;
+
+            float minimumHeightDelta = Float.MAX_VALUE;
+            double minimumAspectDelta = Float.MAX_VALUE;
+
+            for (Camera.Size size : sizes) {
+                double camAspect = (double) size.width / size.height;
+                if (screenAspect - camAspect < minimumAspectDelta) {
+                    optimalSize = size;
+                    minimumAspectDelta = screenAspect - camAspect;
+                }
+            }
+            camHeight = (int)Math.round((optimalSize.width * camWidth)/optimalSize.height);
+        }
+
+
+
+        double left = (width - camWidth)/2.0;
+        double top = (height - camHeight)/2.0;
+        camLeft = (int)Math.round(left);
+        camTop = (int)Math.round(top);
 
         createCameraPreview();
 		createTopMessage();
@@ -172,7 +210,8 @@ public class CustomCameraActivity extends Activity {
     private void createCameraPreview() {
         cameraPreviewView = new FrameLayout(this);
         //FrameLayout.LayoutParams layoutParams = new FrameLayout.LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
-		
+
+
 		//FrameLayout.LayoutParams layoutParams = new FrameLayout.LayoutParams(nnw, nnh, Gravity.CENTER_HORIZONTAL | Gravity.CENTER_VERTICAL);
 		RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(camWidth,camHeight);
 		//layoutParams.addRule(RelativeLayout.CENTER_IN_PARENT)
@@ -189,7 +228,10 @@ public class CustomCameraActivity extends Activity {
         layoutParams.addRule(RelativeLayout.ALIGN_PARENT_TOP);
         layoutParams.addRule(RelativeLayout.ALIGN_PARENT_LEFT);
 		layoutParams.topMargin = camTop;
-		layoutParams.leftMargin = camLeft;
+		if(camLeft > 0)
+		    layoutParams.leftMargin = camLeft;
+		else
+		    layoutParams.leftMargin = 0;
         /*if (isXLargeScreen()) {
             layoutParams.topMargin = dpToPixels(100);
             layoutParams.leftMargin = dpToPixels(100);
@@ -211,7 +253,10 @@ public class CustomCameraActivity extends Activity {
         layoutParams.addRule(RelativeLayout.ALIGN_PARENT_TOP);
         layoutParams.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
 		layoutParams.topMargin = camTop;
-		layoutParams.rightMargin = camLeft;
+		if(camLeft > 0)
+		    layoutParams.rightMargin = camLeft;
+		else
+		    layoutParams.rightMargin = 0;
         /*if (isXLargeScreen()) {
             layoutParams.topMargin = dpToPixels(100);
             layoutParams.rightMargin = dpToPixels(100);
@@ -293,7 +338,7 @@ public class CustomCameraActivity extends Activity {
         setBitmap(captureButton, "capture_button.png");
         captureButton.setBackgroundColor(Color.TRANSPARENT);
         captureButton.setScaleType(ScaleType.FIT_CENTER);
-        RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(dpToPixels(75), dpToPixels(75));
+        RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(dpToPixels(125), dpToPixels(125));
         layoutParams.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
         layoutParams.addRule(RelativeLayout.CENTER_HORIZONTAL);
         layoutParams.bottomMargin = dpToPixels(2);
@@ -323,7 +368,10 @@ public class CustomCameraActivity extends Activity {
         layoutParams.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
         layoutParams.addRule(RelativeLayout.ALIGN_PARENT_LEFT);
         layoutParams.bottomMargin = 0;
-		layoutParams.leftMargin = camLeft;
+        if(camLeft > 0)
+		    layoutParams.leftMargin = camLeft;
+        else
+            layoutParams.leftMargin = 0;
         cancelButton.setLayoutParams(layoutParams);
         cancelButton.setOnTouchListener(new View.OnTouchListener() {
             @Override
@@ -347,7 +395,7 @@ public class CustomCameraActivity extends Activity {
 		topMessage.setPadding(0, 0, 0, 0);
 		topMessage.setTextColor(Color.WHITE);
 		topMessage.setWidth(screenWidthInPixels());
-		topMessage.setHeight(100);
+		topMessage.setHeight(50);
 		topMessage.setTypeface(Typeface.SANS_SERIF, Typeface.BOLD);
 		topMessage.setTextSize(14);
 		RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.FILL_PARENT, 
@@ -367,7 +415,7 @@ public class CustomCameraActivity extends Activity {
 		statusMessage.setPadding(0, 0, 0, 0);
 		statusMessage.setTextColor(Color.WHITE);
 		statusMessage.setWidth(100);
-		statusMessage.setHeight(70);
+		statusMessage.setHeight(55);
 		statusMessage.setTypeface(Typeface.SANS_SERIF, Typeface.BOLD);
 		statusMessage.setTextSize(14);
 		

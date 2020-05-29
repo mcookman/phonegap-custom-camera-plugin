@@ -17,15 +17,22 @@ import java.util.List;
 /**
  *
  */
+
+
 public class CustomCameraPreview extends SurfaceView implements SurfaceHolder.Callback {
+    private int optWidth=0;
+    private int optHeight=0;
 
     private static final String TAG = CustomCameraPreview.class.getSimpleName();
 
     private final Camera camera;
 
-    public CustomCameraPreview(Context context, Camera camera) {
+    public CustomCameraPreview(Context context, Camera camera, int cwidth, int cheight) {
         super(context);
+        optWidth = cwidth;
+        optHeight = cheight;
         this.camera = camera;
+
         getHolder().addCallback(this);
     }
 
@@ -58,8 +65,9 @@ public class CustomCameraPreview extends SurfaceView implements SurfaceHolder.Ca
 
         try {
             Camera.Parameters cameraSettings = camera.getParameters();
-            Size previewSize = optimimalPreviewSize(width, height);
+            Size previewSize = optimimalPreviewSize(optWidth, optHeight);
             cameraSettings.setPreviewSize(previewSize.width, previewSize.height);
+            //cameraSettings.setPreviewSize(optHeight, optWidth);
 			//cameraSettings.setFocusMode("macro");
 			cameraSettings.setZoom(0);
             camera.setParameters(cameraSettings);
@@ -73,11 +81,11 @@ public class CustomCameraPreview extends SurfaceView implements SurfaceHolder.Ca
 
     private Size optimimalPreviewSize(int targetWidth, int targetHeight) {
         List<Size> sizes = camera.getParameters().getSupportedPreviewSizes();
-       /* float targetAspectRatio = (float) targetWidth / targetHeight;
+        float targetAspectRatio = (float) targetWidth / targetHeight;
         List<Size> sizesWithMatchingAspectRatios = filterByAspectRatio(targetAspectRatio, sizes);
         if (sizesWithMatchingAspectRatios.size() > 0) {
             return optimalSizeForHeight(sizesWithMatchingAspectRatios, targetHeight);
-        }*/
+        }
         return optimalSizeForHeight(sizes, targetHeight);
     }
 
