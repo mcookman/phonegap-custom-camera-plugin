@@ -26,6 +26,7 @@ public class CustomCameraPreview extends SurfaceView implements SurfaceHolder.Ca
     private static final String TAG = CustomCameraPreview.class.getSimpleName();
 
     private final Camera camera;
+    private Camera.Size mPreviewSize;
 
     public CustomCameraPreview(Context context, Camera camera, int cwidth, int cheight) {
         super(context);
@@ -34,6 +35,12 @@ public class CustomCameraPreview extends SurfaceView implements SurfaceHolder.Ca
         this.camera = camera;
 
         getHolder().addCallback(this);
+    }
+
+    @Override
+    protected void onMeasure(int widthMeasureSpec, int heightMesureSpec){
+        setMeasuredDimension(optWidth, optHeight);
+        return;
     }
 
     @Override
@@ -67,8 +74,6 @@ public class CustomCameraPreview extends SurfaceView implements SurfaceHolder.Ca
             Camera.Parameters cameraSettings = camera.getParameters();
             Size previewSize = optimimalPreviewSize(optWidth, optHeight);
             cameraSettings.setPreviewSize(previewSize.width, previewSize.height);
-            //cameraSettings.setPreviewSize(optHeight, optWidth);
-			//cameraSettings.setFocusMode("macro");
 			cameraSettings.setZoom(0);
             camera.setParameters(cameraSettings);
             camera.setPreviewDisplay(holder);

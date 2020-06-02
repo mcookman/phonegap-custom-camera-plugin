@@ -65,7 +65,7 @@ public class CustomCameraActivity extends Activity {
 	public static String TMP_PATH = "TMP_Path";
     public static int RESULT_ERROR = 2;
 
-    private Camera camera;
+    private Camera camera = null;
     private RelativeLayout layout;
     private FrameLayout cameraPreviewView;
     private ImageView borderTopLeft;
@@ -77,10 +77,12 @@ public class CustomCameraActivity extends Activity {
     private ImageButton captureButton;
 	private ImageButton cancelButton;
 
-	private int camLeft;
-	private int camTop;
-	private int camWidth;
-	private int camHeight;
+	private int camLeft = 0;
+	private int camTop = 0;
+	private int camWidth = 0;
+	private int camHeight = 0;
+	private int maxPicWidth = 0;
+	private int maxPicHeight = 0;
     Camera.Size optimalSize = null;
     @Override
     protected void onResume() {
@@ -104,15 +106,11 @@ public class CustomCameraActivity extends Activity {
         } else if (supportedFocusModes.contains(Camera.Parameters.FOCUS_MODE_AUTO)) {
             cameraSettings.setFocusMode(Camera.Parameters.FOCUS_MODE_AUTO);
         }
-		
-        //cameraSettings.setFlashMode(Camera.Parameters.FLASH_MODE_AUTO);
-		
-		
+
+		//now set the picture size to be the max calculated
+        cameraSettings.setPictureSize(maxPicWidth, maxPicHeight);
 
         camera.setParameters(cameraSettings);
-		//statusMessage.setText("CAM SET");
-
-		//List<Size> sizes = camera.getParameters().getSupportedPreviewSizes();
     }
 
     private void displayCameraPreview() {
@@ -130,30 +128,21 @@ public class CustomCameraActivity extends Activity {
         if (camera != null) {
             camera.stopPreview();
             camera.release();
+            camera = null;
         }
     }
 
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        requestWindowFeature(Window.FEATURE_NO_TITLE);
-        layout = new RelativeLayout(this);
-        RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
-        layout.setLayoutParams(layoutParams);
-
-        //calculate the desired height of the preview
-		double width = screenWidthInPixels();
-		double height = screenHeightInPixels();
-		if(width > height) {
-            double nh = height * .90;
+    private int calcCamPicSize(int screenwidth, int screenheight){
+        if(camera == null){
+            camera = Camera.open();
+        }
+        if(screenwidth > screenheight) {
+            double nh = screenheight * .90;
             camHeight = (int) Math.round(nh);
 
-            camera = Camera.open();
             List<Camera.Size> sizes = camera.getParameters().getSupportedPreviewSizes();
-            double screenAspect = height / width;
+            double screenAspect = screenwidth / screenheight;
 
-            float minimumHeightDelta = Float.MAX_VALUE;
             double minimumAspectDelta = Float.MAX_VALUE;
 
             for (Camera.Size size : sizes) {
@@ -165,31 +154,62 @@ public class CustomCameraActivity extends Activity {
             }
             camWidth = (int)Math.round((optimalSize.height * camHeight)/optimalSize.width);
         } else {
-		    double nw = width * .90;
-		    camWidth = (int)Math.round(nw);
-            camera = Camera.open();
-            List<Camera.Size> sizes = camera.getParameters().getSupportedPreviewSizes();
-            double screenAspect = height / width;
+            double nw = screenwidth * .95;
+            camWidth = (int)Math.round(nw);
 
-            float minimumHeightDelta = Float.MAX_VALUE;
+            List<Camera.Size> sizes = camera.getParameters().getSupportedPreviewSizes();
+            double screenAspect = screenheight / screenwidth;
             double minimumAspectDelta = Float.MAX_VALUE;
 
             for (Camera.Size size : sizes) {
                 double camAspect = (double) size.width / size.height;
+
                 if (screenAspect - camAspect < minimumAspectDelta) {
                     optimalSize = size;
                     minimumAspectDelta = screenAspect - camAspect;
                 }
             }
             camHeight = (int)Math.round((optimalSize.width * camWidth)/optimalSize.height);
+
         }
 
+        //now calculate the max pic size at the aspect calculated
+        double cAspect = (double)camWidth/(double)camHeight;
+        List<Camera.Size> sizes = camera.getParameters().getSupportedPictureSizes();
+        Camera.Size maxWSize = sizes.get(0);
+        maxWSize.height = 0;
+        maxWSize.width = 0;
+        for (Camera.Size size : sizes) {
+            double camAspect = (double) size.height / size.width;
+            if(camAspect == cAspect){
+                if(size.width > maxWSize.width )
+                    maxWSize = size;
+            }
 
+        }
+        maxPicWidth = maxWSize.width;
+        maxPicHeight = maxWSize.height;
+        return 1;
+    }
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        layout = new RelativeLayout(this);
+        RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
+        layout.setLayoutParams(layoutParams);
 
-        double left = (width - camWidth)/2.0;
-        double top = (height - camHeight)/2.0;
-        camLeft = (int)Math.round(left);
-        camTop = (int)Math.round(top);
+        //calculate the desired height of the preview
+		int width = screenWidthInPixels();
+		int height = screenHeightInPixels();
+
+        if(calcCamPicSize(width, height) != 1){
+
+        }
+
+        camLeft = (int)Math.round((width - camWidth)/2.0);
+        camTop = (int)Math.round((height - camHeight)/2.0);
 
         createCameraPreview();
 		createTopMessage();
